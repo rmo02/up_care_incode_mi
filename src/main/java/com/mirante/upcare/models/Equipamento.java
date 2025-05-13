@@ -31,7 +31,8 @@ public class Equipamento {
     @JoinColumn(name = "fk_estacao")
     private Estacao estacao;
 
-    /** TODO: Criar entidade Marca */
+    @NotBlank
+    private String marca;
     
     @NotBlank
     private String codigo;
