@@ -1,12 +1,13 @@
-package com.mirante.upcare.model;
+package com.mirante.upcare.models;
 
-import com.mirante.upcare.model.enumarate.TipoManutencao;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
 import lombok.Getter;
 import lombok.Setter;
 
 import java.util.UUID;
+
+import com.mirante.upcare.models.enums.TipoManutencao;
 
 @Entity
 @Getter @Setter

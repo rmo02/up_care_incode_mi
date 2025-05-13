@@ -1,15 +1,18 @@
-package com.mirante.upcare.model;
+package com.mirante.upcare.models;
 
 import java.util.UUID;
 
+import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
+import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 
-public class Receptor {
+@Entity
+public class Transmissor {
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
     private UUID id;
@@ -19,22 +22,18 @@ public class Receptor {
     @JoinColumn(name = "fk_equipamento")
     private Equipamento equipamento;
 
-    @NotNull
-    @ManyToOne
-    @JoinColumn(name = "fk_parabolica")
-    private Parabolica parabolica;
+    @NotBlank
+    private String programado;
 
-    @NotNull
-    @ManyToOne
-    @JoinColumn(name = "fk_transmissor")
-    private Transmissor transmissor;
-    
-    @NotNull
-    private Float canal;
+    @NotNull 
+    private Float canal_fisico;
 
-    @NotNull
-    private Integer frequencia;
-   
-    @NotNull
-    private Integer symbol_rate;
+    @NotNull 
+    private Float canal_virtual;
+
+    @NotNull 
+    private Float acoplador_um ;
+
+    @NotNull 
+    private Float acoplador_dois;
 }

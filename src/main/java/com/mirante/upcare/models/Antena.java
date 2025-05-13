@@ -1,9 +1,9 @@
-package com.mirante.upcare.model;
+package com.mirante.upcare.models;
 
 import java.util.UUID;
 
-import com.mirante.upcare.model.enumarate.PosicaoAntena;
-import com.mirante.upcare.model.enumarate.TipoAntena;
+import com.mirante.upcare.models.enums.PosicaoAntena;
+import com.mirante.upcare.models.enums.TipoAntena;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;

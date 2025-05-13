@@ -1,9 +1,8 @@
-package com.mirante.upcare.model;
+package com.mirante.upcare.models;
 
 import java.util.UUID;
 
-import com.mirante.upcare.model.enumarate.Categoria;
-import com.mirante.upcare.model.enumarate.Status;
+import com.mirante.upcare.models.enums.Status;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
@@ -11,41 +10,41 @@ import jakarta.persistence.Enumerated;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.ManyToOne;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 @Entity
+@Builder
 @Getter @Setter
-public class Equipamento {
-    
+@AllArgsConstructor
+@NoArgsConstructor
+public class Estacao {
+
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
     private UUID id;
 
+    @NotBlank
+    private String nome;
+    
     @NotNull
-    @ManyToOne
-    @JoinColumn(name = "fk_estacao")
-    private Estacao estacao;
+    private Float latitude;
+    
+    @NotNull
+    private Float longitude;
+    
+    @NotBlank
+    private String endereco;
 
-    /** TODO: Criar entidade Marca */
-    
     @NotBlank
-    private String codigo;
-    
-    @NotBlank
-    private String modelo;
-    
-    @NotNull
-    @Enumerated(EnumType.STRING)
-    private Categoria categoria;
-    
+    private String linkGrafana;
+
     @NotNull
     @Enumerated(EnumType.STRING)
     private Status status;
-
-    /** TODO: Criar entidade File */
 }

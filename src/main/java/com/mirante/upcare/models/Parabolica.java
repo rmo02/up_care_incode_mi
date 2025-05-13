@@ -1,4 +1,4 @@
-package com.mirante.upcare.model;
+package com.mirante.upcare.models;
 
 import java.util.UUID;
 

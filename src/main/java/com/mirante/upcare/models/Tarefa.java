@@ -1,11 +1,12 @@
-package com.mirante.upcare.model;
+package com.mirante.upcare.models;
 
-import com.mirante.upcare.model.enumarate.StatusTarefa;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 
 import java.util.UUID;
+
+import com.mirante.upcare.models.enums.StatusTarefa;
 
 @Entity
 public class Tarefa {

@@ -1,4 +1,4 @@
-package com.mirante.upcare.model.enumarate;
+package com.mirante.upcare.models.enums;
 
 public enum StatusTarefa {
     AGENDADA,
