@@ -47,5 +47,8 @@ public class Equipamento {
     @Enumerated(EnumType.STRING)
     private Status status;
 
-    /** TODO: Criar entidade File */
+    @NotNull
+    @ManyToOne
+    @JoinColumn(name = "fk_foto")
+    private File foto;
 }

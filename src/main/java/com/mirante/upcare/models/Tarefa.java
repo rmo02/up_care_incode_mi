@@ -20,7 +20,6 @@ public class Tarefa {
     @JoinColumn(name = "fk_manutencao")
     private Manutencao manutencao;
 
-
     @NotNull
     @Enumerated(EnumType.STRING)
     private StatusTarefa statusTarefa;
@@ -31,8 +30,13 @@ public class Tarefa {
     @NotNull
     private Boolean fotoObrigatoria;
 
-    /** TODO: criar foto antes */
+    @NotNull
+    @ManyToOne
+    @JoinColumn(name = "fk_foto_antes")
+    private File fotoAntes;
 
-    /** TODO: criar foto depois */
-
+    @NotNull
+    @ManyToOne
+    @JoinColumn(name = "fk_foto_depois")
+    private File fotoDepois;
 }
