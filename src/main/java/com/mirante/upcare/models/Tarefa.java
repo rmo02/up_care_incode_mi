@@ -21,9 +21,6 @@ public class Tarefa {
     private Manutencao manutencao;
 
 
-    /** TODO: criar relacionamento muitos para muitos com equipamento '*/
-
-
     @NotNull
     @Enumerated(EnumType.STRING)
     private StatusTarefa statusTarefa;
