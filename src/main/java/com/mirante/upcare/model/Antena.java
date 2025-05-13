@@ -2,7 +2,7 @@ package com.mirante.upcare.model;
 
 import java.util.UUID;
 
-import com.mirante.upcare.model.enumarate.PosicaoTorre;
+import com.mirante.upcare.model.enumarate.PosicaoAntena;
 import com.mirante.upcare.model.enumarate.TipoAntena;
 
 import jakarta.persistence.Entity;
@@ -41,7 +41,7 @@ public class Antena {
 
     @NotNull
     @Enumerated(EnumType.STRING)
-    private PosicaoTorre posicao;
+    private PosicaoAntena posicao;
   
     @NotNull
     private Float vr;
