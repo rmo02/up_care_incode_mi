@@ -2,7 +2,7 @@ package com.mirante.upcare.models;
 
 import java.util.UUID;
 
-import com.mirante.upcare.models.enums.Status;
+import com.mirante.upcare.models.enums.StatusTecnico;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
@@ -46,5 +46,5 @@ public class Estacao {
 
     @NotNull
     @Enumerated(EnumType.STRING)
-    private Status status;
+    private StatusTecnico status;
 }

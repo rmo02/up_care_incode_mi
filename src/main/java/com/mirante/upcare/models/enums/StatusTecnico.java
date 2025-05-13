@@ -1,6 +1,6 @@
 package com.mirante.upcare.models.enums;
 
-public enum Status {
+public enum StatusTecnico {
     FUNCIONANDO,
     STAND_BY,
     DEFEITO,
