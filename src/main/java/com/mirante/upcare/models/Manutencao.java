@@ -22,7 +22,10 @@ public class Manutencao {
     @JoinColumn(name = "fk_estacao")
     private Estacao estacao;
 
-    /** TODO: Criar entidade tecnico */
+    @NotNull
+    @ManyToOne
+    @JoinColumn(name = "fk_tecnico")
+    private Usuario tecnico;
 
     @NotNull
     @Enumerated(EnumType.STRING)
