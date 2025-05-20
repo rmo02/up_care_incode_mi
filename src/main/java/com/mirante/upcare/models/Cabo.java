@@ -1,6 +1,5 @@
 package com.mirante.upcare.models;
 
-import com.mirante.upcare.models.enums.TipoAntena;
 import com.mirante.upcare.models.enums.TipoCabo;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
