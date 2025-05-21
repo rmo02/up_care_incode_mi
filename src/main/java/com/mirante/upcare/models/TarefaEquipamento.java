@@ -27,6 +27,6 @@ public class TarefaEquipamento {
     
     @NotNull
     @ManyToOne
-    @JoinColumn(name = "fk_tarefa")
+    @JoinColumn(name = "fk_equipamento")
     private Equipamento equipamento;
 }
