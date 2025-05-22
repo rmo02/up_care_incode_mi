@@ -34,10 +34,10 @@ public class Equipamento {
     @GeneratedValue(strategy = GenerationType.UUID)
     private UUID id;
 
-    // @NotNull
-    // @ManyToOne
-    // @JoinColumn(name = "fk_estacao")
-    // private Estacao estacao;
+    @NotNull
+    @ManyToOne
+    @JoinColumn(name = "fk_estacao")
+    private Estacao estacao;
 
     @NotBlank
     private String marca;
@@ -59,9 +59,4 @@ public class Equipamento {
     @NotNull
     @Enumerated(EnumType.STRING)
     private TipoEquipamento tipo;
-
-    // @NotNull
-    // @ManyToOne
-    // @JoinColumn(name = "fk_foto")
-    // private File foto;
 }

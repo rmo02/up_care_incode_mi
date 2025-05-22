@@ -9,7 +9,7 @@ import org.mapstruct.factory.Mappers;
 import com.mirante.upcare.dto.response.EquipamentoResponse;
 import com.mirante.upcare.models.Equipamento;
 
-@Mapper
+@Mapper(uses = EstacaoMapper.class)
 public interface EquipamentoMapper {
     
     EquipamentoMapper INSTANCE = Mappers.getMapper(EquipamentoMapper.class);

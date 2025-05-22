@@ -7,6 +7,7 @@ import com.mirante.upcare.models.enums.StatusTecnico;
 
 public record EquipamentoResponse (
     UUID idEquipamento,
+    EstacaoResponse estacao,
     String marca,
     String codigo,
     String modelo,
