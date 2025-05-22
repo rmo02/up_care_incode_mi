@@ -26,8 +26,8 @@ public class Nobreak {
     private Quadro quadro;
 
     @NotNull
-    private Integer tensao_entrada;
+    private Integer tensaoEntrada;
 
     @NotNull
-    private Integer tensao_saida;
+    private Integer tensaoSaida;
 }

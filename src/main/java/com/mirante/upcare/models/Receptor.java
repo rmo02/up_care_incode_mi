@@ -41,5 +41,5 @@ public class Receptor {
     private Integer frequencia;
    
     @NotNull
-    private Integer symbol_rate;
+    private Integer symbolRate;
 }

@@ -26,5 +26,5 @@ public class Disjuntor {
     private Quadro quadro;
 
     @NotNull
-    private Float corrente_maxima;
+    private Float correnteMaxima;
 }

@@ -29,14 +29,14 @@ public class Transmissor {
     private String programado;
 
     @NotNull 
-    private Float canal_fisico;
+    private Float canalFisico;
 
     @NotNull 
-    private Float canal_virtual;
+    private Float canalVirtual;
 
     @NotNull 
-    private Float acoplador_um ;
+    private Float acopladorUm ;
 
     @NotNull 
-    private Float acoplador_dois;
+    private Float acopladorDois;
 }

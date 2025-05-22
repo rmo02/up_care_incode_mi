@@ -26,5 +26,5 @@ public class Switch {
     private Quadro quadro;
 
     @NotNull
-    private Integer qtd_portas;
+    private Integer qtdPortas;
 }
