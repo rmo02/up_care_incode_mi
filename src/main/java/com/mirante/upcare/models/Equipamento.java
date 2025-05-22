@@ -4,6 +4,7 @@ import java.util.UUID;
 
 import com.mirante.upcare.models.enums.Categoria;
 import com.mirante.upcare.models.enums.StatusTecnico;
+import com.mirante.upcare.models.enums.TipoEquipamento;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
@@ -47,6 +48,10 @@ public class Equipamento {
     @NotNull
     @Enumerated(EnumType.STRING)
     private StatusTecnico status;
+    
+    @NotNull
+    @Enumerated(EnumType.STRING)
+    private TipoEquipamento tipo;
 
     @NotNull
     @ManyToOne
