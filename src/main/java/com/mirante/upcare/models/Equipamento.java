@@ -16,21 +16,28 @@ import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 @Entity
 @Getter @Setter
+
+@Builder
+@NoArgsConstructor
+@AllArgsConstructor
 public class Equipamento {
     
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
     private UUID id;
 
-    @NotNull
-    @ManyToOne
-    @JoinColumn(name = "fk_estacao")
-    private Estacao estacao;
+    // @NotNull
+    // @ManyToOne
+    // @JoinColumn(name = "fk_estacao")
+    // private Estacao estacao;
 
     @NotBlank
     private String marca;
@@ -53,8 +60,8 @@ public class Equipamento {
     @Enumerated(EnumType.STRING)
     private TipoEquipamento tipo;
 
-    @NotNull
-    @ManyToOne
-    @JoinColumn(name = "fk_foto")
-    private File foto;
+    // @NotNull
+    // @ManyToOne
+    // @JoinColumn(name = "fk_foto")
+    // private File foto;
 }
