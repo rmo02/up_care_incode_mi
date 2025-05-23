@@ -1,9 +1,9 @@
 package com.mirante.upcare.mappers;
 
+import java.util.List;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 import org.mapstruct.factory.Mappers;
-
 import com.mirante.upcare.dto.response.ParabolicaResponse;
 import com.mirante.upcare.models.Parabolica;
 
@@ -14,5 +14,5 @@ public interface ParabolicaMapper {
     
     @Mapping(source  = "id", target = "idParabolica")
     ParabolicaResponse toResponse(Parabolica parabolica);
-    
+    List<ParabolicaResponse> toResponseList(List<Parabolica> parabolicas);
 }
