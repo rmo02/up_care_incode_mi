@@ -7,6 +7,8 @@ import org.mapstruct.factory.Mappers;
 import com.mirante.upcare.dto.response.EmpresaResponse;
 import com.mirante.upcare.models.Empresa;
 
+import java.util.List;
+
 @Mapper
 public interface EmpresaMapper {
     
@@ -14,4 +16,6 @@ public interface EmpresaMapper {
 
     @Mapping(source = "id", target = "idEmpresa")
     EmpresaResponse toResponse(Empresa empresa);
+
+    List<EmpresaResponse> toResponseList(List<Empresa> empresas);
 }
