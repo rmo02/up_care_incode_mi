@@ -14,7 +14,7 @@ import lombok.AllArgsConstructor;
 
 @RestController
 @AllArgsConstructor
-@RequestMapping("api/equipamentos")
+@RequestMapping("equipamentos")
 public class EquipamentoController {
 
     private final EquipamentoRepository equipamentoRepository;

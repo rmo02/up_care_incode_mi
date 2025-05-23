@@ -14,7 +14,7 @@ import lombok.AllArgsConstructor;
 
 @RestController
 @AllArgsConstructor
-@RequestMapping("api/estacoes")
+@RequestMapping("estacoes")
 public class EstacaoController {
 
     private final EstacaoRepository estacaoRepository;
