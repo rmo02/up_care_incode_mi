@@ -11,7 +11,7 @@ import java.util.List;
 
 @RestController
 @AllArgsConstructor
-@RequestMapping("Usuario")
+@RequestMapping("usuarios")
 public class UsuarioController {
 
     private final UsuarioRepository usuarioRepository;

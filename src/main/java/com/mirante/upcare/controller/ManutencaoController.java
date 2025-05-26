@@ -11,7 +11,7 @@ import java.util.List;
 
 @RestController
 @AllArgsConstructor
-@RequestMapping("Manutencao")
+@RequestMapping("manutencoes")
 public class ManutencaoController {
 
     private final ManutencaoRepository manutencaoRepository;
