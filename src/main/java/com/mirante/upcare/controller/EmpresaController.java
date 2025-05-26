@@ -11,7 +11,7 @@ import java.util.List;
 
 @RestController
 @AllArgsConstructor
-@RequestMapping("empresas")
+@RequestMapping("Empresa")
 public class EmpresaController {
 
     private final EmpresaRepository empresaRepository;

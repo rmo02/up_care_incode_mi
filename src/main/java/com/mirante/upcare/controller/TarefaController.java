@@ -11,7 +11,7 @@ import java.util.List;
 
 @RestController
 @AllArgsConstructor
-@RequestMapping("tarefas")
+@RequestMapping("Tarefa")
 public class TarefaController {
 
     private final TarefaRepository tarefaRepository;
