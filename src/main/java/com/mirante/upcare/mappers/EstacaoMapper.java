@@ -15,6 +15,7 @@ public interface EstacaoMapper {
     
     EstacaoMapper INSTANCE = Mappers.getMapper(EstacaoMapper.class);
 
+    @Mapping(target = "id", ignore = true)
     Estacao toEntity(EstacaoRequest estacaoRequest);
 
     @Mapping(source = "id", target = "idEstacao")
