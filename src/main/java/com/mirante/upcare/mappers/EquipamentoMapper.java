@@ -4,19 +4,23 @@ import java.util.List;
 
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
-import org.mapstruct.factory.Mappers;
 
+import com.mirante.upcare.dto.request.EquipamentoRequest;
 import com.mirante.upcare.dto.response.EquipamentoResponse;
 import com.mirante.upcare.models.Equipamento;
 
-@Mapper(uses = EstacaoMapper.class)
-public interface EquipamentoMapper {
-    
-    EquipamentoMapper INSTANCE = Mappers.getMapper(EquipamentoMapper.class);
+@Mapper(uses = EstacaoMapper.class, componentModel = "spring")
+public abstract class EquipamentoMapper {
+
+    @Mapping(target = "id", ignore = true)
+    @Mapping(source = "idEstacao", target = "estacao")
+    public abstract Equipamento toEntity(EquipamentoRequest dto);
+
+
 
     @Mapping(source = "id", target = "idEquipamento")
-    EquipamentoResponse toResponse(Equipamento equipamento);
+    public abstract EquipamentoResponse toResponse(Equipamento equipamento);
 
-    List<EquipamentoResponse> toResponseList(List<Equipamento> equipamentos);
+    public abstract List<EquipamentoResponse> toResponseList(List<Equipamento> equipamentos);
 
 }

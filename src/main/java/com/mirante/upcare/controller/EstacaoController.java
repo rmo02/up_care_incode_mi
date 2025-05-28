@@ -27,12 +27,13 @@ import lombok.AllArgsConstructor;
 public class EstacaoController {
 
     private final EstacaoService estacaoService;
+    private final EstacaoMapper estacaoMapper;
 
     @PostMapping
     public ResponseEntity<UUID> salvar(@RequestBody @Valid EstacaoRequest dto) {
         return (Pipeline
             .from(dto)
-            .then(EstacaoMapper.INSTANCE::toEntity)
+            .then(estacaoMapper::toEntity)
             .then(estacaoService::salvar)
             .then(Estacao::getId)
             .then(id -> ResponseEntity.status(HttpStatus.CREATED).body(id))
@@ -44,7 +45,7 @@ public class EstacaoController {
     public ResponseEntity<List<EstacaoResponse>> buscarTodos() {
         return (Pipeline
             .from(estacaoService.buscarTodos())
-            .then(EstacaoMapper.INSTANCE::toResponseList)
+            .then(estacaoMapper::toResponseList)
             .then(ResponseEntity::ok)
             .get()
         );
