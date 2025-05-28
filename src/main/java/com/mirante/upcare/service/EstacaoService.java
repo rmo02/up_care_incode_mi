@@ -1,6 +1,7 @@
 package com.mirante.upcare.service;
 
 import java.util.List;
+import java.util.UUID;
 
 import org.springframework.stereotype.Service;
 
@@ -22,5 +23,13 @@ public class EstacaoService {
 
     public List<Estacao> buscarTodos() {
         return estacaoRepository.findAll();
+    }
+
+    public Estacao buscarPorId(UUID idEstacao) {
+        return estacaoRepository.findById(idEstacao).orElseThrow();
+    }
+
+    public void deletarPorId(UUID idEstacao) {
+        estacaoRepository.deleteById(idEstacao);
     }
 }
