@@ -1,11 +1,12 @@
 package com.mirante.upcare.service;
 
+import java.util.List;
+
 import org.springframework.stereotype.Service;
 
 import com.mirante.upcare.models.Equipamento;
 import com.mirante.upcare.repository.EquipamentoRepository;
 
-import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
 
 @Service
@@ -14,8 +15,7 @@ public class EquipamentoService {
     
     private final EquipamentoRepository equipamentoRepository;
 
-    public Equipamento salvar(@Valid Equipamento equipamento){
-        return equipamentoRepository.save(equipamento);
+    public List<Equipamento> buscarTodos() {
+        return equipamentoRepository.findAll();
     }
-
 }

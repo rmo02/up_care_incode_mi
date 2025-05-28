@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.mirante.upcare.dto.response.EquipamentoResponse;
 import com.mirante.upcare.mappers.EquipamentoMapper;
-import com.mirante.upcare.repository.EquipamentoRepository;
+import com.mirante.upcare.service.EquipamentoService;
 import com.mirante.upcare.utils.Pipeline;
 
 import lombok.AllArgsConstructor;
@@ -19,13 +19,13 @@ import lombok.AllArgsConstructor;
 @RequestMapping("equipamentos")
 public class EquipamentoController {
 
-    private final EquipamentoRepository equipamentoRepository;
+    private final EquipamentoService equipamentoService;
     private final EquipamentoMapper equipamentoMapper;
 
     @GetMapping
     public ResponseEntity<List<EquipamentoResponse>> buscarTodos() {
         return (Pipeline
-            .from(equipamentoRepository.findAll())
+            .from(equipamentoService.buscarTodos())
             .then(equipamentoMapper::toResponseList)
             .then(ResponseEntity::ok)
             .get()
