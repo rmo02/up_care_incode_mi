@@ -31,13 +31,13 @@ public class Estacao {
 
     @NotBlank
     private String nome;
-    
+
     @NotNull
     private Float latitude;
-    
+
     @NotNull
     private Float longitude;
-    
+
     @NotBlank
     private String endereco;
 
