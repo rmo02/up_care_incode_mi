@@ -29,7 +29,7 @@ public class EstacaoService {
         return estacaoRepository.findById(idEstacao).orElseThrow();
     }
 
-    public void deletarPorId(UUID idEstacao) {
+    public void excluirPorId(UUID idEstacao) {
         estacaoRepository.deleteById(idEstacao);
     }
 }

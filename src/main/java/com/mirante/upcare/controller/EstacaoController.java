@@ -65,8 +65,8 @@ public class EstacaoController {
     }
 
     @DeleteMapping("{idEstacao}")
-    public ResponseEntity<Void> deletarPorId(@PathVariable UUID idEstacao) {
-        estacaoService.deletarPorId(idEstacao);
+    public ResponseEntity<Void> excluirPorId(@PathVariable UUID idEstacao) {
+        estacaoService.excluirPorId(idEstacao);
         return ResponseEntity.ok().build();
     }
     
