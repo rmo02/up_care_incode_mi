@@ -1,6 +1,7 @@
 package com.mirante.upcare.service;
 
 import java.util.List;
+import java.util.UUID;
 
 import org.springframework.stereotype.Service;
 
@@ -17,5 +18,9 @@ public class EquipamentoService {
 
     public List<Equipamento> buscarTodos() {
         return equipamentoRepository.findAll();
+    }
+
+    public Equipamento buscarPorId(UUID idEquipamento) {
+        return equipamentoRepository.findById(idEquipamento).orElseThrow();
     }
 }

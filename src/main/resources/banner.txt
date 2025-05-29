@@ -6,5 +6,5 @@
    ██║   ╚██╗ ██╔╝    ██║╚██╔╝██║██║██╔══██╗██╔══██║██║╚██╗██║   ██║   ██╔══╝  
    ██║    ╚████╔╝     ██║ ╚═╝ ██║██║██║  ██║██║  ██║██║ ╚████║   ██║   ███████╗
    ╚═╝     ╚═══╝      ╚═╝     ╚═╝╚═╝╚═╝  ╚═╝╚═╝  ╚═╝╚═╝  ╚═══╝   ╚═╝   ╚══════╝
-   Developed by: Adriano, Arthur, David, Elenylson, Rafael
+   Developed by: Adriano, Arthur, David, Elenylson, Khalil, Rafael
 
