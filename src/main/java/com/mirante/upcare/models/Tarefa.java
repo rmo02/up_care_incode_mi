@@ -30,16 +30,16 @@ public class Tarefa {
     @NotBlank
     private String descricao;
 
-    @NotNull
-    private Boolean fotoObrigatoria;
-
-    @NotNull
-    @ManyToOne
-    @JoinColumn(name = "fk_foto_antes")
-    private File fotoAntes;
-
-    @NotNull
-    @ManyToOne
-    @JoinColumn(name = "fk_foto_depois")
-    private File fotoDepois;
+//    @NotNull
+//    private Boolean fotoObrigatoria;
+//
+//    @NotNull
+//    @ManyToOne
+//    @JoinColumn(name = "fk_foto_antes")
+//    private File fotoAntes;
+//
+//    @NotNull
+//    @ManyToOne
+//    @JoinColumn(name = "fk_foto_depois")
+//    private File fotoDepois;
 }
