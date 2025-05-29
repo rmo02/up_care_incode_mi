@@ -1,20 +1,30 @@
 package com.mirante.upcare.mappers;
 
+import com.mirante.upcare.dto.request.UsuarioRequest;
 import com.mirante.upcare.dto.response.UsuarioResponse;
 import com.mirante.upcare.models.Usuario;
+import com.mirante.upcare.repository.UsuarioRepository;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
-import org.mapstruct.factory.Mappers;
+import org.springframework.beans.factory.annotation.Autowired;
+
 import java.util.List;
 
-@Mapper(uses = EmpresaMapper.class)
-public interface UsuarioMapper {
+@Mapper(componentModel = "spring", uses = EmpresaMapper.class)
+public abstract class UsuarioMapper {
 
-   UsuarioMapper INSTANCE = Mappers.getMapper(UsuarioMapper.class);
+
+    @Autowired
+    private UsuarioRepository usuarioRepository;
+
+    @Mapping(target = "id", ignore = true)
+    abstract public Usuario toEntity(UsuarioRequest usuarioRequest);
+
 
     @Mapping(source = "id", target = "idUsuario")
-    UsuarioResponse toResponse(Usuario usuario);
+    abstract public UsuarioResponse toResponse(Usuario usuario);
 
-    List<UsuarioResponse> toResponseList(List<Usuario> usuarios);
+    abstract public List<UsuarioResponse> toResponseList(List<Usuario> usuarios);
+
 
 }
