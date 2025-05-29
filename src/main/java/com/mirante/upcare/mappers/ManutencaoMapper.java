@@ -1,22 +1,27 @@
 package com.mirante.upcare.mappers;
 
+import com.mirante.upcare.dto.request.ManutencaoRequest;
 import com.mirante.upcare.dto.response.ManutencaoResponse;
 import com.mirante.upcare.models.Manutencao;
+import com.mirante.upcare.repository.ManutencaoRepository;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
-import org.mapstruct.factory.Mappers;
+import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.List;
 
-@Mapper(uses = {UsuarioMapper.class, EstacaoMapper.class})
-public interface ManutencaoMapper {
+@Mapper(componentModel = "spring", uses = {UsuarioMapper.class, EstacaoMapper.class})
+public abstract class ManutencaoMapper {
 
-    ManutencaoMapper INSTANCE = Mappers.getMapper(ManutencaoMapper.class);
+    @Autowired
+    private ManutencaoRepository manutencaoRepository;
+
+    @Mapping(target = "id", ignore = true)
+    abstract public Manutencao toEntity(ManutencaoRequest manutencaoRequest);
 
     @Mapping(source = "id", target = "idManutencao")
-    ManutencaoResponse toResponse(Manutencao manutencao);
+    abstract public ManutencaoResponse toResponse(Manutencao manutencao);
 
-    List<ManutencaoResponse> toResponseList(List<Manutencao> manutencaos);
-
+    abstract public List<ManutencaoResponse> toResponseList(List<Manutencao> manutencaos);
 
 }
