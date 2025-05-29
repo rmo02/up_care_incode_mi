@@ -56,28 +56,28 @@ Projeto Up Care desenvolvido pela equipe do INCODE Tech School para a TV Mirante
 
 
 ## Divisão de Responsailidades
-|Nome                 |Responsável    |Model|Repository|Service|Controller|Request|Response|Mapper|
-|---------------------|---------------|-----|----------|------ |----------|-------|--------|------|
-|**Antena**           |Adriano        |✅  |✅        |❌    |❌        |❌    |✅      |❌   |
-|**Parabolica**       |Adriano        |✅  |✅        |❌    |❌        |❌    |✅      |❌   |
-|**Receptor**         |Adriano        |✅  |✅        |❌    |❌        |❌    |✅      |❌   |
-|**Transmissor**      |Adriano        |✅  |✅        |❌    |❌        |❌    |✅      |❌   |
-|**Quadro**           |Arthur e Khalil|✅  |✅        |❌    |❌        |❌    |❌      |❌   |
-|**Nobreak**          |Arthur e Khalil|✅  |✅        |❌    |❌        |❌    |❌      |❌   |
-|**Switch**           |Arthur e Khalil|✅  |✅        |❌    |❌        |❌    |❌      |❌   |
-|**Disjuntor**        |Arthur e Khalil|✅  |✅        |❌    |❌        |❌    |❌      |❌   |
-|**DPS**              |Arthur e Khalil|✅  |✅        |❌    |❌        |❌    |❌      |❌   |
-|**Equipamento**      |David          |✅  |✅        |❌    |❌        |✅    |✅      |❌   |
-|**Estacao**          |David          |✅  |✅        |✅    |✅        |✅    |✅      |✅   |
-|**Manutencao**       |Elenylson      |✅  |✅        |❌    |❌        |❌    |✅      |❌   |
-|**Tarefa**           |Elenylson      |✅  |✅        |❌    |❌        |❌    |✅      |❌   |
-|**TarefaEquipamento**|Elenylson      |✅  |✅        |❌    |❌        |❌    |✅      |❌   |
-|**Usuario**          |Elenylson      |✅  |✅        |❌    |❌        |❌    |✅      |❌   |
-|**Empresa**          |Elenylson      |✅  |✅        |❌    |❌        |❌    |✅      |❌   |
-|**ArCondicionado**   |Rafael         |✅  |✅        |❌    |❌        |✅    |❌      |❌   |
-|**Cabo**             |Rafael         |✅  |✅        |❌    |❌        |❌    |✅      |❌   |
-|**Telemetria**       |Rafael         |✅  |✅        |❌    |❌        |❌    |❌      |❌   |
-|**Combinador**       |Rafael         |✅  |✅        |❌    |❌        |❌    |❌      |❌   |
-|**Exautor**          |Rafael         |✅  |✅        |❌    |❌        |❌    |❌      |❌   |
-|**Torre**            |Rafael         |✅  |✅        |❌    |❌        |❌    |❌      |❌   |
+|Nome                 |Responsável      |Model|Repository|Service|Controller|Request|Response|Mapper|
+|---------------------|-----------------|-----|----------|------ |----------|-------|--------|------|
+|**Antena**           |Adriano          |✅  |✅        |❌    |❌        |❌    |✅      |❌   |
+|**Parabolica**       |Adriano          |✅  |✅        |❌    |❌        |❌    |✅      |❌   |
+|**Receptor**         |Adriano          |✅  |✅        |❌    |❌        |❌    |✅      |❌   |
+|**Transmissor**      |Adriano          |✅  |✅        |❌    |❌        |❌    |✅      |❌   |
+|**Quadro**           |Arthur e Khalil  |✅  |✅        |❌    |❌        |❌    |❌      |❌   |
+|**Nobreak**          |Arthur e Khalil  |✅  |✅        |❌    |❌        |❌    |❌      |❌   |
+|**Switch**           |Arthur e Khalil  |✅  |✅        |❌    |❌        |❌    |❌      |❌   |
+|**Disjuntor**        |Arthur e Khalil  |✅  |✅        |❌    |❌        |❌    |❌      |❌   |
+|**DPS**              |Arthur e Khalil  |✅  |✅        |❌    |❌        |❌    |❌      |❌   |
+|**Equipamento**      |David e Elenylson|✅  |✅        |❌    |❌        |✅    |✅      |❌   |
+|**Estacao**          |David e Elenylson|✅  |✅        |✅    |✅        |✅    |✅      |✅   |
+|**Manutencao**       |Elenylson e David|✅  |✅        |❌    |❌        |❌    |✅      |❌   |
+|**Tarefa**           |Elenylson e David|✅  |✅        |❌    |❌        |❌    |✅      |❌   |
+|**TarefaEquipamento**|Elenylson e David|✅  |✅        |❌    |❌        |❌    |✅      |❌   |
+|**Usuario**          |Elenylson e David|✅  |✅        |❌    |❌        |❌    |✅      |❌   |
+|**Empresa**          |Elenylson e David|✅  |✅        |❌    |❌        |❌    |✅      |❌   |
+|**ArCondicionado**   |Rafael           |✅  |✅        |❌    |❌        |✅    |❌      |❌   |
+|**Cabo**             |Rafael           |✅  |✅        |❌    |❌        |❌    |✅      |❌   |
+|**Telemetria**       |Rafael           |✅  |✅        |❌    |❌        |❌    |❌      |❌   |
+|**Combinador**       |Rafael           |✅  |✅        |❌    |❌        |❌    |❌      |❌   |
+|**Exautor**          |Rafael           |✅  |✅        |❌    |❌        |❌    |❌      |❌   |
+|**Torre**            |Rafael           |✅  |✅        |❌    |❌        |❌    |❌      |❌   |
 
