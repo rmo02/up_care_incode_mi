@@ -67,7 +67,7 @@ Projeto Up Care desenvolvido pela equipe do INCODE Tech School para a TV Mirante
 |**Switch**           |Arthur e Khalil  |✅  |✅        |❌    |❌        |❌    |❌      |❌   |
 |**Disjuntor**        |Arthur e Khalil  |✅  |✅        |❌    |❌        |❌    |❌      |❌   |
 |**DPS**              |Arthur e Khalil  |✅  |✅        |❌    |❌        |❌    |❌      |❌   |
-|**Equipamento**      |David e Elenylson|✅  |✅        |❌    |❌        |✅    |✅      |❌   |
+|**Equipamento**      |David e Elenylson|✅  |✅        |✅*1  |✅*1      |✅    |✅      |✅   |
 |**Estacao**          |David e Elenylson|✅  |✅        |✅    |✅        |✅    |✅      |✅   |
 |**Manutencao**       |Elenylson e David|✅  |✅        |❌    |❌        |❌    |✅      |❌   |
 |**Tarefa**           |Elenylson e David|✅  |✅        |❌    |❌        |❌    |✅      |❌   |
@@ -81,3 +81,4 @@ Projeto Up Care desenvolvido pela equipe do INCODE Tech School para a TV Mirante
 |**Exautor**          |Rafael           |✅  |✅        |❌    |❌        |❌    |❌      |❌   |
 |**Torre**            |Rafael           |✅  |✅        |❌    |❌        |❌    |❌      |❌   |
 
+- ***1**: Por equanto, os equipamentos são salvos, alterados e excluídos por suas especializações.
