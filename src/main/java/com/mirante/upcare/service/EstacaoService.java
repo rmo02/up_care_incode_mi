@@ -29,6 +29,11 @@ public class EstacaoService {
         return estacaoRepository.findById(idEstacao).orElseThrow();
     }
 
+    public Estacao atualizarPorId(UUID idEstacao, Estacao estacaoAtualizada) {
+        estacaoAtualizada.setId(idEstacao);
+        return salvar(estacaoAtualizada);
+    }
+
     public void excluirPorId(UUID idEstacao) {
         estacaoRepository.deleteById(idEstacao);
     }

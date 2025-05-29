@@ -34,7 +34,7 @@ Projeto Up Care desenvolvido pela equipe do INCODE Tech School para a TV Mirante
     - Salvar anotado com `@PostMapping`,  `@RequestBody` e `@Valid`
     - Buscar todos anotado com `@GetMapping`
     - Buscar por ID anotado com `@GetMapping("{idEntity}")` e `@PathVariable`
-    - Atualizar anotado com `@PutMapping`, `@RequestBody` e `@Valid`
+    - Atualizar anotado com `@PutMapping`, `@PathVariable`, `@RequestBody` e `@Valid`
     - Excluir anotado com `@DeleteMapping("{idEntity}")` e `@PathVariable`
 - Todos os endpoints retornarem `ResponseEntity<T>`
 
@@ -68,7 +68,7 @@ Projeto Up Care desenvolvido pela equipe do INCODE Tech School para a TV Mirante
 |**Disjuntor**        |Arthur e Khalil|✅  |✅        |❌    |❌        |❌    |❌      |❌   |
 |**DPS**              |Arthur e Khalil|✅  |✅        |❌    |❌        |❌    |❌      |❌   |
 |**Equipamento**      |David          |✅  |✅        |❌    |❌        |✅    |✅      |❌   |
-|**Estacao**          |David          |✅  |✅        |❌    |❌        |✅    |✅      |❌   |
+|**Estacao**          |David          |✅  |✅        |✅    |✅        |✅    |✅      |✅   |
 |**Manutencao**       |Elenylson      |✅  |✅        |❌    |❌        |❌    |✅      |❌   |
 |**Tarefa**           |Elenylson      |✅  |✅        |❌    |❌        |❌    |✅      |❌   |
 |**TarefaEquipamento**|Elenylson      |✅  |✅        |❌    |❌        |❌    |✅      |❌   |
