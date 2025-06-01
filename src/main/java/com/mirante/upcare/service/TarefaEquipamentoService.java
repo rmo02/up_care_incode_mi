@@ -1,8 +1,6 @@
 package com.mirante.upcare.service;
 
-import com.mirante.upcare.models.Estacao;
 import com.mirante.upcare.models.TarefaEquipamento;
-import com.mirante.upcare.repository.EstacaoRepository;
 import com.mirante.upcare.repository.TarefaEquipamentoRepository;
 import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
