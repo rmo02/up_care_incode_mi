@@ -31,11 +31,11 @@ Projeto Up Care desenvolvido pela equipe do INCODE Tech School para a TV Mirante
 - Anotação `@RestController` e `@RequestMapping` estiver presentes
 - Rota definida com o nome do recurso (entidade) no plural
 - Criados os métodos de: 
-    - Salvar anotado com `@PostMapping`,  `@RequestBody` e `@Valid`
-    - Buscar todos anotado com `@GetMapping`
-    - Buscar por ID anotado com `@GetMapping("{idEntity}")` e `@PathVariable`
-    - Atualizar anotado com `@PutMapping`, `@PathVariable`, `@RequestBody` e `@Valid`
-    - Excluir anotado com `@DeleteMapping("{idEntity}")` e `@PathVariable`
+    - Salvar anotado com `@PostMapping`,  `@RequestBody` e `@Valid` e retornando o status `201 (CREATED)`
+    - Buscar todos anotado com `@GetMapping` e retornando o status `200 (OK)`
+    - Buscar por ID anotado com `@GetMapping("{idEntity}")` e `@PathVariable` e retornando o status `200 (ok)`
+    - Atualizar anotado com `@PutMapping`, `@PathVariable`, `@RequestBody` e `@Valid` e retornando o status `204 (NO_CONTENT)`
+    - Excluir anotado com `@DeleteMapping("{idEntity}")` e `@PathVariable` e retornando o status `204 (NO_CONTENT)`
 - Todos os endpoints retornarem `ResponseEntity<T>`
 
 ### Mapper
