@@ -22,12 +22,12 @@ public class TarefaEquipamento {
     private UUID id;
 
     @NotNull
-    @ManyToOne(cascade = CascadeType.PERSIST)
+    @ManyToOne
     @JoinColumn(name = "fk_tarefa")
     private Tarefa tarefa;
     
     @NotNull
-    @ManyToOne(cascade = CascadeType.PERSIST)
+    @ManyToOne
     @JoinColumn(name = "fk_equipamento")
     private Equipamento equipamento;
 }

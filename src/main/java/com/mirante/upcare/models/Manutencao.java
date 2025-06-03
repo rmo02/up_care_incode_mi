@@ -5,6 +5,7 @@ import jakarta.validation.constraints.NotNull;
 import lombok.Getter;
 import lombok.Setter;
 
+import java.util.List;
 import java.util.UUID;
 
 import com.mirante.upcare.models.enums.TipoManutencao;
@@ -30,5 +31,8 @@ public class Manutencao {
     @NotNull
     @Enumerated(EnumType.STRING)
     private TipoManutencao tipo;
+
+    @OneToMany(mappedBy = "manutencao", cascade = CascadeType.REMOVE)
+    private List<Tarefa> tarefas;
 
 }

@@ -31,7 +31,7 @@ public class Tarefa {
     @NotBlank
     private String descricao;
 
-    @OneToMany(mappedBy = "tarefa", cascade = CascadeType.PERSIST)
+    @OneToMany(mappedBy = "tarefa", cascade = {CascadeType.PERSIST, CascadeType.REMOVE})
     private List<TarefaEquipamento> tarefaEquipamentos;
 
 //    @NotNull
