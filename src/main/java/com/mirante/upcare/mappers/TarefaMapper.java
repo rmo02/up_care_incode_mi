@@ -1,9 +1,12 @@
 package com.mirante.upcare.mappers;
 
+import java.util.List;
+
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 
 import com.mirante.upcare.dto.request.TarefaRequest;
+import com.mirante.upcare.dto.response.TarefaResponse;
 import com.mirante.upcare.models.Tarefa;
 
 @Mapper(componentModel = "spring", uses = ManutencaoMapper.class)
@@ -16,17 +19,10 @@ public interface TarefaMapper {
     @Mapping(source = "idManutencao", target = "manutencao")
     @Mapping(target = "tarefaEquipamentos", ignore = true)
     Tarefa toEntity(TarefaRequest tarefaRequest);
-
     
+    @Mapping(source = "id", target = "idTarefa")
+    @Mapping(target = "equipamentos", ignore = true)
+    TarefaResponse toResponse(Tarefa tarefa);
 
-    
-
-
-    // @Mapping(source = "id", target = "idTarefa")
-    // abstract public TarefaResponse toResponse(Tarefa tarefa);
-
-    // abstract public List<TarefaResponse> toResponseList(List<Tarefa> tarefas);
-
-
-
+    List<TarefaResponse> toResponseList(List<Tarefa> tarefas);
 }
