@@ -5,6 +5,7 @@ import java.util.UUID;
 import com.mirante.upcare.models.enums.PosicaoAntena;
 import com.mirante.upcare.models.enums.TipoAntena;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
@@ -26,7 +27,7 @@ public class Antena {
     private UUID id;
 
     @NotNull
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.PERSIST)
     @JoinColumn(name = "fk_equipamento")
     private Equipamento equipamento;
 
