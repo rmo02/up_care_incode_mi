@@ -207,7 +207,7 @@ INSERT INTO empresa (id, nome, contato) VALUES
 ('a1111111-b222-b333-c444-d55555555555', 'Empresa Alpha', '1133224455'),
 ('b2222222-c333-d444-e555-f66666666666', 'Empresa Beta', '11987654321'),
 ('c3333333-d444-e555-f666-a77777777777', 'Empresa Gama', '21911223344'),
-('d4444444-e555-f666-a777-b88888888888', 'Empresa Delta', '31999887766'),
+-- ('d4444444-e555-f666-a777-b88888888888', 'Empresa Delta', '31999887766'),
 ('e1234567-e89b-12d3-a456-426614174000', 'Empresa Épsilon', '11999998888'),
 ('f1234567-e89b-12d3-a456-426614174999', 'Empresa Zeta', '11988887777');
 
@@ -217,5 +217,8 @@ INSERT INTO usuario (id, nome, email, senha, contato, fk_empresa) VALUES
 ('22334455-6677-8899-aabb-ccddeeff0011', 'João Costa', 'joao@empresaC.com', 'senha789', '31977776666', 'e1234567-e89b-12d3-a456-426614174000'),
 ('33445566-7788-99aa-bbcc-ddeeff001122', 'Marina Souza', 'marina@empresaD.com', 'senha321', '11912345678', 'e1234567-e89b-12d3-a456-426614174000'),
 ('44556677-8899-aabb-ccdd-eeff00112233', 'Pedro Lima', 'pedro@empresaE.com', 'senha654', '11987654321', 'f1234567-e89b-12d3-a456-426614174999');
+
+INSERT INTO manutencao (id, fk_estacao, fk_tecnico, tipo) VALUES 
+('d4444444-e555-f666-a777-b88888888888', 'e7d9c1a1-2f56-4f7b-8b9f-12c3f4c2a1b3', '0e1d3e2c-b32e-4c7e-9b5f-1b20a1a3d4d1', 'PREVENTIVA');
 
 
