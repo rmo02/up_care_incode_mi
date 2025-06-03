@@ -1,16 +1,21 @@
 package com.mirante.upcare.controller;
+import java.util.UUID;
+
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.mirante.upcare.assemblers.TarefaAssembler;
 import com.mirante.upcare.dto.request.TarefaRequest;
+import com.mirante.upcare.dto.response.TarefaResponse;
 import com.mirante.upcare.mappers.TarefaMapper;
-import com.mirante.upcare.models.TarefaEquipamento;
-import com.mirante.upcare.service.EquipamentoService;
 import com.mirante.upcare.service.TarefaService;
+import com.mirante.upcare.utils.Pipeline;
 
 import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
@@ -21,42 +26,32 @@ import lombok.AllArgsConstructor;
 public class TarefaController {
 
     private final TarefaService tarefaService;
-    private final EquipamentoService equipamentoService;
     private final TarefaMapper tarefaMapper;
+    private final TarefaAssembler tarefaAssembler;
 
     @PostMapping
-    public ResponseEntity<Object> salvar(@RequestBody @Valid TarefaRequest dto){
-
-        var tarefa = tarefaMapper.toEntity(dto);
-
-        var tarefaEquipamentos = (dto.equipamentos().stream()
-            .map(equipamentoService::buscarPorId)
-            .map(equipamento -> TarefaEquipamento
-                .builder()
-                .tarefa(tarefa)
-                .equipamento(equipamento)
-                .build()
-            )
-            .toList()
+    public ResponseEntity<Object> salvar(@Valid @RequestBody TarefaRequest dto) {
+        return (Pipeline
+            .from(dto)
+            .then(tarefaAssembler::toEntity)
+            .then(tarefaService::salvar)
+            .then(t -> ResponseEntity.status(HttpStatus.CREATED).build())
+            .get()
         );
-
-        tarefa.setTarefaEquipamentos(tarefaEquipamentos);
-        tarefaService.salvar(tarefa);
-
-
-        System.out.println("parei");
-
-        return ResponseEntity.status(HttpStatus.CREATED).build();
-
-        // return (Pipeline
-        //         .from(dto)
-        //         .then(tarefaMapper::toEntity)
-        //         .then(tarefaService::salvar)
-        //         .then(Tarefa::getId)
-        //         .then(id-> ResponseEntity.status(HttpStatus.CREATED).body(id))
-        //         .get()
-        // );
     }
+
+    @GetMapping("{idTarefa}")
+    public ResponseEntity<TarefaResponse> buscarPorId(@PathVariable UUID idTarefa) {
+        return (Pipeline
+            .from(idTarefa)
+            .then(tarefaService::buscarPorId)
+            .then(tarefaAssembler::toResponse)
+            .then(ResponseEntity::ok)
+            .get()
+        );
+    }
+
+
 
 
 
