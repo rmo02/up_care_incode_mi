@@ -8,6 +8,5 @@ public record ManutencaoResponse (
      UUID idManutencao,
      EstacaoResponse estacao,
      UsuarioResponse tecnico,
-     TipoManutencao manutencao
-
+     TipoManutencao tipo
 ){}
