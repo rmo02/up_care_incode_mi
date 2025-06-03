@@ -7,19 +7,19 @@ import java.util.UUID;
 
 public record UsuarioRequest(
 
-        @NotBlank
-        String nome,
+    @NotBlank
+    String nome,
 
-        @NotBlank
-        String email,
+    @NotBlank
+    String email,
 
-        @NotBlank
-        String senha,
+    @NotBlank
+    String senha,
 
-        @NotBlank
-        String contato,
+    @NotBlank
+    String contato,
 
-        @NotNull
-        UUID idEmpresa
+    @NotNull
+    UUID idEmpresa
 
 ){}
