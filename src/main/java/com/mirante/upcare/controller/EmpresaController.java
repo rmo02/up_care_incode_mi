@@ -25,7 +25,7 @@ import lombok.AllArgsConstructor;
 
 @RestController
 @AllArgsConstructor
-@RequestMapping("Empresa")
+@RequestMapping("empresas")
 public class EmpresaController {
 
     private final EmpresaService empresaService;
