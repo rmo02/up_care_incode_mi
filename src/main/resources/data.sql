@@ -202,3 +202,23 @@ INSERT INTO switch (id, fk_equipamento, fk_quadro, qtd_portas) VALUES
 ('f3a3933f-5076-4fb7-a354-378b438c6ecd', '6ead95a6-2ad3-4f6d-ba19-1bc49d4b5f5c', 'e1411e58-9761-49f0-aac1-6e12ccb68a57', 32),
 ('1db980bd-2faa-4465-b4f4-38410da2a264', '957f1bd3-fa8c-4e0d-af95-50bc29ff299c', '5d0a9a33-276e-4acb-850b-5be5cfdf7f58', 8),
 ('f9272d17-c826-4204-bb26-71a71a62286b', 'd381a08b-98a8-4b91-ad82-8453d21d9f2c', '6c144c46-27fc-4f8e-81ab-f079ca2a474c', 16);
+
+INSERT INTO empresa (id, nome, contato) VALUES
+('a1111111-b222-b333-c444-d55555555555', 'Empresa Alpha', '1133224455'),
+('b2222222-c333-d444-e555-f66666666666', 'Empresa Beta', '11987654321'),
+('c3333333-d444-e555-f666-a77777777777', 'Empresa Gama', '21911223344'),
+-- ('d4444444-e555-f666-a777-b88888888888', 'Empresa Delta', '31999887766'),
+('e1234567-e89b-12d3-a456-426614174000', 'Empresa Épsilon', '11999998888'),
+('f1234567-e89b-12d3-a456-426614174999', 'Empresa Zeta', '11988887777');
+
+INSERT INTO usuario (id, nome, email, senha, contato, fk_empresa) VALUES
+('0e1d3e2c-b32e-4c7e-9b5f-1b20a1a3d4d1', 'Carlos Silva', 'carlos@empresaA.com', 'senha123', '11999998888', 'a1111111-b222-b333-c444-d55555555555'),
+('1a2b3c4d-5e6f-7081-92a3-b4c5d6e7f890', 'Ana Oliveira', 'ana@empresaB.com', 'senha456', '21988887777', 'a1111111-b222-b333-c444-d55555555555'),
+('22334455-6677-8899-aabb-ccddeeff0011', 'João Costa', 'joao@empresaC.com', 'senha789', '31977776666', 'e1234567-e89b-12d3-a456-426614174000'),
+('33445566-7788-99aa-bbcc-ddeeff001122', 'Marina Souza', 'marina@empresaD.com', 'senha321', '11912345678', 'e1234567-e89b-12d3-a456-426614174000'),
+('44556677-8899-aabb-ccdd-eeff00112233', 'Pedro Lima', 'pedro@empresaE.com', 'senha654', '11987654321', 'f1234567-e89b-12d3-a456-426614174999');
+
+INSERT INTO manutencao (id, fk_estacao, fk_tecnico, tipo) VALUES 
+('d4444444-e555-f666-a777-b88888888888', 'e7d9c1a1-2f56-4f7b-8b9f-12c3f4c2a1b3', '0e1d3e2c-b32e-4c7e-9b5f-1b20a1a3d4d1', 'PREVENTIVA');
+
+

@@ -29,6 +29,6 @@ public class Manutencao {
 
     @NotNull
     @Enumerated(EnumType.STRING)
-    private TipoManutencao manutencao;
+    private TipoManutencao tipo;
 
 }
