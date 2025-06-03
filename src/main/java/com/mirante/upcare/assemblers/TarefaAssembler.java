@@ -3,6 +3,7 @@ package com.mirante.upcare.assemblers;
 import org.springframework.stereotype.Component;
 
 import com.mirante.upcare.dto.request.TarefaRequest;
+import com.mirante.upcare.dto.response.TarefaResponse;
 import com.mirante.upcare.mappers.TarefaMapper;
 import com.mirante.upcare.models.Tarefa;
 
@@ -22,6 +23,15 @@ public class TarefaAssembler {
         tarefa.setTarefaEquipamentos(tarefaEquipamentos);
         
         return tarefa;
+    }
+
+    public TarefaResponse toResponse(Tarefa tarefa) {
+
+        var tarefaResponse = tarefaMapper.toResponse(tarefa);
+        var equipRespList = tarefaEquipamentoAssembler.toEquipamentoResponseList(tarefa.getTarefaEquipamentos());
+        tarefaResponse.setEquipamentos(equipRespList);
+
+        return tarefaResponse;
     }
 
 }

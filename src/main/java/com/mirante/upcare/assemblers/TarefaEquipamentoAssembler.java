@@ -5,6 +5,8 @@ import java.util.UUID;
 
 import org.springframework.stereotype.Component;
 
+import com.mirante.upcare.dto.response.EquipamentoResponse;
+import com.mirante.upcare.mappers.EquipamentoMapper;
 import com.mirante.upcare.models.Equipamento;
 import com.mirante.upcare.models.Tarefa;
 import com.mirante.upcare.models.TarefaEquipamento;
@@ -18,6 +20,7 @@ import lombok.AllArgsConstructor;
 public class TarefaEquipamentoAssembler {
 
     private final EquipamentoService equipamentoService;
+    private final EquipamentoMapper equipamentoMapper;
     
     public TarefaEquipamento toEntity(Tarefa tarefa, UUID idEquipamento) {
         return (Pipeline
@@ -44,4 +47,14 @@ public class TarefaEquipamentoAssembler {
         );
     }
 
+    public EquipamentoResponse toEquipamentoResponse(TarefaEquipamento tarefaEquipamento) {
+        return equipamentoMapper.toResponse(tarefaEquipamento.getEquipamento());
+    }
+
+    public List<EquipamentoResponse> toEquipamentoResponseList(List<TarefaEquipamento> tarefaEquipamentos) {
+        return (tarefaEquipamentos.stream()
+            .map(this::toEquipamentoResponse)
+            .toList()
+        );
+    }
 }
