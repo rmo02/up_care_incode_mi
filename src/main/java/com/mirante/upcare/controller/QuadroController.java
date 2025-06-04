@@ -5,6 +5,7 @@ import com.mirante.upcare.dto.response.QuadroResponse;
 import com.mirante.upcare.mappers.QuadroMapper;
 import com.mirante.upcare.service.QuadroService;
 import com.mirante.upcare.utils.Pipeline;
+import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -42,7 +43,7 @@ public class QuadroController {
     }
 
     @PostMapping
-    public ResponseEntity<UUID> salvar(@Validated @RequestBody QuadroRequest dto) {
+    public ResponseEntity<UUID> salvar(@Valid @RequestBody QuadroRequest dto) {
         return Pipeline
                 .from(dto)
                 .then(quadroMapper::toEntity)

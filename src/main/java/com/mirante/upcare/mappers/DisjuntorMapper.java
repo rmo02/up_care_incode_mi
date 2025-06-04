@@ -14,6 +14,7 @@ public interface DisjuntorMapper {
     @Mapping(source = "id", target = "idDisjuntor")
     DisjuntorResponse toResponse(Disjuntor disjuntor);
 
+    @Mapping(source = "idQuadro", target = "quadro")
     Disjuntor toEntity(DisjuntorRequest request);
 
     List<DisjuntorResponse> toResponseList(List<Disjuntor> disjuntores);

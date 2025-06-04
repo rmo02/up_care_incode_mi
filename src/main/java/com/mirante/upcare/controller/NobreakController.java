@@ -5,6 +5,7 @@ import com.mirante.upcare.dto.response.NobreakResponse;
 import com.mirante.upcare.mappers.NobreakMapper;
 import com.mirante.upcare.service.NobreakService;
 import com.mirante.upcare.utils.Pipeline;
+import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -42,12 +43,12 @@ public class NobreakController {
     }
 
     @PostMapping
-    public ResponseEntity<UUID> salvar(@Validated @RequestBody NobreakRequest dto) {
+    public ResponseEntity<Object> salvar(@Valid @RequestBody NobreakRequest dto) {
         return Pipeline
                 .from(dto)
                 .then(nobreakMapper::toEntity)
                 .then(nobreakService::salvar)
-                .then(n -> ResponseEntity.status(HttpStatus.CREATED).body(n.getId()))
+                .then(n -> ResponseEntity.status(HttpStatus.CREATED).build())
                 .get();
     }
 }
