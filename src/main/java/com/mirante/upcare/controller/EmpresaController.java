@@ -52,7 +52,7 @@ public class EmpresaController {
         );
     }
 
-    @GetMapping("idEmpresa")
+    @GetMapping("{idEmpresa}")
     public ResponseEntity<EmpresaResponse> buscarPorId(@PathVariable UUID idEmpresa) {
         return (Pipeline
             .from(idEmpresa)
