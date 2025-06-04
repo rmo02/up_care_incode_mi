@@ -1,8 +1,10 @@
 package com.mirante.upcare.controller;
+import java.util.List;
 import java.util.UUID;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -40,7 +42,16 @@ public class TarefaController {
         );
     }
 
-    @GetMapping("{idTarefa}")
+    @GetMapping
+    public ResponseEntity<List<TarefaResponse>> buscarTodos() {
+        return (Pipeline
+            .from(tarefaService.buscarTodos())
+            .then(tarefaAssembler::toResponseList)
+            .then(ResponseEntity::ok)
+            .get()
+        );
+    }
+
     public ResponseEntity<TarefaResponse> buscarPorId(@PathVariable UUID idTarefa) {
         return (Pipeline
             .from(idTarefa)
@@ -51,39 +62,9 @@ public class TarefaController {
         );
     }
 
-
-
-
-
-
-
-    // @GetMapping
-    // public ResponseEntity<List<TarefaResponse>> buscarTodos(){
-    //     return (Pipeline
-    //             .from(tarefaService.buscarTodos())
-    //             .then(tarefaMapper::toResponseList)
-    //             .then(ResponseEntity::ok)
-    //             .get()
-    //     );
-    // }
-
-    // @GetMapping("{idTarefa}")
-    // public ResponseEntity<TarefaResponse> buscarPorId(@PathVariable UUID idTarefa) {
-    //     return (Pipeline
-    //             .from(idTarefa)
-    //             .then(tarefaService::buscarPorId)
-    //             .then(tarefaMapper::toResponse)
-    //             .then(ResponseEntity::ok)
-    //             .get()
-    //     );
-    // }
-    // @DeleteMapping("{idTarefa}")
-    // public ResponseEntity<Void> deletarPorId(@PathVariable UUID idTarefa) {
-    //     tarefaService.deletarPorId(idTarefa);
-    //     return ResponseEntity.ok().build();
-    // }
-
-
-
-
+    @DeleteMapping("{idTarefa}")
+    public ResponseEntity<Void> deletarPorId(@PathVariable UUID idTarefa) {
+        tarefaService.deletarPorId(idTarefa);
+        return ResponseEntity.ok().build();
+    }
 }

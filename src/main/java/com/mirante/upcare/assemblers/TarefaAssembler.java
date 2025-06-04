@@ -1,5 +1,7 @@
 package com.mirante.upcare.assemblers;
 
+import java.util.List;
+
 import org.springframework.stereotype.Component;
 
 import com.mirante.upcare.dto.request.TarefaRequest;
@@ -32,6 +34,13 @@ public class TarefaAssembler {
         tarefaResponse.setEquipamentos(equipRespList);
 
         return tarefaResponse;
+    }
+
+    public List<TarefaResponse> toResponseList(List<Tarefa> tarefas) {
+        return (tarefas.stream()
+            .map(this::toResponse)
+            .toList()
+        );
     }
 
 }
