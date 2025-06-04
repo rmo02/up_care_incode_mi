@@ -1,10 +1,8 @@
 package com.mirante.upcare.service;
 
 import org.springframework.stereotype.Service;
-
 import com.mirante.upcare.models.ArCondicionado;
 import com.mirante.upcare.repository.ArCondicionadoRepository;
-
 import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
 

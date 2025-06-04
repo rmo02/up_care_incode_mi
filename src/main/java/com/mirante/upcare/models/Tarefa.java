@@ -6,6 +6,7 @@ import jakarta.validation.constraints.NotNull;
 import lombok.Getter;
 import lombok.Setter;
 
+import java.util.List;
 import java.util.UUID;
 
 import com.mirante.upcare.models.enums.StatusTarefa;
@@ -25,10 +26,13 @@ public class Tarefa {
 
     @NotNull
     @Enumerated(EnumType.STRING)
-    private StatusTarefa statusTarefa;
+    private StatusTarefa status;
 
     @NotBlank
     private String descricao;
+
+    @OneToMany(mappedBy = "tarefa", cascade = {CascadeType.PERSIST, CascadeType.REMOVE})
+    private List<TarefaEquipamento> tarefaEquipamentos;
 
 //    @NotNull
 //    private Boolean fotoObrigatoria;

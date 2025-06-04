@@ -17,7 +17,6 @@ import org.springframework.web.bind.annotation.RestController;
 import com.mirante.upcare.dto.request.EstacaoRequest;
 import com.mirante.upcare.dto.response.EstacaoResponse;
 import com.mirante.upcare.mappers.EstacaoMapper;
-import com.mirante.upcare.models.Estacao;
 import com.mirante.upcare.service.EstacaoService;
 import com.mirante.upcare.utils.Pipeline;
 
@@ -33,13 +32,12 @@ public class EstacaoController {
     private final EstacaoMapper estacaoMapper;
 
     @PostMapping
-    public ResponseEntity<UUID> salvar(@RequestBody @Valid EstacaoRequest dto) {
+    public ResponseEntity<Object> salvar(@RequestBody @Valid EstacaoRequest dto) {
         return (Pipeline
             .from(dto)
             .then(estacaoMapper::toEntity)
             .then(estacaoService::salvar)
-            .then(Estacao::getId)
-            .then(id -> ResponseEntity.status(HttpStatus.CREATED).body(id))
+            .then(e -> ResponseEntity.status(HttpStatus.CREATED).build())
             .get()
         );
     }
@@ -66,12 +64,12 @@ public class EstacaoController {
     }
 
     @PutMapping("{idEstacao}")
-    public ResponseEntity<UUID> atualizarPorId(@PathVariable UUID idEstacao, @Valid @RequestBody EstacaoRequest dto) {
+    public ResponseEntity<Object> atualizarPorId(@PathVariable UUID idEstacao, @Valid @RequestBody EstacaoRequest dto) {
         return (Pipeline
             .from(dto)
             .then(estacaoMapper::toEntity)
             .then(estacaoAtualizada -> estacaoService.atualizarPorId(idEstacao, estacaoAtualizada))
-            .then(estacaoAtualizada -> ResponseEntity.ok(estacaoAtualizada.getId()))
+            .then(e -> ResponseEntity.noContent().build())
             .get()
         );
     }
@@ -79,7 +77,7 @@ public class EstacaoController {
     @DeleteMapping("{idEstacao}")
     public ResponseEntity<Void> excluirPorId(@PathVariable UUID idEstacao) {
         estacaoService.excluirPorId(idEstacao);
-        return ResponseEntity.ok().build();
+        return ResponseEntity.noContent().build();
     }
     
 }

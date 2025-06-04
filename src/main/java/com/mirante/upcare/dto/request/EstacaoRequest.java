@@ -1,7 +1,6 @@
 package com.mirante.upcare.dto.request;
 
 import com.mirante.upcare.models.enums.StatusTecnico;
-
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 

@@ -31,11 +31,11 @@ Projeto Up Care desenvolvido pela equipe do INCODE Tech School para a TV Mirante
 - Anotação `@RestController` e `@RequestMapping` estiver presentes
 - Rota definida com o nome do recurso (entidade) no plural
 - Criados os métodos de: 
-    - Salvar anotado com `@PostMapping`,  `@RequestBody` e `@Valid`
-    - Buscar todos anotado com `@GetMapping`
-    - Buscar por ID anotado com `@GetMapping("{idEntity}")` e `@PathVariable`
-    - Atualizar anotado com `@PutMapping`, `@PathVariable`, `@RequestBody` e `@Valid`
-    - Excluir anotado com `@DeleteMapping("{idEntity}")` e `@PathVariable`
+    - Salvar anotado com `@PostMapping`,  `@RequestBody` e `@Valid` e retornando o status `201 (CREATED)`
+    - Buscar todos anotado com `@GetMapping` e retornando o status `200 (OK)`
+    - Buscar por ID anotado com `@GetMapping("{idEntity}")` e `@PathVariable` e retornando o status `200 (ok)`
+    - Atualizar anotado com `@PutMapping`, `@PathVariable`, `@RequestBody` e `@Valid` e retornando o status `204 (NO_CONTENT)`
+    - Excluir anotado com `@DeleteMapping("{idEntity}")` e `@PathVariable` e retornando o status `204 (NO_CONTENT)`
 - Todos os endpoints retornarem `ResponseEntity<T>`
 
 ### Mapper
@@ -56,29 +56,29 @@ Projeto Up Care desenvolvido pela equipe do INCODE Tech School para a TV Mirante
 
 
 ## Divisão de Responsailidades
-|Nome                 |Responsável      |Model|Repository|Service|Controller|Request|Response|Mapper|
-|---------------------|-----------------|-----|----------|------ |----------|-------|--------|------|
-|**Antena**           |Adriano          |✅  |✅        |❌    |❌        |❌    |✅      |❌   |
-|**Parabolica**       |Adriano          |✅  |✅        |❌    |❌        |❌    |✅      |❌   |
-|**Receptor**         |Adriano          |✅  |✅        |❌    |❌        |❌    |✅      |❌   |
-|**Transmissor**      |Adriano          |✅  |✅        |❌    |❌        |❌    |✅      |❌   |
-|**Quadro**           |Arthur e Khalil  |✅  |✅        |❌    |❌        |❌    |❌      |❌   |
-|**Nobreak**          |Arthur e Khalil  |✅  |✅        |❌    |❌        |❌    |❌      |❌   |
-|**Switch**           |Arthur e Khalil  |✅  |✅        |❌    |❌        |❌    |❌      |❌   |
-|**Disjuntor**        |Arthur e Khalil  |✅  |✅        |❌    |❌        |❌    |❌      |❌   |
-|**DPS**              |Arthur e Khalil  |✅  |✅        |❌    |❌        |❌    |❌      |❌   |
-|**Equipamento**      |David e Elenylson|✅  |✅        |✅*1  |✅*1      |✅    |✅      |✅   |
-|**Estacao**          |David e Elenylson|✅  |✅        |✅    |✅        |✅    |✅      |✅   |
-|**Manutencao**       |Elenylson e David|✅  |✅        |❌    |❌        |❌    |✅      |❌   |
-|**Tarefa**           |Elenylson e David|✅  |✅        |❌    |❌        |❌    |✅      |❌   |
-|**TarefaEquipamento**|Elenylson e David|✅  |✅        |❌    |❌        |❌    |✅      |❌   |
-|**Usuario**          |Elenylson e David|✅  |✅        |❌    |❌        |❌    |✅      |❌   |
-|**Empresa**          |Elenylson e David|✅  |✅        |❌    |❌        |❌    |✅      |❌   |
-|**ArCondicionado**   |Rafael           |✅  |✅        |❌    |❌        |✅    |❌      |❌   |
-|**Cabo**             |Rafael           |✅  |✅        |❌    |❌        |❌    |✅      |❌   |
-|**Telemetria**       |Rafael           |✅  |✅        |❌    |❌        |❌    |❌      |❌   |
-|**Combinador**       |Rafael           |✅  |✅        |❌    |❌        |❌    |❌      |❌   |
-|**Exautor**          |Rafael           |✅  |✅        |❌    |❌        |❌    |❌      |❌   |
-|**Torre**            |Rafael           |✅  |✅        |❌    |❌        |❌    |❌      |❌   |
+|Nome                 |Responsável    |Model|Repository|Service|Controller|Request|Response|Mapper|
+|---------------------|---------------|-----|----------|------ |----------|-------|--------|------|
+|**Antena**           |Adriano        |✅  |✅        |❌    |❌        |❌    |✅      |❌   |
+|**Parabolica**       |Adriano        |✅  |✅        |❌    |❌        |❌    |✅      |❌   |
+|**Receptor**         |Adriano        |✅  |✅        |❌    |❌        |❌    |✅      |❌   |
+|**Transmissor**      |Adriano        |✅  |✅        |❌    |❌        |❌    |✅      |❌   |
+|**Quadro**           |Arthur e Khalil|✅  |✅        |❌    |❌        |❌    |❌      |❌   |
+|**Nobreak**          |Arthur e Khalil|✅  |✅        |❌    |❌        |❌    |❌      |❌   |
+|**Switch**           |Arthur e Khalil|✅  |✅        |❌    |❌        |❌    |❌      |❌   |
+|**Disjuntor**        |Arthur e Khalil|✅  |✅        |❌    |❌        |❌    |❌      |❌   |
+|**DPS**              |Arthur e Khalil|✅  |✅        |❌    |❌        |❌    |❌      |❌   |
+|**Equipamento**      |David          |✅  |✅        |✅*1  |✅*1      |✅    |✅      |✅   |
+|**Estacao**          |David          |✅  |✅        |✅    |✅        |✅    |✅      |✅   |
+|**Tarefa**           |David          |✅  |✅        |❌    |❌        |❌    |✅      |❌   |
+|**TarefaEquipamento**|David          |✅  |✅        |❌    |❌        |❌    |✅      |❌   |
+|**Manutencao**       |Elenylson      |✅  |✅        |❌    |❌        |❌    |✅      |❌   |
+|**Usuario**          |Elenylson      |✅  |✅        |❌    |❌        |❌    |✅      |❌   |
+|**Empresa**          |Elenylson      |✅  |✅        |❌    |❌        |❌    |✅      |❌   |
+|**ArCondicionado**   |Rafael         |✅  |✅        |❌    |❌        |✅    |❌      |❌   |
+|**Cabo**             |Rafael         |✅  |✅        |❌    |❌        |❌    |✅      |❌   |
+|**Telemetria**       |Rafael         |✅  |✅        |❌    |❌        |❌    |❌      |❌   |
+|**Combinador**       |Rafael         |✅  |✅        |❌    |❌        |❌    |❌      |❌   |
+|**Exautor**          |Rafael         |✅  |✅        |❌    |❌        |❌    |❌      |❌   |
+|**Torre**            |Rafael         |✅  |✅        |❌    |❌        |❌    |❌      |❌   |
 
 - ***1**: Por equanto, os equipamentos são salvos, alterados e excluídos por suas especializações.

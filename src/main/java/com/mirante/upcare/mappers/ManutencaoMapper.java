@@ -1,27 +1,35 @@
 package com.mirante.upcare.mappers;
 
-import com.mirante.upcare.dto.request.ManutencaoRequest;
-import com.mirante.upcare.dto.response.ManutencaoResponse;
-import com.mirante.upcare.models.Manutencao;
-import com.mirante.upcare.repository.ManutencaoRepository;
+import java.util.List;
+import java.util.UUID;
+
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 import org.springframework.beans.factory.annotation.Autowired;
 
-import java.util.List;
+import com.mirante.upcare.dto.request.ManutencaoRequest;
+import com.mirante.upcare.dto.response.ManutencaoResponse;
+import com.mirante.upcare.models.Manutencao;
+import com.mirante.upcare.service.ManutencaoService;
 
 @Mapper(componentModel = "spring", uses = {UsuarioMapper.class, EstacaoMapper.class})
 public abstract class ManutencaoMapper {
 
     @Autowired
-    private ManutencaoRepository manutencaoRepository;
+    private ManutencaoService manutencaoService;
 
     @Mapping(target = "id", ignore = true)
-    abstract public Manutencao toEntity(ManutencaoRequest manutencaoRequest);
+    @Mapping(source = "idEstacao", target = "estacao")
+    @Mapping(source = "idTecnico", target = "tecnico")
+    public abstract Manutencao toEntity(ManutencaoRequest manutencaoRequest);
+
+    public Manutencao toEntity(UUID idManutencao) {
+        return manutencaoService.buscarPorId(idManutencao);
+    }
 
     @Mapping(source = "id", target = "idManutencao")
-    abstract public ManutencaoResponse toResponse(Manutencao manutencao);
+    public abstract ManutencaoResponse toResponse(Manutencao manutencao);
 
-    abstract public List<ManutencaoResponse> toResponseList(List<Manutencao> manutencaos);
+    public abstract List<ManutencaoResponse> toResponseList(List<Manutencao> manutencaos);
 
 }

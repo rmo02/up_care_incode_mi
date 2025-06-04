@@ -1,19 +1,20 @@
 package com.mirante.upcare.dto.request;
 
-import com.mirante.upcare.models.enums.TipoManutencao;
-import jakarta.validation.constraints.NotNull;
-
 import java.util.UUID;
+
+import com.mirante.upcare.models.enums.TipoManutencao;
+
+import jakarta.validation.constraints.NotNull;
 
 public record ManutencaoRequest(
 
-        @NotNull
-        UUID idEstacao,
+    @NotNull
+    UUID idEstacao,
 
-        @NotNull
-        UUID idTecnico,
+    @NotNull
+    UUID idTecnico,
 
-        @NotNull
-        TipoManutencao manutencao
+    @NotNull
+    TipoManutencao tipo
 
 ) {}

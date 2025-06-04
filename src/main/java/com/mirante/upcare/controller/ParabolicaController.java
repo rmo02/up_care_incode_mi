@@ -2,24 +2,61 @@ package com.mirante.upcare.controller;
 
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import com.mirante.upcare.dto.request.ParabolicaRequest;
 import com.mirante.upcare.dto.response.ParabolicaResponse;
 import com.mirante.upcare.mappers.ParabolicaMapper;
-import com.mirante.upcare.repository.ParabolicaRepository;
+import com.mirante.upcare.models.Parabolica;
+import com.mirante.upcare.service.ParabolicaService;
+import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
 import java.util.List;
+import java.util.UUID;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 
 @RestController
 @AllArgsConstructor
 @RequestMapping("parabolicas")
 public class ParabolicaController {
-    private final ParabolicaRepository parabolicaRepository;
+    private final ParabolicaMapper parabolicaMapper;
+    private final ParabolicaService parabolicaService;
 
-    @GetMapping("path")
-     public List<ParabolicaResponse> buscarTodos() {
-        return ParabolicaMapper.INSTANCE.toResponseList (
-            parabolicaRepository.findAll()
-        );
+    @PostMapping
+    public ResponseEntity<Void> salvar(@Valid @RequestBody ParabolicaRequest dto) {
+        Parabolica parabolica = parabolicaMapper.toEntity(dto);
+        parabolicaService.salvar(parabolica);
+
+        return ResponseEntity.status(HttpStatus.CREATED).build();
     }
+
+    @GetMapping
+     public List<ParabolicaResponse> buscarTodos() {
+        return parabolicaService.buscarTodos();
+    }
+
+    @GetMapping("{idParabolica}")
+    public ParabolicaResponse buscarPorId(@PathVariable UUID idParabolica) {
+        return parabolicaService.buscarPorId(idParabolica);
+    }
+
+    @PutMapping("{idParabolica}")
+    public ResponseEntity<Void> atualizar(@PathVariable UUID idParabolica, @RequestBody ParabolicaRequest dto) {
+        Parabolica parabolica = parabolicaMapper.toEntity(dto);
+        parabolicaService.atualizarPorId(idParabolica, parabolica);
+        return  ResponseEntity.status(HttpStatus.NO_CONTENT).build();
+    }
+    
+    @DeleteMapping("{idParabolica}")
+    public ResponseEntity<Void> deletar( @PathVariable UUID idParabolica) {
+        parabolicaService.deletarPorId(idParabolica);
+        return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
+    }
+    
     
 }

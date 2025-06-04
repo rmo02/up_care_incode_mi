@@ -1,19 +1,26 @@
 package com.mirante.upcare.dto.request;
 
-import com.mirante.upcare.models.Manutencao;
+import java.util.List;
+import java.util.UUID;
+
 import com.mirante.upcare.models.enums.StatusTarefa;
+
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Size;
 
 public record TarefaRequest(
 
-        @NotNull
-        Manutencao manutencao,
+    @NotNull
+    UUID idManutencao,
 
-        @NotNull
-        StatusTarefa statusTarefa,
+    @NotNull
+    StatusTarefa status,
 
-        @NotBlank
-        String descricao
+    @NotBlank
+    String descricao,
 
+    @NotNull
+    @Size(min = 1)
+    List<UUID> equipamentos
 ){}

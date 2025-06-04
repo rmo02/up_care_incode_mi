@@ -10,13 +10,11 @@ import com.mirante.upcare.dto.response.EquipamentoResponse;
 import com.mirante.upcare.models.Equipamento;
 
 @Mapper(uses = EstacaoMapper.class, componentModel = "spring")
-public abstract class EquipamentoMapper {
+public interface EquipamentoMapper {
 
     @Mapping(target = "id", ignore = true)
     @Mapping(source = "idEstacao", target = "estacao")
     public abstract Equipamento toEntity(EquipamentoRequest dto);
-
-
 
     @Mapping(source = "id", target = "idEquipamento")
     public abstract EquipamentoResponse toResponse(Equipamento equipamento);

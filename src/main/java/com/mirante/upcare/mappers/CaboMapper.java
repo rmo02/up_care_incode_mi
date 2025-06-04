@@ -1,16 +1,18 @@
 package com.mirante.upcare.mappers;
 
-import java.util.List;
+import com.mirante.upcare.dto.request.CaboRequest;
+import com.mirante.upcare.dto.response.CaboResponse;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
-import org.mapstruct.factory.Mappers;
-import com.mirante.upcare.dto.response.CaboResponse;
 import com.mirante.upcare.models.Cabo;
 
-@Mapper(uses = EquipamentoMapper.class)
+import java.util.List;
+
+@Mapper(uses = EquipamentoMapper.class, componentModel = "spring")
 public interface CaboMapper {
-    
-    CaboMapper INSTANCE = Mappers.getMapper(CaboMapper.class);
+
+    @Mapping(target = "id", ignore = true)
+    Cabo toEntity(CaboRequest request);
 
     @Mapping(source = "id", target = "idCabo")
     CaboResponse toResponse(Cabo cabo);

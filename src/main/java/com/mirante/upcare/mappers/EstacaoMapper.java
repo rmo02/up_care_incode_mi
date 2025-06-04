@@ -18,8 +18,6 @@ public abstract class EstacaoMapper {
     @Autowired
     private EstacaoRepository estacaoRepository;
 
-    
-
     @Mapping(target = "id", ignore = true)
     abstract public Estacao toEntity(EstacaoRequest estacaoRequest);
 
@@ -27,10 +25,8 @@ public abstract class EstacaoMapper {
         return estacaoRepository.findById(idEstacao).orElseThrow();
     }
 
-
-
     @Mapping(source = "id", target = "idEstacao")
     abstract public EstacaoResponse toResponse(Estacao estacao);
-
+    
     abstract public List<EstacaoResponse> toResponseList(List<Estacao> estacoes);
 }

@@ -4,6 +4,8 @@ import com.mirante.upcare.models.Usuario;
 import com.mirante.upcare.repository.UsuarioRepository;
 import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
+
+import org.springframework.beans.BeanUtils;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -18,13 +20,22 @@ public class UsuarioService {
     public Usuario salvar(@Valid Usuario usuario){
         return usuarioRepository.save(usuario);
     }
+
     public List<Usuario> buscarTodos(){
         return usuarioRepository.findAll();
     }
+
     public Usuario buscarPorId(UUID idUsuario){
         return usuarioRepository.findById(idUsuario).orElseThrow();
     }
+
     public void deletarPorId(UUID idUsuario){
         usuarioRepository.deleteById(idUsuario);
+    }
+
+    public Usuario atualizarPorId(UUID idUsuario, @Valid Usuario usuarioAtualizado) {
+        Usuario usuarioExistente = buscarPorId(idUsuario);
+        BeanUtils.copyProperties(usuarioAtualizado, usuarioExistente, "id");
+        return salvar(usuarioExistente);
     }
 }

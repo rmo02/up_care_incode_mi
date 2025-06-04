@@ -18,12 +18,15 @@ public class TarefaService {
     public Tarefa salvar(@Valid Tarefa tarefa){
         return tarefaRepository.save(tarefa);
     }
+
     public List<Tarefa> buscarTodos(){
         return tarefaRepository.findAll();
     }
+
     public Tarefa buscarPorId(UUID idTarefa){
         return tarefaRepository.findById(idTarefa).orElseThrow();
     }
+    
     public void deletarPorId(UUID idTarefa){
         tarefaRepository.deleteById(idTarefa);
     }

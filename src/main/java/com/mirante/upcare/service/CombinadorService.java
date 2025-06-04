@@ -1,0 +1,26 @@
+package com.mirante.upcare.service;
+
+import com.mirante.upcare.models.Combinador;
+import com.mirante.upcare.repository.CombinadorRepository;
+import jakarta.validation.Valid;
+import lombok.AllArgsConstructor;
+import org.springframework.stereotype.Service;
+
+import java.util.List;
+import java.util.UUID;
+
+@Service
+@AllArgsConstructor
+public class CombinadorService {
+    private final CombinadorRepository combinadorRepository;
+    public Combinador salvar(@Valid Combinador combinador){return combinadorRepository.save(combinador);}
+
+
+    public List<Combinador> buscarTodos(){return combinadorRepository.findAll();}
+    public Combinador buscarPorId(UUID idCombinador){return combinadorRepository.findById(idCombinador).orElseThrow();}
+    public Combinador AtualizarPorId(UUID idCombinador, Combinador combinadorAtualizado){
+           combinadorAtualizado.setId(idCombinador);
+           return salvar(combinadorAtualizado);
+    }
+    public void excluirPorId(UUID idCombinador){combinadorRepository.deleteById(idCombinador);}
+}

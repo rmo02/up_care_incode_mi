@@ -1,11 +1,18 @@
 package com.mirante.upcare.dto.response;
-import com.mirante.upcare.models.enums.StatusTarefa;
+import java.util.List;
 import java.util.UUID;
 
-public record TarefaResponse(
-        UUID idTarefa,
-        ManutencaoResponse manutencao,
-        StatusTarefa statusTarefa,
-        String descricao,
-        Boolean fotoObrigatoria
-){}
+import com.mirante.upcare.models.enums.StatusTarefa;
+
+import lombok.Getter;
+import lombok.Setter;
+
+@Getter @Setter
+public class TarefaResponse {
+    private UUID idTarefa;
+    private ManutencaoResponse manutencao;
+    private StatusTarefa status;
+    private String descricao;
+    private List<EquipamentoResponse> equipamentos;
+}
+
