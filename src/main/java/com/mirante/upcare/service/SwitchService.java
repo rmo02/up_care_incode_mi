@@ -1,17 +1,16 @@
 package com.mirante.upcare.service;
 
-import com.mirante.upcare.models.Quadro;
+import java.util.List;
+import java.util.UUID;
+
+import org.springframework.beans.BeanUtils;
+import org.springframework.stereotype.Service;
+
 import com.mirante.upcare.models.Switch;
 import com.mirante.upcare.repository.SwitchRepository;
 
 import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
-
-import org.springframework.beans.BeanUtils;
-import org.springframework.stereotype.Service;
-
-import java.util.List;
-import java.util.UUID;
 
 @Service
 @AllArgsConstructor
