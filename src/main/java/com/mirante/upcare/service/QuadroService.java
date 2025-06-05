@@ -2,7 +2,11 @@ package com.mirante.upcare.service;
 
 import com.mirante.upcare.models.Quadro;
 import com.mirante.upcare.repository.QuadroRepository;
+
+import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
+
+import org.springframework.beans.BeanUtils;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -22,7 +26,17 @@ public class QuadroService {
         return quadroRepository.findById(id).orElseThrow();
     }
 
-    public Quadro salvar(Quadro quadro) {
+    public Quadro salvar(@Valid Quadro quadro) {
         return quadroRepository.save(quadro);
+    }
+
+    public Quadro atualizarPorId(UUID idQuadro, @Valid Quadro quadroAtualizado) {
+        var quadroExistente = buscarPorId(idQuadro);
+        BeanUtils.copyProperties(quadroAtualizado, quadroExistente, "id");
+        return salvar(quadroExistente);
+    }
+
+    public void deletarPorId(UUID idQuadro) {
+        quadroRepository.deleteById(idQuadro);
     }
 }
