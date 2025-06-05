@@ -1,19 +1,27 @@
 package com.mirante.upcare.controller;
 
+import java.util.List;
+import java.util.UUID;
+
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+
 import com.mirante.upcare.dto.request.NobreakRequest;
 import com.mirante.upcare.dto.response.NobreakResponse;
 import com.mirante.upcare.mappers.NobreakMapper;
 import com.mirante.upcare.service.NobreakService;
 import com.mirante.upcare.utils.Pipeline;
+
 import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
-import org.springframework.validation.annotation.Validated;
-import org.springframework.web.bind.annotation.*;
-
-import java.util.List;
-import java.util.UUID;
 
 @RestController
 @AllArgsConstructor
@@ -50,5 +58,22 @@ public class NobreakController {
                 .then(nobreakService::salvar)
                 .then(n -> ResponseEntity.status(HttpStatus.CREATED).build())
                 .get();
+    }
+
+    @PutMapping("{idNobreak}")
+    public ResponseEntity<Object> atualizarPorId(@PathVariable UUID idNobreak, @Valid @RequestBody NobreakRequest dto){
+        return (Pipeline
+            .from(dto)
+            .then(nobreakMapper::toEntity)
+            .then(nobreakAtualizado -> nobreakService.atualizarPorId(idNobreak, nobreakAtualizado))
+            .then(n -> ResponseEntity.noContent().build())
+            .get()
+        );
+    }
+
+    @DeleteMapping("{idNobreak}")
+    public ResponseEntity<Object> deletarPorId(@PathVariable UUID idNobreak){
+        nobreakService.deletarPorId(idNobreak);
+        return ResponseEntity.noContent().build();
     }
 }

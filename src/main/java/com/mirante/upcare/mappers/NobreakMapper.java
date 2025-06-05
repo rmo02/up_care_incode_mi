@@ -14,6 +14,7 @@ public interface NobreakMapper {
     @Mapping(source = "id", target = "idNobreak")
     NobreakResponse toResponse(Nobreak nobreak);
 
+    @Mapping(target = "id", ignore = true)
     @Mapping(source = "idQuadro", target = "quadro")
     Nobreak toEntity(NobreakRequest request);
 
