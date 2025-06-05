@@ -20,6 +20,7 @@ public abstract class QuadroMapper {
     @Mapping(source = "id", target = "idQuadro")
     public abstract QuadroResponse toResponse(Quadro quadro);
 
+    @Mapping(target = "id", ignore = true)
     public abstract Quadro toEntity(QuadroRequest request);
 
     public Quadro toEntity(UUID idQuadro){
