@@ -14,6 +14,7 @@ public interface DpsMapper {
     @Mapping(source = "id", target = "idDps")
     DpsResponse toResponse(Dps dps);
 
+    @Mapping(target = "id", ignore = true)
     @Mapping(source = "idQuadro", target = "quadro")
     Dps toEntity(DpsRequest request);
 

@@ -6,13 +6,12 @@ import jakarta.validation.constraints.NotNull;
 import java.util.UUID;
 
 public record DpsRequest (
-        @NotNull
-        EquipamentoRequest equipamento,
+    @NotNull
+    EquipamentoRequest equipamento,
 
-        @NotNull
-        UUID idQuadro,
+    @NotNull
+    UUID idQuadro,
 
-        @NotNull
-        ClasseDps classeDps
-){
-}
+    @NotNull
+    ClasseDps classeDps
+){}

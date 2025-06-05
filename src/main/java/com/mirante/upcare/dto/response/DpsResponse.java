@@ -5,9 +5,8 @@ import com.mirante.upcare.models.enums.ClasseDps;
 import java.util.UUID;
 
 public record DpsResponse(
-        UUID idDps,
-        EquipamentoResponse equipamento,
-        QuadroResponse quadro,
-        ClasseDps classeDps
-) {
-}
+    UUID idDps,
+    EquipamentoResponse equipamento,
+    QuadroResponse quadro,
+    ClasseDps classeDps
+) {}

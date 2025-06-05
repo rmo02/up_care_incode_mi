@@ -65,8 +65,8 @@ Projeto Up Care desenvolvido pela equipe do INCODE Tech School para a TV Mirante
 |**Quadro**           |Arthur e Khalil|✅  |✅        |✅    |✅        |✅    |✅      |✅   |
 |**Nobreak**          |Arthur e Khalil|✅  |✅        |✅    |✅        |✅    |✅      |✅   |
 |**Switch**           |Arthur e Khalil|✅  |✅        |✅    |✅        |✅    |✅      |✅   |
-|**Disjuntor**        |Arthur e Khalil|✅  |✅        |❌    |❌        |❌    |❌      |❌   |
-|**DPS**              |Arthur e Khalil|✅  |✅        |❌    |❌        |❌    |❌      |❌   |
+|**Disjuntor**        |Arthur e Khalil|✅  |✅        |✅    |✅        |✅    |✅      |✅   |
+|**DPS**              |Arthur e Khalil|✅  |✅        |✅    |✅        |✅    |✅      |✅   |
 |**Equipamento**      |David          |✅  |✅        |✅*1  |✅*1      |✅    |✅      |✅   |
 |**Estacao**          |David          |✅  |✅        |✅    |✅        |✅    |✅      |✅   |
 |**Tarefa**           |David          |✅  |✅        |❌    |❌        |❌    |✅      |❌   |

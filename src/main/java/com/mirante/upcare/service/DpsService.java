@@ -1,12 +1,16 @@
 package com.mirante.upcare.service;
 
-import com.mirante.upcare.models.Dps;
-import com.mirante.upcare.repository.DpsRepository;
-import lombok.AllArgsConstructor;
-import org.springframework.stereotype.Service;
-
 import java.util.List;
 import java.util.UUID;
+
+import org.springframework.beans.BeanUtils;
+import org.springframework.stereotype.Service;
+
+import com.mirante.upcare.models.Dps;
+import com.mirante.upcare.repository.DpsRepository;
+
+import jakarta.validation.Valid;
+import lombok.AllArgsConstructor;
 
 @Service
 @AllArgsConstructor
@@ -24,5 +28,15 @@ public class DpsService {
 
     public Dps salvar(Dps entity) {
         return dpsRepository.save(entity);
+    }
+
+    public Dps atualizarPorId(UUID idDps, @Valid Dps dpsAtualizado) {
+        var dpsExistente = buscarPorId(idDps);
+        BeanUtils.copyProperties(dpsAtualizado, dpsExistente, "id");
+        return salvar(dpsExistente);
+    }
+
+    public void deletarPorId(UUID idDps) {
+        dpsRepository.deleteById(idDps);
     }
 }
