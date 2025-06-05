@@ -5,13 +5,12 @@ import jakarta.validation.constraints.NotNull;
 import java.util.UUID;
 
 public record SwitchRequest(
-        @NotNull
-        EquipamentoRequest equipamento,
+    @NotNull
+    EquipamentoRequest equipamento,
 
-        @NotNull
-        UUID idQuadro,
+    @NotNull
+    UUID idQuadro,
 
-        @NotNull
-        Integer qtdPortas
-) {
-}
+    @NotNull
+    Integer qtdPortas
+) {}

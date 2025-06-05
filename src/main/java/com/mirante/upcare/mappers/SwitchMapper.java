@@ -14,6 +14,7 @@ public interface SwitchMapper {
     @Mapping(source = "id", target = "idSwitch")
     SwitchResponse toResponse(Switch entity);
 
+    @Mapping(target = "id", ignore = true)
     @Mapping(source = "idQuadro", target = "quadro")
     Switch toEntity(SwitchRequest request);
 
