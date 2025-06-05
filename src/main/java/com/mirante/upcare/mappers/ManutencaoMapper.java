@@ -21,6 +21,7 @@ public abstract class ManutencaoMapper {
     @Mapping(target = "id", ignore = true)
     @Mapping(source = "idEstacao", target = "estacao")
     @Mapping(source = "idTecnico", target = "tecnico")
+    @Mapping(target = "tarefas", ignore = true)
     public abstract Manutencao toEntity(ManutencaoRequest manutencaoRequest);
 
     public Manutencao toEntity(UUID idManutencao) {

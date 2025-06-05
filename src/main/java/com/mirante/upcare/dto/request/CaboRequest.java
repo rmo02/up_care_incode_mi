@@ -11,6 +11,5 @@ public record CaboRequest(
     Float tamanho,
 
     @NotNull
-    TipoCabo cabo
-)
-{}
+    TipoCabo tipo
+){}

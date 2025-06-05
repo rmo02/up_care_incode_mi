@@ -15,7 +15,6 @@ import org.springframework.web.bind.annotation.RestController;
 import com.mirante.upcare.assemblers.TarefaAssembler;
 import com.mirante.upcare.dto.request.TarefaRequest;
 import com.mirante.upcare.dto.response.TarefaResponse;
-import com.mirante.upcare.mappers.TarefaMapper;
 import com.mirante.upcare.service.TarefaService;
 import com.mirante.upcare.utils.Pipeline;
 
@@ -28,7 +27,6 @@ import lombok.AllArgsConstructor;
 public class TarefaController {
 
     private final TarefaService tarefaService;
-    private final TarefaMapper tarefaMapper;
     private final TarefaAssembler tarefaAssembler;
 
     @PostMapping

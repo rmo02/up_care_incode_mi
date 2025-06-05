@@ -4,16 +4,15 @@ import com.mirante.upcare.models.enums.TipoTorre;
 import jakarta.validation.constraints.NotNull;
 
 public record TorreRequest(
-        @NotNull
-        EquipamentoRequest equipamento,
+    @NotNull
+    EquipamentoRequest equipamento,
 
-        @NotNull
-        TipoTorre torre,
+    @NotNull
+    TipoTorre tipo,
 
-        @NotNull
-        Boolean aterrada,
+    @NotNull
+    Boolean aterrada,
 
-        @NotNull
-        Float altura
-) {
-}
+    @NotNull
+    Float altura
+) {}
