@@ -5,13 +5,12 @@ import jakarta.validation.constraints.NotNull;
 import java.util.UUID;
 
 public record DisjuntorRequest(
-        @NotNull
-        EquipamentoRequest equipamento,
+    @NotNull
+    EquipamentoRequest equipamento,
 
-        @NotNull
-        UUID idQuadro,
+    @NotNull
+    UUID idQuadro,
 
-        @NotNull
-        Float correnteMaxima
-) {
-}
+    @NotNull
+    Float correnteMaxima
+) {}
