@@ -17,7 +17,7 @@ public class Dps {
     private UUID id;
 
     @NotNull
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.PERSIST)
     @JoinColumn(name = "fk_equipamento")
     private Equipamento equipamento;
 

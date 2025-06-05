@@ -62,7 +62,7 @@ Projeto Up Care desenvolvido pela equipe do INCODE Tech School para a TV Mirante
 |**Parabolica**       |Adriano        |✅  |✅        |❌    |❌        |❌    |✅      |❌   |
 |**Receptor**         |Adriano        |✅  |✅        |❌    |❌        |❌    |✅      |❌   |
 |**Transmissor**      |Adriano        |✅  |✅        |❌    |❌        |❌    |✅      |❌   |
-|**Quadro**           |Arthur e Khalil|✅  |✅        |❌    |❌        |❌    |❌      |❌   |
+|**Quadro**           |Arthur e Khalil|✅  |✅        |✅    |✅        |✅    |✅      |✅   |
 |**Nobreak**          |Arthur e Khalil|✅  |✅        |❌    |❌        |❌    |❌      |❌   |
 |**Switch**           |Arthur e Khalil|✅  |✅        |❌    |❌        |❌    |❌      |❌   |
 |**Disjuntor**        |Arthur e Khalil|✅  |✅        |❌    |❌        |❌    |❌      |❌   |
