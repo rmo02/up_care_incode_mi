@@ -16,7 +16,7 @@ import java.util.UUID;
 
 @RestController
 @AllArgsConstructor
-@RequestMapping("TarefaEquipamento")
+@RequestMapping("tarefas-equipamentos")
 public class TarefaEquipamentoController {
 
     private TarefaEquipamentoService tarefaEquipamentoService;
