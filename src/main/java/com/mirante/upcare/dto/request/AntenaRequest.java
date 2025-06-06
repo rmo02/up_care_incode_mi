@@ -12,7 +12,7 @@ public record AntenaRequest (
     EquipamentoRequest equipamento,
 
     @NotNull
-    UUID transmissor,
+    UUID idTransmissor,
 
     @NotBlank
     String gain,
@@ -25,7 +25,7 @@ public record AntenaRequest (
   
     @NotNull
     Float vr
-
+    
 ){}
  
 

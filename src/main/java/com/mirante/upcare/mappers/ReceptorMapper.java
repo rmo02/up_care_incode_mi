@@ -1,18 +1,24 @@
 package com.mirante.upcare.mappers;
 
 import java.util.List;
+
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
-import org.mapstruct.factory.Mappers;
+
+import com.mirante.upcare.dto.request.ReceptorRequest;
 import com.mirante.upcare.dto.response.ReceptorResponse;
 import com.mirante.upcare.models.Receptor;
 
-@Mapper(uses = {EquipamentoMapper.class, TransmissorMapper.class, ParabolicaMapper.class})
+@Mapper(componentModel = "spring", uses = {EquipamentoMapper.class, ParabolicaMapper.class, TransmissorMapper.class})
 public interface ReceptorMapper {
-
-    ReceptorMapper INSTANCE = Mappers.getMapper(ReceptorMapper.class);
+    
+    @Mapping(target = "id", ignore = true)
+    @Mapping(source = "idParabolica", target = "parabolica")
+    @Mapping(source = "idTransmissor", target = "transmissor")
+    Receptor toEntity(ReceptorRequest dto);
     
     @Mapping(source  = "id", target = "idReceptor")
-    ReceptorResponse tResponse(Receptor receptor);
-    List<ReceptorResponse> toResponseList(List<Receptor> receptors);
+    ReceptorResponse toResponse(Receptor receptor);
+
+    List<ReceptorResponse> toResponseList(List<Receptor> receptores);
 } 

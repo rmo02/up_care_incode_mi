@@ -37,12 +37,12 @@ public class ParabolicaController {
 
     @GetMapping
      public List<ParabolicaResponse> buscarTodos() {
-        return parabolicaService.buscarTodos();
+        return  parabolicaMapper.toResponseList(parabolicaService.buscarTodos());
     }
 
     @GetMapping("{idParabolica}")
     public ParabolicaResponse buscarPorId(@PathVariable UUID idParabolica) {
-        return parabolicaService.buscarPorId(idParabolica);
+        return parabolicaMapper.toResponse(parabolicaService.buscarPorId(idParabolica));
     }
 
     @PutMapping("{idParabolica}")

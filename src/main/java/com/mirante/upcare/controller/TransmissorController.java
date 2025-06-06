@@ -40,12 +40,12 @@ public class TransmissorController {
 
     @GetMapping
      public List<TransmissorResponse> buscarTodos() {
-        return transmissorService.buscarTodos();
+        return transmissorMapper.toResponseList(transmissorService.buscarTodos());
     }
 
     @GetMapping("{idTransmissor}")
     public TransmissorResponse buscarPorId(@PathVariable UUID idTransmissor) {
-        return transmissorService.buscarPorId(idTransmissor);
+        return transmissorMapper.toResponse(transmissorService.buscarPorId(idTransmissor));
     }
 
     @PutMapping("{idTransmissor}")

@@ -9,10 +9,10 @@ public record ReceptorRequest(
     EquipamentoRequest equipamento,
 
     @NotNull
-    UUID parabolica,
+    UUID idParabolica,
 
     @NotNull
-    UUID transmissor,
+    UUID idTransmissor,
     
     @NotNull
     Float canal,
