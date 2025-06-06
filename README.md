@@ -55,13 +55,13 @@ Projeto Up Care desenvolvido pela equipe do INCODE Tech School para a TV Mirante
 - Todos os campos da entidade original estiverem presentes
 
 
-## Divisão de Responsailidades
+## Divisão de Responsabilidades
 |Nome                 |Responsável    |Model|Repository|Service|Controller|Request|Response|Mapper|
 |---------------------|---------------|-----|----------|------ |----------|-------|--------|------|
-|**Antena**           |Adriano        |✅  |✅        |❌    |❌        |❌    |✅      |❌   |
-|**Parabolica**       |Adriano        |✅  |✅        |❌    |❌        |❌    |✅      |❌   |
-|**Receptor**         |Adriano        |✅  |✅        |❌    |❌        |❌    |✅      |❌   |
-|**Transmissor**      |Adriano        |✅  |✅        |❌    |❌        |❌    |✅      |❌   |
+|**Antena**           |Adriano        |✅  |✅        |✅    |✅        |✅    |✅      |✅   |
+|**Parabolica**       |Adriano        |✅  |✅        |✅    |✅        |✅    |✅      |✅   |
+|**Receptor**         |Adriano        |✅  |✅        |✅    |✅        |✅    |✅      |✅   |
+|**Transmissor**      |Adriano        |✅  |✅        |✅    |✅        |✅    |✅      |✅   |
 |**Quadro**           |Arthur e Khalil|✅  |✅        |✅    |✅        |✅    |✅      |✅   |
 |**Nobreak**          |Arthur e Khalil|✅  |✅        |✅    |✅        |✅    |✅      |✅   |
 |**Switch**           |Arthur e Khalil|✅  |✅        |✅    |✅        |✅    |✅      |✅   |
