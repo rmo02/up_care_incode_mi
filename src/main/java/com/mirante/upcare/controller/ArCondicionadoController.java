@@ -35,4 +35,6 @@ public class ArCondicionadoController {
             .get()
         );
     }
+
+    /** TODO: Metodos GET, PUT e DELETE */
 }

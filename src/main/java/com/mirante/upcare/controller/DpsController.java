@@ -5,7 +5,6 @@ import java.util.UUID;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -52,12 +51,12 @@ public class DpsController {
     }
 
     @PostMapping
-    public ResponseEntity<UUID> salvar(@Validated @RequestBody DpsRequest dto) {
+    public ResponseEntity<Object> salvar(@Valid @RequestBody DpsRequest dto) {
         return Pipeline
                 .from(dto)
                 .then(dpsMapper::toEntity)
                 .then(dpsService::salvar)
-                .then(d -> ResponseEntity.status(HttpStatus.CREATED).body(d.getId()))
+                .then(d -> ResponseEntity.status(HttpStatus.CREATED).build())
                 .get();
     }
 

@@ -24,6 +24,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 @AllArgsConstructor
 @RequestMapping("parabolicas")
 public class ParabolicaController {
+    
     private final ParabolicaMapper parabolicaMapper;
     private final ParabolicaService parabolicaService;
 
@@ -36,8 +37,8 @@ public class ParabolicaController {
     }
 
     @GetMapping
-     public List<ParabolicaResponse> buscarTodos() {
-        return  parabolicaMapper.toResponseList(parabolicaService.buscarTodos());
+    public List<ParabolicaResponse> buscarTodos() {
+        return parabolicaMapper.toResponseList(parabolicaService.buscarTodos());
     }
 
     @GetMapping("{idParabolica}")
@@ -46,16 +47,16 @@ public class ParabolicaController {
     }
 
     @PutMapping("{idParabolica}")
-    public ResponseEntity<Void> atualizar(@PathVariable UUID idParabolica, @RequestBody ParabolicaRequest dto) {
+    public ResponseEntity<Void> atualizar(@PathVariable UUID idParabolica, @Valid @RequestBody ParabolicaRequest dto) {
         Parabolica parabolica = parabolicaMapper.toEntity(dto);
         parabolicaService.atualizarPorId(idParabolica, parabolica);
-        return  ResponseEntity.status(HttpStatus.NO_CONTENT).build();
+        return ResponseEntity.noContent().build();
     }
     
     @DeleteMapping("{idParabolica}")
     public ResponseEntity<Void> deletar( @PathVariable UUID idParabolica) {
         parabolicaService.deletarPorId(idParabolica);
-        return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
+        return ResponseEntity.noContent().build();
     }
     
     

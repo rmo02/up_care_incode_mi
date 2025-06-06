@@ -32,7 +32,7 @@ public class EstacaoController {
     private final EstacaoMapper estacaoMapper;
 
     @PostMapping
-    public ResponseEntity<Object> salvar(@RequestBody @Valid EstacaoRequest dto) {
+    public ResponseEntity<Object> salvar(@Valid @RequestBody EstacaoRequest dto) {
         return (Pipeline
             .from(dto)
             .then(estacaoMapper::toEntity)
@@ -75,7 +75,7 @@ public class EstacaoController {
     }
 
     @DeleteMapping("{idEstacao}")
-    public ResponseEntity<Void> excluirPorId(@PathVariable UUID idEstacao) {
+    public ResponseEntity<Object> excluirPorId(@PathVariable UUID idEstacao) {
         estacaoService.excluirPorId(idEstacao);
         return ResponseEntity.noContent().build();
     }

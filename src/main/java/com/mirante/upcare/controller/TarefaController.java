@@ -50,6 +50,7 @@ public class TarefaController {
         );
     }
 
+    @GetMapping("{idTarefa}")
     public ResponseEntity<TarefaResponse> buscarPorId(@PathVariable UUID idTarefa) {
         return (Pipeline
             .from(idTarefa)
@@ -61,7 +62,7 @@ public class TarefaController {
     }
 
     @DeleteMapping("{idTarefa}")
-    public ResponseEntity<Void> deletarPorId(@PathVariable UUID idTarefa) {
+    public ResponseEntity<Object> deletarPorId(@PathVariable UUID idTarefa) {
         tarefaService.deletarPorId(idTarefa);
         return ResponseEntity.ok().build();
     }

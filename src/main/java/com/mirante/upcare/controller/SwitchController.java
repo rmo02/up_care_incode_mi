@@ -5,7 +5,6 @@ import java.util.UUID;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -52,12 +51,12 @@ public class SwitchController {
     }
 
     @PostMapping
-    public ResponseEntity<UUID> salvar(@Validated @RequestBody SwitchRequest dto) {
+    public ResponseEntity<Object> salvar(@Valid @RequestBody SwitchRequest dto) {
         return Pipeline
                 .from(dto)
                 .then(switchMapper::toEntity)
                 .then(switchService::salvar)
-                .then(s -> ResponseEntity.status(HttpStatus.CREATED).body(s.getId()))
+                .then(s -> ResponseEntity.status(HttpStatus.CREATED).build())
                 .get();
     }
 

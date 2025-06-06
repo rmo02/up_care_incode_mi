@@ -25,6 +25,7 @@ import lombok.AllArgsConstructor;
 @AllArgsConstructor
 @RequestMapping("receptores")
 public class ReceptorController {
+
     private final ReceptorMapper receptorMapper;
     private final ReceptorService receptorService;
 
@@ -47,16 +48,16 @@ public class ReceptorController {
     }
 
     @PutMapping("{idReceptor}")
-    public ResponseEntity<Void> atualizar(@PathVariable UUID idReceptor, @RequestBody ReceptorRequest dto) {
+    public ResponseEntity<Void> atualizar(@PathVariable UUID idReceptor, @Valid @RequestBody ReceptorRequest dto) {
         Receptor receptor = receptorMapper.toEntity(dto);
         receptorService.atualizarPorId(idReceptor, receptor);
-        return  ResponseEntity.status(HttpStatus.NO_CONTENT).build();
+        return  ResponseEntity.noContent().build();
     }
 
     @DeleteMapping("{idReceptor}")
     public ResponseEntity<Void> deletar( @PathVariable UUID idReceptor) {
         receptorService.deletarPorId(idReceptor);
-        return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
+        return ResponseEntity.noContent().build();
     }
 
 }

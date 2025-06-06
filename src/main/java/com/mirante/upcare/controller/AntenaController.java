@@ -40,7 +40,7 @@ public class AntenaController {
 
     @GetMapping
     public List<AntenaResponse> buscarTodos() {
-         return antenaMapper.toResponseList(antenaService.buscarTodos());
+        return antenaMapper.toResponseList(antenaService.buscarTodos());
     }
 
     @GetMapping("{idAntena}")
