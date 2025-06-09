@@ -6,6 +6,7 @@ import com.mirante.upcare.mappers.CaboMapper;
 import com.mirante.upcare.models.Cabo;
 import com.mirante.upcare.service.CaboService;
 import com.mirante.upcare.utils.Pipeline;
+import io.swagger.v3.oas.annotations.Operation;
 import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -22,6 +23,10 @@ public class CaboController {
     private CaboMapper caboMapper;
     private CaboService caboService;
 
+    @Operation(
+            summary = "Criar um novo cabo",
+            description = "Cria e salva um novo cabo com os dados fornecidos no corpo da requisição"
+    )
     @PostMapping
     public ResponseEntity<UUID> salvar(@Valid @RequestBody CaboRequest dto){
         return (Pipeline
@@ -33,6 +38,10 @@ public class CaboController {
                 .get()
         );
     }
+    @Operation(
+            summary = "Buscar todos os cabos",
+            description = "Retorna todos os cabos cadastrados no sistema"
+    )
     @GetMapping
     public ResponseEntity<List<CaboResponse>> buscarTodos(){
         return (Pipeline
@@ -42,6 +51,10 @@ public class CaboController {
                 .get()
                 );
     }
+    @Operation(
+            summary = "Buscar cabo por ID",
+            description = "Retorna os dados de um cabo específico com base no ID fornecido"
+    )
     @GetMapping("{idCabo}")
     public ResponseEntity<CaboResponse> buscarPorId(@PathVariable UUID idCabo){
         return (Pipeline
@@ -53,6 +66,10 @@ public class CaboController {
                 );
     }
 
+    @Operation(
+            summary = "Atualizar cabo por ID",
+            description = "Atualiza os dados de um cabo existente com base no ID e nos dados fornecidos"
+    )
     @PutMapping("{idCabo}")
     public ResponseEntity<UUID>atualizarPorId(@PathVariable UUID idCabo, @Valid @RequestBody CaboRequest dto){
         return (Pipeline
@@ -64,6 +81,10 @@ public class CaboController {
         );
     }
 
+    @Operation(
+            summary = "Excluir cabo por ID",
+            description = "Remove um cabo existente com base no ID fornecido. "
+    )
     @DeleteMapping("{idCabo}")
     public ResponseEntity<Void> excluirPorId(@PathVariable UUID idCabo){
         caboService.excluirPorId(idCabo);
