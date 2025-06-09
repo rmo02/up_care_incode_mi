@@ -1,28 +1,20 @@
 package com.mirante.upcare.controller;
 
-import java.util.List;
-import java.util.UUID;
-
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
-import org.springframework.validation.annotation.Validated;
-import org.springframework.web.bind.annotation.DeleteMapping;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
-
 import com.mirante.upcare.dto.request.SwitchRequest;
 import com.mirante.upcare.dto.response.SwitchResponse;
 import com.mirante.upcare.mappers.SwitchMapper;
 import com.mirante.upcare.service.SwitchService;
 import com.mirante.upcare.utils.Pipeline;
-
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.Parameter;
 import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
+import java.util.UUID;
 
 @RestController
 @AllArgsConstructor
@@ -32,6 +24,10 @@ public class SwitchController {
     private final SwitchService switchService;
     private final SwitchMapper switchMapper;
 
+    @Operation(
+            summary = "Buscar todos os switches",
+            description = "Retorna todos os switches cadastrados no sistema"
+    )
     @GetMapping
     public ResponseEntity<List<SwitchResponse>> buscarTodos() {
         return Pipeline
@@ -41,8 +37,15 @@ public class SwitchController {
                 .get();
     }
 
+    @Operation(
+            summary = "Buscar switch por ID",
+            description = "Retorna os dados de um switch específico com base no ID fornecido"
+    )
     @GetMapping("{idSwitch}")
-    public ResponseEntity<SwitchResponse> buscarPorId(@PathVariable UUID idSwitch) {
+    public ResponseEntity<SwitchResponse> buscarPorId(
+            @Parameter(description = "ID do switch a ser buscado", required = true)
+            @PathVariable UUID idSwitch) {
+
         return Pipeline
                 .from(idSwitch)
                 .then(switchService::buscarPorId)
@@ -51,8 +54,15 @@ public class SwitchController {
                 .get();
     }
 
+    @Operation(
+            summary = "Criar um novo switch",
+            description = "Cria e salva um novo switch com os dados fornecidos no corpo da requisição"
+    )
     @PostMapping
-    public ResponseEntity<UUID> salvar(@Validated @RequestBody SwitchRequest dto) {
+    public ResponseEntity<UUID> salvar(
+            @Parameter(description = "Dados do novo switch", required = true)
+            @Valid @RequestBody SwitchRequest dto) {
+
         return Pipeline
                 .from(dto)
                 .then(switchMapper::toEntity)
@@ -61,8 +71,17 @@ public class SwitchController {
                 .get();
     }
 
+    @Operation(
+            summary = "Atualizar switch por ID",
+            description = "Atualiza os dados de um switch existente com base no ID e nos dados fornecidos"
+    )
     @PutMapping("{idSwitch}")
-    public ResponseEntity<Object> atualizarPorId(@PathVariable UUID idSwitch, @Valid @RequestBody SwitchRequest dto) {
+    public ResponseEntity<Object> atualizarPorId(
+            @Parameter(description = "ID do switch a ser atualizado", required = true)
+            @PathVariable UUID idSwitch,
+            @Parameter(description = "Novos dados do switch", required = true)
+            @Valid @RequestBody SwitchRequest dto) {
+
         return (Pipeline
             .from(dto)
             .then(switchMapper::toEntity)
@@ -72,8 +91,15 @@ public class SwitchController {
         );
     }
 
+    @Operation(
+            summary = "Excluir switch por ID",
+            description = "Remove um switch existente com base no ID fornecido"
+    )
     @DeleteMapping("{idSwicth}")
-    public ResponseEntity<Object> deletarPorId(@PathVariable UUID idSwicth) {
+    public ResponseEntity<Object> deletarPorId(
+            @Parameter(description = "ID do switch a ser excluído", required = true)
+            @PathVariable UUID idSwicth) {
+
         switchService.deletarPorId(idSwicth);
         return ResponseEntity.noContent().build();
     }

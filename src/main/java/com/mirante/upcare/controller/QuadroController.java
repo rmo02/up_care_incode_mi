@@ -3,6 +3,8 @@ package com.mirante.upcare.controller;
 import java.util.List;
 import java.util.UUID;
 
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.Parameter;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -31,6 +33,10 @@ public class QuadroController {
     private final QuadroService quadroService;
     private final QuadroMapper quadroMapper;
 
+    @Operation(
+            summary = "Buscar todos os quadros",
+            description = "Retorna todos os quadros cadastrados no sistema"
+    )
     @GetMapping
     public ResponseEntity<List<QuadroResponse>> buscarTodos() {
         return Pipeline
@@ -40,8 +46,15 @@ public class QuadroController {
                 .get();
     }
 
+    @Operation(
+            summary = "Buscar quadro por ID",
+            description = "Retorna os dados de um quadro específico com base no ID fornecido"
+    )
     @GetMapping("{idQuadro}")
-    public ResponseEntity<QuadroResponse> buscarPorId(@PathVariable UUID idQuadro) {
+    public ResponseEntity<QuadroResponse> buscarPorId(
+            @Parameter(description = "ID do quadro a ser buscado", required = true)
+            @PathVariable UUID idQuadro) {
+
         return Pipeline
                 .from(idQuadro)
                 .then(quadroService::buscarPorId)
@@ -50,8 +63,15 @@ public class QuadroController {
                 .get();
     }
 
+    @Operation(
+            summary = "Criar um novo quadro",
+            description = "Cria e salva um novo quadro com os dados fornecidos no corpo da requisição"
+    )
     @PostMapping
-    public ResponseEntity<Object> salvar(@Valid @RequestBody QuadroRequest dto) {
+    public ResponseEntity<Object> salvar(
+            @Parameter(description = "Dados do novo quadro", required = true)
+            @Valid @RequestBody QuadroRequest dto) {
+
         return Pipeline
                 .from(dto)
                 .then(quadroMapper::toEntity)
@@ -60,8 +80,17 @@ public class QuadroController {
                 .get();
     }
 
+    @Operation(
+            summary = "Atualizar quadro por ID",
+            description = "Atualiza os dados de um quadro existente com base no ID e nos dados fornecidos"
+    )
     @PutMapping("{idQuadro}")
-    public ResponseEntity<Object> atualizarPorId(@PathVariable UUID idQuadro, @Valid @RequestBody QuadroRequest dto) {
+    public ResponseEntity<Object> atualizarPorId(
+            @Parameter(description = "ID do quadro a ser atualizado", required = true)
+            @PathVariable UUID idQuadro,
+            @Parameter(description = "Novos dados do quadro", required = true)
+            @Valid @RequestBody QuadroRequest dto) {
+
         return (Pipeline
             .from(dto)
             .then(quadroMapper::toEntity)
@@ -71,8 +100,15 @@ public class QuadroController {
         );
     }
 
+    @Operation(
+            summary = "Excluir quadro por ID",
+            description = "Remove um quadro existente com base no ID fornecido"
+    )
     @DeleteMapping("{idQuadro}")
-    public ResponseEntity<Object> deletarPorId(@PathVariable UUID idQuadro) {
+    public ResponseEntity<Object> deletarPorId(
+            @Parameter(description = "ID do quadro a ser excluído", required = true)
+            @PathVariable UUID idQuadro) {
+
         quadroService.deletarPorId(idQuadro);
         return ResponseEntity.noContent().build();
     }
