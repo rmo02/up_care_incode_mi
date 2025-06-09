@@ -18,9 +18,12 @@ import com.mirante.upcare.mappers.ReceptorMapper;
 import com.mirante.upcare.models.Receptor;
 import com.mirante.upcare.service.ReceptorService;
 
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
 
+@Tag(name = "Receptores", description = "Operações relacionadas a receptores")
 @RestController
 @AllArgsConstructor
 @RequestMapping("receptores")
@@ -28,6 +31,12 @@ public class ReceptorController {
     private final ReceptorMapper receptorMapper;
     private final ReceptorService receptorService;
 
+    @Operation(
+            summary = "Criar um novo receptor",
+            description = "Cria e salva um novo receptor com os dados fornecidos no corpo da requisição. " +
+            "O cadastro falhará se o transmissor e parabolica informado estiver inexistente. " +
+            "já que o receptor depende de ambos."
+    )
     @PostMapping
     public ResponseEntity<Void> salvar(@Valid @RequestBody ReceptorRequest dto) {
         Receptor receptor = receptorMapper.toEntity(dto);
@@ -36,16 +45,29 @@ public class ReceptorController {
         return ResponseEntity.status(HttpStatus.CREATED).build();
     }
 
+    @Operation(
+            summary = "Buscar todas as receptores",
+            description = "Retorna todas as receptores cadastradas no sistema"
+    )
     @GetMapping
      public List<ReceptorResponse> buscarTodos() {
         return receptorMapper.toResponseList(receptorService.buscarTodos());
     }
 
+    @Operation(
+            summary = "Buscar receptor por ID",
+            description = "Retorna os dados de uma receptor específica com base no ID fornecido"
+    )
     @GetMapping("{idReceptor}")
     public ReceptorResponse buscarPorId(@PathVariable UUID idReceptor) {
         return receptorMapper.toResponse(receptorService.buscarPorId(idReceptor));
     }
 
+    @Operation(
+            summary = "Atualizar receptor por ID",
+            description = "Atualiza os dados de uma receptor existente com base no ID e nos dados fornecidos. " +
+            "Se for trocar o transmissor ou antena vinculados, ambos devem ser válidos e existentes."
+    )
     @PutMapping("{idReceptor}")
     public ResponseEntity<Void> atualizar(@PathVariable UUID idReceptor, @RequestBody ReceptorRequest dto) {
         Receptor receptor = receptorMapper.toEntity(dto);
@@ -53,6 +75,10 @@ public class ReceptorController {
         return  ResponseEntity.status(HttpStatus.NO_CONTENT).build();
     }
 
+    @Operation(
+            summary = "Excluir receptor por ID",
+            description = "Remove um receptor existente com base no ID fornecido"
+    )
     @DeleteMapping("{idReceptor}")
     public ResponseEntity<Void> deletar( @PathVariable UUID idReceptor) {
         receptorService.deletarPorId(idReceptor);

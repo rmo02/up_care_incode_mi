@@ -20,9 +20,12 @@ import com.mirante.upcare.mappers.AntenaMapper;
 import com.mirante.upcare.models.Antena;
 import com.mirante.upcare.service.AntenaService;
 
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
 
+@Tag(name = "Antenas", description = "Operações relacionadas a antenas")
 @RestController
 @AllArgsConstructor
 @RequestMapping("antenas")
@@ -30,6 +33,12 @@ public class AntenaController {
     private final AntenaMapper antenaMapper;
     private final AntenaService antenaService;
 
+    @Operation(
+            summary = "Criar uma nova antena",
+            description = "Cria e salva uma nova antena com os dados fornecidos no corpo da requisição. " +
+            "O cadastro falhará se o transmissor informado estiver inexistente. " +
+            "pois a antena precisa estar vinculada a um transmissor válido."
+    )
     @PostMapping
     public ResponseEntity<Void> salvar(@Valid @RequestBody AntenaRequest dto) {
         Antena antena = antenaMapper.toEntity(dto);
@@ -38,16 +47,29 @@ public class AntenaController {
         return ResponseEntity.status(HttpStatus.CREATED).build();
     }
 
+    @Operation(
+            summary = "Buscar todas as antenas",
+            description = "Retorna todas as antenas cadastradas no sistema"
+    )
     @GetMapping
     public List<AntenaResponse> buscarTodos() {
          return antenaMapper.toResponseList(antenaService.buscarTodos());
     }
 
+    @Operation(
+            summary = "Buscar antena por ID",
+            description = "Retorna os dados de uma antena específica com base no ID fornecido"
+    )
     @GetMapping("{idAntena}")
     public AntenaResponse buscarPorId(@PathVariable UUID idAntena) {
         return antenaMapper.toResponse(antenaService.buscarPorId(idAntena));
     }
 
+    @Operation(
+            summary = "Atualizar antena por ID",
+            description = "Atualiza os dados de uma antena existente com base no ID e nos dados fornecidos. " +
+            "Se for trocar o transmissor vinculado, o novo transmissor deve ser válido e existente."
+    )
     @PutMapping("{idAntena}")
     public ResponseEntity<Void> atualizar(@PathVariable UUID idAntena, @Valid @RequestBody AntenaRequest dto) {
         Antena antena = antenaMapper.toEntity(dto);
@@ -55,6 +77,10 @@ public class AntenaController {
         return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
     }
 
+    @Operation(
+            summary = "Excluir antena por ID",
+            description = "Remove uma antena existente com base no ID fornecido"
+    )
     @DeleteMapping("{idAntena}")
     public ResponseEntity<Void> deletar( @PathVariable UUID idAntena) {
         antenaService.deletarPorId(idAntena);

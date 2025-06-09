@@ -17,12 +17,14 @@ import com.mirante.upcare.dto.response.TransmissorResponse;
 import com.mirante.upcare.mappers.TransmissorMapper;
 import com.mirante.upcare.models.Transmissor;
 import com.mirante.upcare.service.TransmissorService;
+
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
 import org.springframework.web.bind.annotation.PutMapping;
 
-
-
+@Tag(name = "Transmissores", description = "Operações relacionadas a transmissores")
 @RestController
 @AllArgsConstructor
 @RequestMapping("transmissores")
@@ -30,6 +32,10 @@ public class TransmissorController {
     private final TransmissorMapper transmissorMapper;
     private final TransmissorService transmissorService;
 
+    @Operation(
+            summary = "Criar um novo transmissor",
+            description = "Cria e salva um novo transmissor com os dados fornecidos no corpo da requisição"
+    )
     @PostMapping
     public ResponseEntity<Void> salvar(@Valid @RequestBody TransmissorRequest dto) {
         Transmissor transmissor = transmissorMapper.toEntity(dto);
@@ -38,22 +44,42 @@ public class TransmissorController {
         return ResponseEntity.status(HttpStatus.CREATED).build();
     }
 
+    @Operation(
+            summary = "Buscar todos os transmissores",
+            description = "Retorna todos os trasnsmissores cadastrados no sistema"
+    )
     @GetMapping
      public List<TransmissorResponse> buscarTodos() {
         return transmissorMapper.toResponseList(transmissorService.buscarTodos());
     }
 
+    @Operation(
+            summary = "Buscar transmissor por ID",
+            description = "Retorna os dados de um transmissor específico com base no ID fornecido"
+    )
     @GetMapping("{idTransmissor}")
     public TransmissorResponse buscarPorId(@PathVariable UUID idTransmissor) {
         return transmissorMapper.toResponse(transmissorService.buscarPorId(idTransmissor));
     }
 
+    @Operation(
+            summary = "Atualizar transmissor por ID",
+            description = "Atualiza os dados de um transmissor existente com base no ID e nos dados fornecidos"
+    )
     @PutMapping("{idTransmissor}")
     public ResponseEntity<Void> atualizar(@PathVariable UUID idTransmissor, @RequestBody TransmissorRequest dto) {
         Transmissor transmissor = transmissorMapper.toEntity(dto);
         transmissorService.atualizarPorId(idTransmissor, transmissor);
         return  ResponseEntity.status(HttpStatus.NO_CONTENT).build();
     }
+
+    @Operation(
+            summary = "Excluir transmissor por ID",
+            description = "Remove um transmissor existente com base no ID fornecido. " +
+                  "Se o transmissor estiver vinculado a outros registros : Antena, Receptor. " +
+                  "A operação falhará por restrição de integridade."
+
+    )
     @DeleteMapping("{idTransmissor}")
     public ResponseEntity<Void> deletar( @PathVariable UUID idTransmissor) {
         transmissorService.deletarPorId(idTransmissor);
