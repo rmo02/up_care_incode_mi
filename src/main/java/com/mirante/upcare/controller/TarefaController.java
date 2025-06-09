@@ -50,6 +50,7 @@ public class TarefaController {
         );
     }
 
+    @GetMapping("{idTarefa}")
     public ResponseEntity<TarefaResponse> buscarPorId(@PathVariable UUID idTarefa) {
         return (Pipeline
             .from(idTarefa)
