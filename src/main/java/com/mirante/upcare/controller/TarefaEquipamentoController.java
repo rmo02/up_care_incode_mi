@@ -5,6 +5,8 @@ import com.mirante.upcare.mappers.TarefaEquipamentoMapper;
 import com.mirante.upcare.models.TarefaEquipamento;
 import com.mirante.upcare.service.TarefaEquipamentoService;
 import com.mirante.upcare.utils.Pipeline;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.Parameter;
 import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -23,8 +25,14 @@ public class TarefaEquipamentoController {
     private TarefaEquipamentoMapper tarefaEquipamentoMapper;
 
 
+    @Operation(
+            summary = "Criar um novo tarefas-equipamentos",
+            description = "Cria e salva um novo tarefas-equipamentos com os dados fornecidos no corpo da requisição"
+    )
     @PostMapping
-    public ResponseEntity<UUID> salvar(@RequestBody @Valid TarefaEquipamentoRequest dto){
+    public ResponseEntity<UUID> salvar(
+            @Parameter(description = "Dados do novo tarefas-equipamentos",required = true)
+            @RequestBody @Valid TarefaEquipamentoRequest dto){
         return (Pipeline
                 .from(dto)
                 .then(tarefaEquipamentoMapper::toEntity)
@@ -34,6 +42,11 @@ public class TarefaEquipamentoController {
                 .get()
         );
     }
+
+    @Operation(
+            summary = "Buscar todos os tarefas-equipamentos",
+            description = "Retorna todos os tarefas-equipamentos cadastrados no sistema"
+    )
     @GetMapping
     public ResponseEntity<List<TarefaEquipamentoResponse>> buscarTodos(){
         return (Pipeline
@@ -44,8 +57,14 @@ public class TarefaEquipamentoController {
         );
     }
 
+    @Operation(
+            summary = "Buscar tarefas-equipamentos por ID",
+            description = "Retorna os dados de um tarefas-equipamentos específico com base no ID fornecido"
+    )
     @GetMapping("{idtarefaEquipamento}")
-    public ResponseEntity<TarefaEquipamentoResponse> buscarPorId(@PathVariable UUID idtarefaEquipamento) {
+    public ResponseEntity<TarefaEquipamentoResponse> buscarPorId(
+            @Parameter(description = "ID do tarefas-equipamentos a ser buscado",required = true)
+            @PathVariable UUID idtarefaEquipamento) {
         return (Pipeline
                 .from(idtarefaEquipamento)
                 .then(tarefaEquipamentoService::buscarPorId)
@@ -54,8 +73,15 @@ public class TarefaEquipamentoController {
                 .get()
         );
     }
+
+    @Operation(
+            summary = "Excluir tarefas-equipamentos por ID",
+            description = "Remove um tarefas-equipamentos existente com base no ID fornecido"
+    )
     @DeleteMapping("{idtarefaEquipamento}")
-    public ResponseEntity<Void> deletarPorId(@PathVariable UUID idtarefaEquipamento) {
+    public ResponseEntity<Void> deletarPorId(
+            @Parameter(description = "ID do tarefas-equipamentos a ser excluido",required = true)
+            @PathVariable UUID idtarefaEquipamento) {
         tarefaEquipamentoService.deletarPorId(idtarefaEquipamento);
         return ResponseEntity.ok().build();
     }

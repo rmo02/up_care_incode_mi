@@ -3,6 +3,8 @@ package com.mirante.upcare.controller;
 import java.util.List;
 import java.util.UUID;
 
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.Parameter;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -31,8 +33,14 @@ public class EmpresaController {
     private final EmpresaService empresaService;
     private final EmpresaMapper empresaMapper;
 
+    @Operation(
+            summary = "Criar um novo empresas",
+            description = "Cria e salva um novo empresas com os dados fornecidos no corpo da requisição"
+    )
     @PostMapping
-    public ResponseEntity<Object> salvar(@RequestBody @Valid EmpresaRequest dto){
+    public ResponseEntity<Object> salvar(
+            @Parameter(description = "Dados do novo empresas", required = true)
+            @RequestBody @Valid EmpresaRequest dto){
         return (Pipeline
             .from(dto)
             .then(empresaMapper::toEntity)
@@ -42,6 +50,10 @@ public class EmpresaController {
         );
     }
 
+    @Operation(
+            summary = "Buscar todos os empresas",
+            description = "Retorna todos os empresas cadastrados no sistema"
+    )
     @GetMapping
     public ResponseEntity<List<EmpresaResponse>> buscarTodos(){
         return (Pipeline
@@ -52,8 +64,14 @@ public class EmpresaController {
         );
     }
 
+    @Operation(
+            summary = "Buscar empresas por ID",
+            description = "Retorna os dados de um empresas específico com base no ID fornecido"
+    )
     @GetMapping("{idEmpresa}")
-    public ResponseEntity<EmpresaResponse> buscarPorId(@PathVariable UUID idEmpresa) {
+    public ResponseEntity<EmpresaResponse> buscarPorId(
+            @Parameter(description = "ID do nobreak a ser buscado", required = true)
+            @PathVariable UUID idEmpresa) {
         return (Pipeline
             .from(idEmpresa)
             .then(empresaService::buscarPorId)
@@ -63,8 +81,16 @@ public class EmpresaController {
         );
     }
 
+    @Operation(
+            summary = "Atualizar empresas por ID",
+            description = "Atualiza os dados de um empresas existente com base no ID e nos dados fornecidos"
+    )
     @PutMapping("{idEmpresa}")
-    public ResponseEntity<Object> atualizarPorId(@PathVariable UUID idEmpresa, @Valid @RequestBody EmpresaRequest dto) {
+    public ResponseEntity<Object> atualizarPorId(
+            @Parameter(description = "ID do empresas a ser atualizado",required = true)
+            @PathVariable UUID idEmpresa,
+            @Parameter(description = "Novos dados do empresas",required = true)
+            @Valid @RequestBody EmpresaRequest dto) {
         return (Pipeline
             .from(dto)
             .then(empresaMapper::toEntity)
@@ -74,8 +100,14 @@ public class EmpresaController {
         );
     }
 
+    @Operation(
+            summary = "Excluir empresas por ID",
+            description = "Remove um empresas existente com base no ID fornecido"
+    )
     @DeleteMapping("{idEmpresa}")
-    public ResponseEntity<Object> deletarPorId(@PathVariable UUID idEmpresa) {
+    public ResponseEntity<Object> deletarPorId(
+            @Parameter(description = "ID do empresas a ser excluido",required = true)
+            @PathVariable UUID idEmpresa) {
         empresaService.deletarPorId(idEmpresa);
         return ResponseEntity.noContent().build();
     }

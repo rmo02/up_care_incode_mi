@@ -2,6 +2,8 @@ package com.mirante.upcare.controller;
 import java.util.List;
 import java.util.UUID;
 
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.Parameter;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -30,8 +32,14 @@ public class ManutencaoController {
     private final ManutencaoService manutencaoService;
     private final ManutencaoMapper manutencaoMapper;
 
+    @Operation(
+            summary = "Criar um novo manutencoes",
+            description = "Cria e salva um novo manutencoes com os dados fornecidos no corpo da requisição"
+    )
     @PostMapping
-    public ResponseEntity<Object> salvar(@RequestBody @Valid ManutencaoRequest dto){
+    public ResponseEntity<Object> salvar(
+            @Parameter(description = "Dados do novo manutencoes", required = true)
+            @RequestBody @Valid ManutencaoRequest dto){
         return (Pipeline
             .from(dto)
             .then(manutencaoMapper::toEntity)
@@ -41,6 +49,10 @@ public class ManutencaoController {
         );
     }
 
+    @Operation(
+            summary = "Buscar todos os manutencoes",
+            description = "Retorna todos os manutencoes cadastrados no sistema"
+    )
     @GetMapping
     public ResponseEntity<List<ManutencaoResponse>> buscarTodos(){
         return (Pipeline
@@ -51,8 +63,14 @@ public class ManutencaoController {
         );
     }
 
+    @Operation(
+            summary = "Buscar manutencoes por ID",
+            description = "Retorna os dados de um manutencoes específico com base no ID fornecido"
+    )
     @GetMapping("{idManutencao}")
-    public ResponseEntity<ManutencaoResponse> buscarPorId(@PathVariable UUID idManutencao) {
+    public ResponseEntity<ManutencaoResponse> buscarPorId(
+            @Parameter(description = "ID do nobreak a ser buscado", required = true)
+            @PathVariable UUID idManutencao) {
         return (Pipeline
             .from(idManutencao)
             .then(manutencaoService::buscarPorId)
@@ -62,8 +80,16 @@ public class ManutencaoController {
         );
     }
 
+    @Operation(
+            summary = "Atualizar manutencoes por ID",
+            description = "Atualiza os dados de um manutencoes existente com base no ID e nos dados fornecidos"
+    )
     @PutMapping("{idManutencao}")
-    public ResponseEntity<Object> atualizarPorId(@PathVariable UUID idManutencao, @Valid @RequestBody ManutencaoRequest dto) {
+    public ResponseEntity<Object> atualizarPorId(
+            @Parameter(description = "ID do manutencoes a ser atualizado",required = true)
+            @PathVariable UUID idManutencao,
+            @Parameter(description = "Novos dados do manutencoes",required = true)
+            @Valid @RequestBody ManutencaoRequest dto) {
         return (Pipeline
             .from(dto)
             .then(manutencaoMapper::toEntity)
@@ -73,8 +99,14 @@ public class ManutencaoController {
         );
     }
 
+    @Operation(
+            summary = "Excluir manutencoes por ID",
+            description = "Remove um manutencoes existente com base no ID fornecido"
+    )
     @DeleteMapping("{idManutencao}")
-    public ResponseEntity<Object> deletarPorId(@PathVariable UUID idManutencao) {
+    public ResponseEntity<Object> deletarPorId(
+            @Parameter(description = "ID do manutencoes a ser excluido",required = true)
+            @PathVariable UUID idManutencao) {
         manutencaoService.deletarPorId(idManutencao);
         return ResponseEntity.noContent().build();
     }
