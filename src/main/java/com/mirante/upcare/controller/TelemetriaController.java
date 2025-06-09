@@ -6,6 +6,7 @@ import com.mirante.upcare.mappers.TelemetriaMapper;
 import com.mirante.upcare.models.Telemetria;
 import com.mirante.upcare.service.TelemetriaService;
 import com.mirante.upcare.utils.Pipeline;
+import io.swagger.v3.oas.annotations.Operation;
 import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -22,6 +23,10 @@ public class TelemetriaController {
     private TelemetriaMapper telemetriaMapper;
     private TelemetriaService telemetriaService;
 
+    @Operation(
+            summary = "Criar uma nova telemetria",
+            description = "Cria e salva uma nova telemetria com os dados fornecidos no corpo da requisição"
+    )
     @PostMapping
     public ResponseEntity<UUID> salvar(@Valid @RequestBody TelemetriaRequest dto){
         return (Pipeline
@@ -33,6 +38,10 @@ public class TelemetriaController {
                 .get()
         );
     }
+    @Operation(
+            summary = "Buscar todas as telemetrias",
+            description = "Retorna todas as telemetria cadastradas no sistema"
+    )
     @GetMapping
     public ResponseEntity<List<TelemetriaResponse>> buscarTodos(){
         return (Pipeline
@@ -42,6 +51,10 @@ public class TelemetriaController {
                 .get()
         );
     }
+    @Operation(
+            summary = "Buscar telemetria por ID",
+            description = "Retorna os dados de uma telemetria específica com base no ID fornecido"
+    )
     @GetMapping("{idTelemetria}")
     public ResponseEntity<TelemetriaResponse> buscarPorId(@PathVariable UUID idTelemetria){
         return (Pipeline
@@ -53,6 +66,10 @@ public class TelemetriaController {
         );
     }
 
+    @Operation(
+            summary = "Atualizar telemetria por ID",
+            description = "Atualiza os dados de uma telemetria existente com base no ID e nos dados fornecidos"
+    )
     @PutMapping("{idTelemetria}")
     public ResponseEntity<UUID>atualizarPorId(@PathVariable UUID idTelemetria, @Valid @RequestBody TelemetriaRequest dto){
         return (Pipeline
@@ -64,6 +81,10 @@ public class TelemetriaController {
         );
     }
 
+    @Operation(
+            summary = "Excluir telemetria por ID",
+            description = "Remove uma telemetria existente com base no ID fornecido. "
+    )
     @DeleteMapping("{idTelemetria}")
     public ResponseEntity<Void> excluirPorId(@PathVariable UUID idTelemetria){
         telemetriaService.excluirPorId(idTelemetria);

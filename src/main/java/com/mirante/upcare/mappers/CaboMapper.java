@@ -5,7 +5,6 @@ import com.mirante.upcare.dto.response.CaboResponse;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 import com.mirante.upcare.models.Cabo;
-
 import java.util.List;
 
 @Mapper(uses = EquipamentoMapper.class, componentModel = "spring")
