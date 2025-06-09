@@ -3,6 +3,8 @@ package com.mirante.upcare.controller;
 import java.util.List;
 import java.util.UUID;
 
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.Parameter;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -31,8 +33,14 @@ public class EstacaoController {
     private final EstacaoService estacaoService;
     private final EstacaoMapper estacaoMapper;
 
+    @Operation(
+            summary = "Criar um novo estacoes",
+            description = "Cria e salva um novo estacoes com os dados fornecidos no corpo da requisição"
+    )
     @PostMapping
-    public ResponseEntity<Object> salvar(@RequestBody @Valid EstacaoRequest dto) {
+    public ResponseEntity<Object> salvar(
+            @Parameter(description = "Dados do novo estacoes",required = true)
+            @RequestBody @Valid EstacaoRequest dto) {
         return (Pipeline
             .from(dto)
             .then(estacaoMapper::toEntity)
@@ -42,6 +50,10 @@ public class EstacaoController {
         );
     }
 
+    @Operation(
+            summary = "Buscar todos os estacoes",
+            description = "Retorna todos os estacoes cadastrados no sistema"
+    )
     @GetMapping
     public ResponseEntity<List<EstacaoResponse>> buscarTodos() {
         return (Pipeline
@@ -52,8 +64,14 @@ public class EstacaoController {
         );
     }
 
+    @Operation(
+            summary = "Buscar estacoes por ID",
+            description = "Retorna os dados de um estacoes específico com base no ID fornecido"
+    )
     @GetMapping("{idEstacao}")
-    public ResponseEntity<EstacaoResponse> buscarPorId(@PathVariable UUID idEstacao) {
+    public ResponseEntity<EstacaoResponse> buscarPorId(
+            @Parameter(description = "ID do estacoes a ser buscado",required = true)
+            @PathVariable UUID idEstacao) {
         return (Pipeline
             .from(idEstacao)
             .then(estacaoService::buscarPorId)
@@ -63,8 +81,16 @@ public class EstacaoController {
         );
     }
 
+    @Operation(
+            summary = "Atualizar estacoes por ID",
+            description = "Atualiza os dados de um estacoes existente com base no ID e nos dados fornecidos"
+    )
     @PutMapping("{idEstacao}")
-    public ResponseEntity<Object> atualizarPorId(@PathVariable UUID idEstacao, @Valid @RequestBody EstacaoRequest dto) {
+    public ResponseEntity<Object> atualizarPorId(
+            @Parameter(description = "ID do estacoes ser atualizado",required = true)
+            @PathVariable UUID idEstacao,
+            @Parameter(description = "Novos dados do estacoes",required = true)
+            @Valid @RequestBody EstacaoRequest dto) {
         return (Pipeline
             .from(dto)
             .then(estacaoMapper::toEntity)
@@ -74,8 +100,14 @@ public class EstacaoController {
         );
     }
 
+    @Operation(
+            summary = "Excluir estacoes por ID",
+            description = "Remove um usuarios estacoes com base no ID fornecido"
+    )
     @DeleteMapping("{idEstacao}")
-    public ResponseEntity<Void> excluirPorId(@PathVariable UUID idEstacao) {
+    public ResponseEntity<Void> excluirPorId(
+            @Parameter(description = "ID do estacoes a ser excluido",required = true)
+            @PathVariable UUID idEstacao) {
         estacaoService.excluirPorId(idEstacao);
         return ResponseEntity.noContent().build();
     }

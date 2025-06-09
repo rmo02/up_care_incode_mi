@@ -3,6 +3,8 @@ package com.mirante.upcare.controller;
 import java.util.List;
 import java.util.UUID;
 
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.Parameter;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -24,6 +26,10 @@ public class EquipamentoController {
     private final EquipamentoService equipamentoService;
     private final EquipamentoMapper equipamentoMapper;
 
+    @Operation(
+            summary = "Buscar todos os equipamentos",
+            description = "Retorna todos os equipamentos cadastrados no sistema"
+    )
     @GetMapping
     public ResponseEntity<List<EquipamentoResponse>> buscarTodos() {
         return (Pipeline
@@ -34,8 +40,14 @@ public class EquipamentoController {
         );
     }
 
+    @Operation(
+            summary = "Buscar equipamentos por ID",
+            description = "Retorna os dados de um equipamentos específico com base no ID fornecido"
+    )
     @GetMapping("{idEquipamento}")
-    public ResponseEntity<EquipamentoResponse> buscarPorId(@PathVariable UUID idEquipamento) {
+    public ResponseEntity<EquipamentoResponse> buscarPorId(
+            @Parameter(description = "ID do equipamentos a ser excluido ",required = true)
+            @PathVariable UUID idEquipamento) {
         return (Pipeline
             .from(idEquipamento)
             .then(equipamentoService::buscarPorId)
