@@ -21,11 +21,9 @@ import com.mirante.upcare.models.Antena;
 import com.mirante.upcare.service.AntenaService;
 
 import io.swagger.v3.oas.annotations.Operation;
-import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
 
-@Tag(name = "Antenas", description = "Operações relacionadas a antenas")
 @RestController
 @AllArgsConstructor
 @RequestMapping("antenas")
@@ -35,9 +33,7 @@ public class AntenaController {
 
     @Operation(
             summary = "Criar uma nova antena",
-            description = "Cria e salva uma nova antena com os dados fornecidos no corpo da requisição. " +
-            "O cadastro falhará se o transmissor informado estiver inexistente. " +
-            "pois a antena precisa estar vinculada a um transmissor válido."
+            description = "Cria e salva uma nova antena com os dados fornecidos no corpo da requisição. "
     )
     @PostMapping
     public ResponseEntity<Void> salvar(@Valid @RequestBody AntenaRequest dto) {
@@ -67,8 +63,7 @@ public class AntenaController {
 
     @Operation(
             summary = "Atualizar antena por ID",
-            description = "Atualiza os dados de uma antena existente com base no ID e nos dados fornecidos. " +
-            "Se for trocar o transmissor vinculado, o novo transmissor deve ser válido e existente."
+            description = "Atualiza os dados de uma antena existente com base no ID e nos dados fornecidos. "
     )
     @PutMapping("{idAntena}")
     public ResponseEntity<Void> atualizar(@PathVariable UUID idAntena, @Valid @RequestBody AntenaRequest dto) {

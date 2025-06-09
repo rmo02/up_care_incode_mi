@@ -19,11 +19,9 @@ import com.mirante.upcare.models.Receptor;
 import com.mirante.upcare.service.ReceptorService;
 
 import io.swagger.v3.oas.annotations.Operation;
-import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
 
-@Tag(name = "Receptores", description = "Operações relacionadas a receptores")
 @RestController
 @AllArgsConstructor
 @RequestMapping("receptores")
@@ -33,9 +31,7 @@ public class ReceptorController {
 
     @Operation(
             summary = "Criar um novo receptor",
-            description = "Cria e salva um novo receptor com os dados fornecidos no corpo da requisição. " +
-            "O cadastro falhará se o transmissor e parabolica informado estiver inexistente. " +
-            "já que o receptor depende de ambos."
+            description = "Cria e salva um novo receptor com os dados fornecidos no corpo da requisição. " 
     )
     @PostMapping
     public ResponseEntity<Void> salvar(@Valid @RequestBody ReceptorRequest dto) {
@@ -65,8 +61,7 @@ public class ReceptorController {
 
     @Operation(
             summary = "Atualizar receptor por ID",
-            description = "Atualiza os dados de uma receptor existente com base no ID e nos dados fornecidos. " +
-            "Se for trocar o transmissor ou antena vinculados, ambos devem ser válidos e existentes."
+            description = "Atualiza os dados de uma receptor existente com base no ID e nos dados fornecidos. " 
     )
     @PutMapping("{idReceptor}")
     public ResponseEntity<Void> atualizar(@PathVariable UUID idReceptor, @RequestBody ReceptorRequest dto) {

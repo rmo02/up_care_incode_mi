@@ -19,12 +19,10 @@ import com.mirante.upcare.models.Transmissor;
 import com.mirante.upcare.service.TransmissorService;
 
 import io.swagger.v3.oas.annotations.Operation;
-import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
 import org.springframework.web.bind.annotation.PutMapping;
 
-@Tag(name = "Transmissores", description = "Operações relacionadas a transmissores")
 @RestController
 @AllArgsConstructor
 @RequestMapping("transmissores")
@@ -75,10 +73,7 @@ public class TransmissorController {
 
     @Operation(
             summary = "Excluir transmissor por ID",
-            description = "Remove um transmissor existente com base no ID fornecido. " +
-                  "Se o transmissor estiver vinculado a outros registros : Antena, Receptor. " +
-                  "A operação falhará por restrição de integridade."
-
+            description = "Remove um transmissor existente com base no ID fornecido. " 
     )
     @DeleteMapping("{idTransmissor}")
     public ResponseEntity<Void> deletar( @PathVariable UUID idTransmissor) {

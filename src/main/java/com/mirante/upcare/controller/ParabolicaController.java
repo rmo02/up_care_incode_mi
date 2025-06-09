@@ -9,7 +9,6 @@ import com.mirante.upcare.models.Parabolica;
 import com.mirante.upcare.service.ParabolicaService;
 
 import io.swagger.v3.oas.annotations.Operation;
-import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
 import java.util.List;
@@ -23,7 +22,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 
-@Tag(name = "Parabolicas", description = "Operações relacionadas a parabolicas")
 @RestController
 @AllArgsConstructor
 @RequestMapping("parabolicas")
@@ -74,10 +72,7 @@ public class ParabolicaController {
 
     @Operation(
             summary = "Excluir parabolica por ID",
-            description = "Remove uma parabolica existente com base no ID fornecido" +
-                  "Se a parabolica estiver vinculado a outro registros : Receptor. " +
-                  "A operação falhará por restrição de integridade."
-
+            description = "Remove uma parabolica existente com base no ID fornecido" 
     )
     @DeleteMapping("{idParabolica}")
     public ResponseEntity<Void> deletar( @PathVariable UUID idParabolica) {
