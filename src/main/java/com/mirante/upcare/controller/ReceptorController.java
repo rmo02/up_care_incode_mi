@@ -17,8 +17,8 @@ import com.mirante.upcare.dto.response.ReceptorResponse;
 import com.mirante.upcare.mappers.ReceptorMapper;
 import com.mirante.upcare.models.Receptor;
 import com.mirante.upcare.service.ReceptorService;
-
 import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.Parameter;
 import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
 
@@ -55,7 +55,9 @@ public class ReceptorController {
             description = "Retorna os dados de uma receptor específica com base no ID fornecido"
     )
     @GetMapping("{idReceptor}")
-    public ReceptorResponse buscarPorId(@PathVariable UUID idReceptor) {
+    public ReceptorResponse buscarPorId(
+        @Parameter(description = "ID da antena a ser buscada", required = true)
+        @PathVariable UUID idReceptor) {
         return receptorMapper.toResponse(receptorService.buscarPorId(idReceptor));
     }
 
@@ -64,7 +66,11 @@ public class ReceptorController {
             description = "Atualiza os dados de uma receptor existente com base no ID e nos dados fornecidos. " 
     )
     @PutMapping("{idReceptor}")
-    public ResponseEntity<Void> atualizar(@PathVariable UUID idReceptor, @RequestBody ReceptorRequest dto) {
+    public ResponseEntity<Void> atualizar(
+        @Parameter(description = "ID da antena a ser atualizada", required = true)
+        @PathVariable UUID idReceptor, 
+        @Parameter(description = "Novos dados da antena", required = true)
+        @RequestBody ReceptorRequest dto) {
         Receptor receptor = receptorMapper.toEntity(dto);
         receptorService.atualizarPorId(idReceptor, receptor);
         return  ResponseEntity.status(HttpStatus.NO_CONTENT).build();
@@ -75,7 +81,9 @@ public class ReceptorController {
             description = "Remove um receptor existente com base no ID fornecido"
     )
     @DeleteMapping("{idReceptor}")
-    public ResponseEntity<Void> deletar( @PathVariable UUID idReceptor) {
+    public ResponseEntity<Void> deletar(
+        @Parameter(description = "ID da antena a ser excluída", required = true)
+        @PathVariable UUID idReceptor) {
         receptorService.deletarPorId(idReceptor);
         return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
     }

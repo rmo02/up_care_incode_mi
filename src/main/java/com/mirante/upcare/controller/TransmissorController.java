@@ -2,7 +2,6 @@ package com.mirante.upcare.controller;
 
 import java.util.List;
 import java.util.UUID;
-
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -17,8 +16,8 @@ import com.mirante.upcare.dto.response.TransmissorResponse;
 import com.mirante.upcare.mappers.TransmissorMapper;
 import com.mirante.upcare.models.Transmissor;
 import com.mirante.upcare.service.TransmissorService;
-
 import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.Parameter;
 import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
 import org.springframework.web.bind.annotation.PutMapping;
@@ -56,7 +55,9 @@ public class TransmissorController {
             description = "Retorna os dados de um transmissor específico com base no ID fornecido"
     )
     @GetMapping("{idTransmissor}")
-    public TransmissorResponse buscarPorId(@PathVariable UUID idTransmissor) {
+    public TransmissorResponse buscarPorId(
+        @Parameter(description = "ID da antena a ser buscada", required = true)
+        @PathVariable UUID idTransmissor) {
         return transmissorMapper.toResponse(transmissorService.buscarPorId(idTransmissor));
     }
 
@@ -65,7 +66,11 @@ public class TransmissorController {
             description = "Atualiza os dados de um transmissor existente com base no ID e nos dados fornecidos"
     )
     @PutMapping("{idTransmissor}")
-    public ResponseEntity<Void> atualizar(@PathVariable UUID idTransmissor, @RequestBody TransmissorRequest dto) {
+    public ResponseEntity<Void> atualizar(
+        @Parameter(description = "ID da antena a ser atualizada", required = true)
+        @PathVariable UUID idTransmissor, 
+        @Parameter(description = "Novos dados da antena", required = true)
+        @RequestBody TransmissorRequest dto) {
         Transmissor transmissor = transmissorMapper.toEntity(dto);
         transmissorService.atualizarPorId(idTransmissor, transmissor);
         return  ResponseEntity.status(HttpStatus.NO_CONTENT).build();
@@ -76,7 +81,9 @@ public class TransmissorController {
             description = "Remove um transmissor existente com base no ID fornecido. " 
     )
     @DeleteMapping("{idTransmissor}")
-    public ResponseEntity<Void> deletar( @PathVariable UUID idTransmissor) {
+    public ResponseEntity<Void> deletar(
+        @Parameter(description = "ID da antena a ser excluída", required = true)
+        @PathVariable UUID idTransmissor) {
         transmissorService.deletarPorId(idTransmissor);
         return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
     }

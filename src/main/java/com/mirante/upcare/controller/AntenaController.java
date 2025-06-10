@@ -2,7 +2,6 @@ package com.mirante.upcare.controller;
 
 import java.util.List;
 import java.util.UUID;
-
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -13,14 +12,13 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-
 import com.mirante.upcare.dto.request.AntenaRequest;
 import com.mirante.upcare.dto.response.AntenaResponse;
 import com.mirante.upcare.mappers.AntenaMapper;
 import com.mirante.upcare.models.Antena;
 import com.mirante.upcare.service.AntenaService;
-
 import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.Parameter;
 import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
 
@@ -57,7 +55,9 @@ public class AntenaController {
             description = "Retorna os dados de uma antena específica com base no ID fornecido"
     )
     @GetMapping("{idAntena}")
-    public AntenaResponse buscarPorId(@PathVariable UUID idAntena) {
+    public AntenaResponse buscarPorId(
+        @Parameter(description = "ID da antena a ser buscada", required = true)
+        @PathVariable UUID idAntena) {
         return antenaMapper.toResponse(antenaService.buscarPorId(idAntena));
     }
 
@@ -66,7 +66,11 @@ public class AntenaController {
             description = "Atualiza os dados de uma antena existente com base no ID e nos dados fornecidos. "
     )
     @PutMapping("{idAntena}")
-    public ResponseEntity<Void> atualizar(@PathVariable UUID idAntena, @Valid @RequestBody AntenaRequest dto) {
+    public ResponseEntity<Void> atualizar(
+            @Parameter(description = "ID da antena a ser atualizada", required = true)
+            @PathVariable UUID idAntena,
+            @Parameter(description = "Novos dados da antena", required = true)
+            @Valid @RequestBody AntenaRequest dto) {
         Antena antena = antenaMapper.toEntity(dto);
         antenaService.atualizarPorId(idAntena, antena);
         return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
@@ -77,7 +81,9 @@ public class AntenaController {
             description = "Remove uma antena existente com base no ID fornecido"
     )
     @DeleteMapping("{idAntena}")
-    public ResponseEntity<Void> deletar( @PathVariable UUID idAntena) {
+    public ResponseEntity<Void> deletar(
+        @Parameter(description = "ID da antena a ser excluída", required = true)
+        @PathVariable UUID idAntena) {
         antenaService.deletarPorId(idAntena);
         return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
     }

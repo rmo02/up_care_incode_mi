@@ -7,8 +7,8 @@ import com.mirante.upcare.dto.response.ParabolicaResponse;
 import com.mirante.upcare.mappers.ParabolicaMapper;
 import com.mirante.upcare.models.Parabolica;
 import com.mirante.upcare.service.ParabolicaService;
-
 import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.Parameter;
 import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
 import java.util.List;
@@ -55,7 +55,9 @@ public class ParabolicaController {
             description = "Retorna os dados de uma parabolica específica com base no ID fornecido"
     )
     @GetMapping("{idParabolica}")
-    public ParabolicaResponse buscarPorId(@PathVariable UUID idParabolica) {
+    public ParabolicaResponse buscarPorId(
+        @Parameter(description = "ID da antena a ser buscada", required = true)
+        @PathVariable UUID idParabolica) {
         return parabolicaMapper.toResponse(parabolicaService.buscarPorId(idParabolica));
     }
 
@@ -64,7 +66,11 @@ public class ParabolicaController {
             description = "Atualiza os dados de uma parabolica existente com base no ID e nos dados fornecidos"
     )
     @PutMapping("{idParabolica}")
-    public ResponseEntity<Void> atualizar(@PathVariable UUID idParabolica, @RequestBody ParabolicaRequest dto) {
+    public ResponseEntity<Void> atualizar(
+        @Parameter(description = "ID da antena a ser atualizada", required = true)
+        @PathVariable UUID idParabolica, 
+        @Parameter(description = "Novos dados da antena", required = true)
+        @RequestBody ParabolicaRequest dto) {
         Parabolica parabolica = parabolicaMapper.toEntity(dto);
         parabolicaService.atualizarPorId(idParabolica, parabolica);
         return  ResponseEntity.status(HttpStatus.NO_CONTENT).build();
@@ -75,10 +81,10 @@ public class ParabolicaController {
             description = "Remove uma parabolica existente com base no ID fornecido" 
     )
     @DeleteMapping("{idParabolica}")
-    public ResponseEntity<Void> deletar( @PathVariable UUID idParabolica) {
+    public ResponseEntity<Void> deletar( 
+        @Parameter(description = "ID da antena a ser excluída", required = true)
+        @PathVariable UUID idParabolica) {
         parabolicaService.deletarPorId(idParabolica);
         return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
     }
-    
-    
 }
