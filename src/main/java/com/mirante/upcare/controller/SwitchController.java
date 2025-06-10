@@ -59,7 +59,7 @@ public class SwitchController {
             description = "Cria e salva um novo switch com os dados fornecidos no corpo da requisição"
     )
     @PostMapping
-    public ResponseEntity<UUID> salvar(
+    public ResponseEntity<Object> salvar(
             @Parameter(description = "Dados do novo switch", required = true)
             @Valid @RequestBody SwitchRequest dto) {
 
@@ -67,7 +67,7 @@ public class SwitchController {
                 .from(dto)
                 .then(switchMapper::toEntity)
                 .then(switchService::salvar)
-                .then(s -> ResponseEntity.status(HttpStatus.CREATED).body(s.getId()))
+                .then(s -> ResponseEntity.status(HttpStatus.CREATED).build())
                 .get();
     }
 

@@ -26,6 +26,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 @AllArgsConstructor
 @RequestMapping("parabolicas")
 public class ParabolicaController {
+    
     private final ParabolicaMapper parabolicaMapper;
     private final ParabolicaService parabolicaService;
 
@@ -46,8 +47,8 @@ public class ParabolicaController {
             description = "Retorna todas as parabolicas cadastradas no sistema"
     )
     @GetMapping
-     public List<ParabolicaResponse> buscarTodos() {
-        return  parabolicaMapper.toResponseList(parabolicaService.buscarTodos());
+    public List<ParabolicaResponse> buscarTodos() {
+        return parabolicaMapper.toResponseList(parabolicaService.buscarTodos());
     }
 
     @Operation(
@@ -73,7 +74,7 @@ public class ParabolicaController {
         @RequestBody ParabolicaRequest dto) {
         Parabolica parabolica = parabolicaMapper.toEntity(dto);
         parabolicaService.atualizarPorId(idParabolica, parabolica);
-        return  ResponseEntity.status(HttpStatus.NO_CONTENT).build();
+        return ResponseEntity.noContent().build();
     }
 
     @Operation(
@@ -85,6 +86,6 @@ public class ParabolicaController {
         @Parameter(description = "ID da antena a ser excluída", required = true)
         @PathVariable UUID idParabolica) {
         parabolicaService.deletarPorId(idParabolica);
-        return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
+        return ResponseEntity.noContent().build();
     }
 }

@@ -8,9 +8,11 @@ import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+
 import com.mirante.upcare.dto.request.TransmissorRequest;
 import com.mirante.upcare.dto.response.TransmissorResponse;
 import com.mirante.upcare.mappers.TransmissorMapper;
@@ -20,12 +22,12 @@ import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
 import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
-import org.springframework.web.bind.annotation.PutMapping;
 
 @RestController
 @AllArgsConstructor
 @RequestMapping("transmissores")
 public class TransmissorController {
+
     private final TransmissorMapper transmissorMapper;
     private final TransmissorService transmissorService;
 
@@ -73,7 +75,7 @@ public class TransmissorController {
         @RequestBody TransmissorRequest dto) {
         Transmissor transmissor = transmissorMapper.toEntity(dto);
         transmissorService.atualizarPorId(idTransmissor, transmissor);
-        return  ResponseEntity.status(HttpStatus.NO_CONTENT).build();
+        return  ResponseEntity.noContent().build();
     }
 
     @Operation(
@@ -85,7 +87,7 @@ public class TransmissorController {
         @Parameter(description = "ID da antena a ser excluída", required = true)
         @PathVariable UUID idTransmissor) {
         transmissorService.deletarPorId(idTransmissor);
-        return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
+        return ResponseEntity.noContent().build();
     }
     
 }

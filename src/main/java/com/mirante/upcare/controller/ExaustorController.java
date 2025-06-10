@@ -18,8 +18,9 @@ import java.util.UUID;
 
 @RestController
 @AllArgsConstructor
-@RequestMapping("exaustors")
+@RequestMapping("exaustores")
 public class ExaustorController {
+
     private ExaustorMapper exaustorMapper;
     private ExaustorService exaustorService;
 
@@ -28,14 +29,14 @@ public class ExaustorController {
             description = "Cria e salva um novo exaustor com os dados fornecidos no corpo da requisição"
     )
     @PostMapping
-    public ResponseEntity<UUID> salvar(@Valid @RequestBody ExaustorRequest dto){
+    public ResponseEntity<Object> salvar(@Valid @RequestBody ExaustorRequest dto){
         return (Pipeline
-                .from(dto)
-                .then(exaustorMapper::toEntity)
-                .then(exaustorService::salvar)
-                .then(Exaustor::getId)
-                .then(id->ResponseEntity.status(HttpStatus.CREATED).body(id))
-                .get()
+            .from(dto)
+            .then(exaustorMapper::toEntity)
+            .then(exaustorService::salvar)
+            .then(Exaustor::getId)
+            .then(id->ResponseEntity.status(HttpStatus.CREATED).build())
+            .get()
         );
     }
     @Operation(
@@ -45,10 +46,10 @@ public class ExaustorController {
     @GetMapping
     public ResponseEntity<List<ExaustorResponse>> buscarTodos(){
         return (Pipeline
-                .from(exaustorService.buscarTodos())
-                .then(exaustorMapper::toResponseList)
-                .then(ResponseEntity::ok)
-                .get()
+            .from(exaustorService.buscarTodos())
+            .then(exaustorMapper::toResponseList)
+            .then(ResponseEntity::ok)
+            .get()
         );
     }
     @Operation(
@@ -58,11 +59,11 @@ public class ExaustorController {
     @GetMapping("{idExaustor}")
     public ResponseEntity<ExaustorResponse> buscarPorId(@PathVariable UUID idExaustor){
         return (Pipeline
-                .from(idExaustor)
-                .then(exaustorService::buscarPorId)
-                .then(exaustorMapper::toResponse)
-                .then(ResponseEntity::ok)
-                .get()
+            .from(idExaustor)
+            .then(exaustorService::buscarPorId)
+            .then(exaustorMapper::toResponse)
+            .then(ResponseEntity::ok)
+            .get()
         );
     }
 
@@ -71,13 +72,13 @@ public class ExaustorController {
             description = "Atualiza os dados de um exaustor existente com base no ID e nos dados fornecidos"
     )
     @PutMapping("{idExaustor}")
-    public ResponseEntity<UUID>atualizarPorId(@PathVariable UUID idExaustor, @Valid @RequestBody ExaustorRequest dto){
+    public ResponseEntity<Object> atualizarPorId(@PathVariable UUID idExaustor, @Valid @RequestBody ExaustorRequest dto){
         return (Pipeline
-                .from(dto)
-                .then(exaustorMapper::toEntity)
-                .then(exaustorAtualizado -> exaustorService.AtualizarPorId(idExaustor, exaustorAtualizado))
-                .then(exaustorAtualizado -> ResponseEntity.ok(exaustorAtualizado.getId()))
-                .get()
+            .from(dto)
+            .then(exaustorMapper::toEntity)
+            .then(exaustorAtualizado -> exaustorService.AtualizarPorId(idExaustor, exaustorAtualizado))
+            .then(e -> ResponseEntity.noContent().build())
+            .get()
         );
     }
 
@@ -86,7 +87,7 @@ public class ExaustorController {
             description = "Remove um exaustor existente com base no ID fornecido. "
     )
     @DeleteMapping("{idExaustor}")
-    public ResponseEntity<Void> excluirPorId(@PathVariable UUID idExaustor){
+    public ResponseEntity<Object> excluirPorId(@PathVariable UUID idExaustor){
         exaustorService.excluirPorId(idExaustor);
         return ResponseEntity.ok().build();
     }

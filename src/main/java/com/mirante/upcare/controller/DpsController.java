@@ -59,7 +59,7 @@ public class DpsController {
             description = "Cria e salva um novo DPS com os dados fornecidos no corpo da requisição"
     )
     @PostMapping
-    public ResponseEntity<UUID> salvar(
+    public ResponseEntity<Object> salvar(
             @Parameter(description = "Dados do novo DPS", required = true)
             @Valid @RequestBody DpsRequest dto) {
 
@@ -67,7 +67,7 @@ public class DpsController {
                 .from(dto)
                 .then(dpsMapper::toEntity)
                 .then(dpsService::salvar)
-                .then(d -> ResponseEntity.status(HttpStatus.CREATED).body(d.getId()))
+                .then(d -> ResponseEntity.status(HttpStatus.CREATED).build())
                 .get();
     }
 

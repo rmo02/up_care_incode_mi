@@ -1,20 +1,27 @@
 package com.mirante.upcare.controller;
 
+import java.util.List;
+import java.util.UUID;
+
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+
 import com.mirante.upcare.dto.request.TelemetriaRequest;
 import com.mirante.upcare.dto.response.TelemetriaResponse;
 import com.mirante.upcare.mappers.TelemetriaMapper;
-import com.mirante.upcare.models.Telemetria;
 import com.mirante.upcare.service.TelemetriaService;
 import com.mirante.upcare.utils.Pipeline;
 import io.swagger.v3.oas.annotations.Operation;
 import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.*;
-
-import java.util.List;
-import java.util.UUID;
 
 @RestController
 @AllArgsConstructor
@@ -28,14 +35,13 @@ public class TelemetriaController {
             description = "Cria e salva uma nova telemetria com os dados fornecidos no corpo da requisição"
     )
     @PostMapping
-    public ResponseEntity<UUID> salvar(@Valid @RequestBody TelemetriaRequest dto){
+    public ResponseEntity<Object> salvar(@Valid @RequestBody TelemetriaRequest dto){
         return (Pipeline
-                .from(dto)
-                .then(telemetriaMapper::toEntity)
-                .then(telemetriaService::salvar)
-                .then(Telemetria::getId)
-                .then(id->ResponseEntity.status(HttpStatus.CREATED).body(id))
-                .get()
+            .from(dto)
+            .then(telemetriaMapper::toEntity)
+            .then(telemetriaService::salvar)
+            .then(id->ResponseEntity.status(HttpStatus.CREATED).build())
+            .get()
         );
     }
     @Operation(
@@ -45,10 +51,10 @@ public class TelemetriaController {
     @GetMapping
     public ResponseEntity<List<TelemetriaResponse>> buscarTodos(){
         return (Pipeline
-                .from(telemetriaService.buscarTodos())
-                .then(telemetriaMapper::toResponseList)
-                .then(ResponseEntity::ok)
-                .get()
+            .from(telemetriaService.buscarTodos())
+            .then(telemetriaMapper::toResponseList)
+            .then(ResponseEntity::ok)
+            .get()
         );
     }
     @Operation(
@@ -58,11 +64,11 @@ public class TelemetriaController {
     @GetMapping("{idTelemetria}")
     public ResponseEntity<TelemetriaResponse> buscarPorId(@PathVariable UUID idTelemetria){
         return (Pipeline
-                .from(idTelemetria)
-                .then(telemetriaService::buscarPorId)
-                .then(telemetriaMapper::toResponse)
-                .then(ResponseEntity::ok)
-                .get()
+            .from(idTelemetria)
+            .then(telemetriaService::buscarPorId)
+            .then(telemetriaMapper::toResponse)
+            .then(ResponseEntity::ok)
+            .get()
         );
     }
 
@@ -71,13 +77,13 @@ public class TelemetriaController {
             description = "Atualiza os dados de uma telemetria existente com base no ID e nos dados fornecidos"
     )
     @PutMapping("{idTelemetria}")
-    public ResponseEntity<UUID>atualizarPorId(@PathVariable UUID idTelemetria, @Valid @RequestBody TelemetriaRequest dto){
+    public ResponseEntity<Object> atualizarPorId(@PathVariable UUID idTelemetria, @Valid @RequestBody TelemetriaRequest dto){
         return (Pipeline
-                .from(dto)
-                .then(telemetriaMapper::toEntity)
-                .then(telemetriaAtualizada -> telemetriaService.AtualizarPorId(idTelemetria, telemetriaAtualizada))
-                .then(telemetriaAtualizada -> ResponseEntity.ok(telemetriaAtualizada.getId()))
-                .get()
+            .from(dto)
+            .then(telemetriaMapper::toEntity)
+            .then(telemetriaAtualizada -> telemetriaService.AtualizarPorId(idTelemetria, telemetriaAtualizada))
+            .then(t -> ResponseEntity.noContent().build())
+            .get()
         );
     }
 
@@ -86,7 +92,7 @@ public class TelemetriaController {
             description = "Remove uma telemetria existente com base no ID fornecido. "
     )
     @DeleteMapping("{idTelemetria}")
-    public ResponseEntity<Void> excluirPorId(@PathVariable UUID idTelemetria){
+    public ResponseEntity<Object> excluirPorId(@PathVariable UUID idTelemetria){
         telemetriaService.excluirPorId(idTelemetria);
         return ResponseEntity.ok().build();
     }

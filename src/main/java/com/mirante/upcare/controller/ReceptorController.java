@@ -26,6 +26,7 @@ import lombok.AllArgsConstructor;
 @AllArgsConstructor
 @RequestMapping("receptores")
 public class ReceptorController {
+
     private final ReceptorMapper receptorMapper;
     private final ReceptorService receptorService;
 
@@ -73,7 +74,7 @@ public class ReceptorController {
         @RequestBody ReceptorRequest dto) {
         Receptor receptor = receptorMapper.toEntity(dto);
         receptorService.atualizarPorId(idReceptor, receptor);
-        return  ResponseEntity.status(HttpStatus.NO_CONTENT).build();
+        return  ResponseEntity.noContent().build();
     }
 
     @Operation(
@@ -85,7 +86,7 @@ public class ReceptorController {
         @Parameter(description = "ID da antena a ser excluída", required = true)
         @PathVariable UUID idReceptor) {
         receptorService.deletarPorId(idReceptor);
-        return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
+        return ResponseEntity.noContent().build();
     }
 
 }

@@ -1,20 +1,29 @@
 package com.mirante.upcare.controller;
 
+import java.util.List;
+import java.util.UUID;
+
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+
 import com.mirante.upcare.dto.request.DisjuntorRequest;
 import com.mirante.upcare.dto.response.DisjuntorResponse;
 import com.mirante.upcare.mappers.DisjuntorMapper;
 import com.mirante.upcare.service.DisjuntorService;
 import com.mirante.upcare.utils.Pipeline;
+
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
 import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.*;
-
-import java.util.List;
-import java.util.UUID;
 
 @RestController
 @AllArgsConstructor
@@ -59,7 +68,7 @@ public class DisjuntorController {
             description = "Cria e salva um novo disjuntor com os dados fornecidos no corpo da requisição"
     )
     @PostMapping
-    public ResponseEntity<UUID> salvar(
+    public ResponseEntity<Object> salvar(
             @Parameter(description = "Dados do novo disjuntor", required = true)
             @Valid @RequestBody DisjuntorRequest dto) {
 
@@ -67,7 +76,7 @@ public class DisjuntorController {
                 .from(dto)
                 .then(disjuntorMapper::toEntity)
                 .then(disjuntorService::salvar)
-                .then(d -> ResponseEntity.status(HttpStatus.CREATED).body(d.getId()))
+                .then(d -> ResponseEntity.status(HttpStatus.CREATED).build())
                 .get();
     }
 
