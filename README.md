@@ -74,11 +74,11 @@ Projeto Up Care desenvolvido pela equipe do INCODE Tech School para a TV Mirante
 |**Manutencao**       |Elenylson      |✅  |✅        | ✅       |✅       |✅  |✅      |✅ |
 |**Usuario**          |Elenylson      |✅  |✅        | ✅       |✅       |✅  |✅      |✅ |
 |**Empresa**          |Elenylson      |✅  |✅        | ✅       |✅       |✅  |✅      |✅ |
-|**ArCondicionado**   |Rafael         |✅  |✅        | ❌       |❌       |✅  |❌      |❌ |
-|**Cabo**             |Rafael         |✅  |✅        | ❌       |❌       |❌  |✅      |❌ |
-|**Telemetria**       |Rafael         |✅  |✅        | ❌       |❌       |❌  |❌      |❌ |
-|**Combinador**       |Rafael         |✅  |✅        | ❌       |❌       |❌  |❌      |❌ |
-|**Exautor**          |Rafael         |✅  |✅        | ❌       |❌       |❌  |❌      |❌ |
-|**Torre**            |Rafael         |✅  |✅        | ❌       |❌       |❌  |❌      |❌ |
+|**ArCondicionado**   |Rafael         |✅  |✅        | ✅       |✅       |✅  |✅      |✅ |
+|**Cabo**             |Rafael         |✅  |✅        | ✅       |✅       |✅  |✅      |✅ |
+|**Telemetria**       |Rafael         |✅  |✅        | ✅       |✅       |✅  |✅      |✅ |
+|**Combinador**       |Rafael         |✅  |✅        | ✅       |✅       |✅  |✅      |✅ |
+|**Exautor**          |Rafael         |✅  |✅        | ✅       |✅       |✅  |✅      |✅ |
+|**Torre**            |Rafael         |✅  |✅        | ✅       |✅       |✅  |✅      |✅ |
 
 - ***1**: Por equanto, os equipamentos são salvos, alterados e excluídos por suas especializações.
