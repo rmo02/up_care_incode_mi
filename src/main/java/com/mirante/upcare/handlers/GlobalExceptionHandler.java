@@ -6,7 +6,7 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 
-import com.mirante.upcare.exceptions.EntityNotFoundException;
+import com.mirante.upcare.exceptions.NotFoundException;
 import com.mirante.upcare.handlers.errors.Error;
 import com.mirante.upcare.handlers.errors.ValidationError;
 
@@ -30,8 +30,8 @@ public class GlobalExceptionHandler {
 
     // 404
     @ResponseStatus(code = HttpStatus.NOT_FOUND)
-    @ExceptionHandler(EntityNotFoundException.class)
-    public Error entityNotFound(EntityNotFoundException ex) {
+    @ExceptionHandler(NotFoundException.class)
+    public Error entityNotFound(NotFoundException ex) {
         return Error.notFound(ex.getMessage());
     }
 
