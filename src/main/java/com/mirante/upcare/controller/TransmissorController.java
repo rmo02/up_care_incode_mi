@@ -72,7 +72,7 @@ public class TransmissorController {
         @Parameter(description = "ID da antena a ser atualizada", required = true)
         @PathVariable UUID idTransmissor, 
         @Parameter(description = "Novos dados da antena", required = true)
-        @RequestBody TransmissorRequest dto) {
+        @Valid @RequestBody TransmissorRequest dto) {
         Transmissor transmissor = transmissorMapper.toEntity(dto);
         transmissorService.atualizarPorId(idTransmissor, transmissor);
         return  ResponseEntity.noContent().build();

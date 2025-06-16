@@ -30,7 +30,7 @@ public class ManutencaoService {
         return manutencaoRepository.findById(idManutencao).orElseThrow();
     }
     
-    public Manutencao atualizarPorId(UUID idManutencao, Manutencao manutencaoAtualizada) {
+    public Manutencao atualizarPorId(UUID idManutencao, @Valid Manutencao manutencaoAtualizada) {
         var manutencaoExistente = buscarPorId(idManutencao);
         BeanUtils.copyProperties(manutencaoAtualizada, manutencaoExistente, "id");
         return salvar(manutencaoExistente);

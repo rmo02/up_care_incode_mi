@@ -17,7 +17,7 @@ public class TelemetriaService {
     public Telemetria salvar(@Valid Telemetria telemetria) {return telemetriaRepository.save(telemetria);}
     public List<Telemetria> buscarTodos(){return telemetriaRepository.findAll();}
     public Telemetria buscarPorId(UUID idTelemetria){return telemetriaRepository.findById(idTelemetria).orElseThrow();}
-    public Telemetria AtualizarPorId(UUID idTelemetria, Telemetria telemetriaAtualizada){
+    public Telemetria AtualizarPorId(UUID idTelemetria, @Valid Telemetria telemetriaAtualizada){
         telemetriaAtualizada.setId(idTelemetria);
         return salvar(telemetriaAtualizada);
     }

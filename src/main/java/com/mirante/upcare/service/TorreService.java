@@ -17,7 +17,7 @@ public class TorreService {
     public Torre salvar(@Valid Torre torre) {return torreRepository.save(torre);}
     public List<Torre> buscarTodos(){return torreRepository.findAll();}
     public Torre buscarPorId(UUID idTorre){return torreRepository.findById(idTorre).orElseThrow();}
-    public Torre AtualizarPorId(UUID idTorre, Torre torreAtualizada){
+    public Torre AtualizarPorId(UUID idTorre, @Valid Torre torreAtualizada){
         torreAtualizada.setId(idTorre);
             return salvar(torreAtualizada);
     }

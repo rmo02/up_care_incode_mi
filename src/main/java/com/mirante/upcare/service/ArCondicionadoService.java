@@ -18,7 +18,7 @@ public class ArCondicionadoService {
     public ArCondicionado salvar(@Valid ArCondicionado arCondicionado) {return arCondicionadoRepository.save(arCondicionado);}
     public List<ArCondicionado> buscarTodos(){return arCondicionadoRepository.findAll();}
     public ArCondicionado buscarPorId(UUID idArCondicionado){return arCondicionadoRepository.findById(idArCondicionado).orElseThrow();}
-    public ArCondicionado AtualizarPorId(UUID idArCondicionado, ArCondicionado arCondicionadoAtualizado){
+    public ArCondicionado AtualizarPorId(UUID idArCondicionado, @Valid ArCondicionado arCondicionadoAtualizado){
             arCondicionadoAtualizado.setId(idArCondicionado);
             return salvar(arCondicionadoAtualizado);
         }

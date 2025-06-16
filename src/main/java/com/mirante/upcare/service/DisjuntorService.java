@@ -26,7 +26,7 @@ public class DisjuntorService {
         return disjuntorRepository.findById(id).orElseThrow();
     }
 
-    public Disjuntor salvar(Disjuntor entity) {
+    public Disjuntor salvar(@Valid Disjuntor entity) {
         return disjuntorRepository.save(entity);
     }
 

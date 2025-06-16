@@ -4,10 +4,13 @@ import java.util.UUID;
 
 import com.mirante.upcare.models.enums.PosicaoAntena;
 import com.mirante.upcare.models.enums.TipoAntena;
+
+import jakarta.validation.Valid;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 
 public record AntenaRequest (
+    @Valid
     @NotNull
     EquipamentoRequest equipamento,
 

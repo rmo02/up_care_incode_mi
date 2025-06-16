@@ -26,7 +26,7 @@ public class SwitchService {
         return switchRepository.findById(id).orElseThrow();
     }
 
-    public Switch salvar(Switch entity) {
+    public Switch salvar(@Valid Switch entity) {
         return switchRepository.save(entity);
     }
 

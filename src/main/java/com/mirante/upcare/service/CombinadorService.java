@@ -18,7 +18,7 @@ public class CombinadorService {
 
     public List<Combinador> buscarTodos(){return combinadorRepository.findAll();}
     public Combinador buscarPorId(UUID idCombinador){return combinadorRepository.findById(idCombinador).orElseThrow();}
-    public Combinador AtualizarPorId(UUID idCombinador, Combinador combinadorAtualizado){
+    public Combinador AtualizarPorId(UUID idCombinador, @Valid Combinador combinadorAtualizado){
            combinadorAtualizado.setId(idCombinador);
            return salvar(combinadorAtualizado);
     }

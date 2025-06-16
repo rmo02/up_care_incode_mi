@@ -71,7 +71,7 @@ public class ReceptorController {
         @Parameter(description = "ID da antena a ser atualizada", required = true)
         @PathVariable UUID idReceptor, 
         @Parameter(description = "Novos dados da antena", required = true)
-        @RequestBody ReceptorRequest dto) {
+        @Valid @RequestBody ReceptorRequest dto) {
         Receptor receptor = receptorMapper.toEntity(dto);
         receptorService.atualizarPorId(idReceptor, receptor);
         return  ResponseEntity.noContent().build();

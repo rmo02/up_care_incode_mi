@@ -71,7 +71,7 @@ public class ParabolicaController {
         @Parameter(description = "ID da antena a ser atualizada", required = true)
         @PathVariable UUID idParabolica, 
         @Parameter(description = "Novos dados da antena", required = true)
-        @RequestBody ParabolicaRequest dto) {
+        @Valid @RequestBody ParabolicaRequest dto) {
         Parabolica parabolica = parabolicaMapper.toEntity(dto);
         parabolicaService.atualizarPorId(idParabolica, parabolica);
         return ResponseEntity.noContent().build();

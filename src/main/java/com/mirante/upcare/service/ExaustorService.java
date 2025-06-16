@@ -17,7 +17,7 @@ public class ExaustorService {
     public Exaustor salvar(@Valid Exaustor exaustor) {return exaustorRepository.save(exaustor);}
     public List<Exaustor> buscarTodos(){return exaustorRepository.findAll();}
     public Exaustor buscarPorId(UUID idExaustor){return exaustorRepository.findById(idExaustor).orElseThrow();}
-    public Exaustor AtualizarPorId(UUID idExaustor, Exaustor exaustorAtualizado){
+    public Exaustor AtualizarPorId(UUID idExaustor, @Valid Exaustor exaustorAtualizado){
         exaustorAtualizado.setId(idExaustor);
         return salvar(exaustorAtualizado);
     }

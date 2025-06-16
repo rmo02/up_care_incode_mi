@@ -26,7 +26,7 @@ public class DpsService {
         return dpsRepository.findById(id).orElseThrow();
     }
 
-    public Dps salvar(Dps entity) {
+    public Dps salvar(@Valid Dps entity) {
         return dpsRepository.save(entity);
     }
 

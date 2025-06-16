@@ -30,7 +30,7 @@ public class NobreakService {
         return nobreakRepository.save(nobreak);
     }
 
-    public Nobreak atualizarPorId(UUID idNobreak, Nobreak nobreakAtualizado){
+    public Nobreak atualizarPorId(UUID idNobreak, @Valid Nobreak nobreakAtualizado){
         var nobreakExistente = buscarPorId(idNobreak);
         BeanUtils.copyProperties(nobreakAtualizado, nobreakExistente, "id");
         return salvar(nobreakExistente);

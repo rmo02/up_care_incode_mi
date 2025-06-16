@@ -29,7 +29,7 @@ public class EmpresaService {
         return empresaRepository.findById(idEmpresa).orElseThrow();
     }
 
-    public Empresa atualiarPorId(UUID idEmpresa, Empresa empresaAtualizada) {
+    public Empresa atualiarPorId(UUID idEmpresa, @Valid Empresa empresaAtualizada) {
         Empresa empresaExistente = buscarPorId(idEmpresa);
         BeanUtils.copyProperties(empresaAtualizada, empresaExistente, "id");
         return salvar(empresaExistente);

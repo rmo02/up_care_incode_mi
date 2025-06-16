@@ -18,7 +18,7 @@ public class CaboService {
     public Cabo salvar(@Valid Cabo cabo) {return caboRepository.save(cabo);}
     public List<Cabo> buscarTodos(){return caboRepository.findAll();}
     public Cabo buscarPorId(UUID idCabo){return caboRepository.findById(idCabo).orElseThrow();}
-    public Cabo AtualizarPorId(UUID idCabo, Cabo caboAtualizado){
+    public Cabo AtualizarPorId(UUID idCabo, @Valid Cabo caboAtualizado){
         caboAtualizado.setId(idCabo);
         return salvar(caboAtualizado);
     }
