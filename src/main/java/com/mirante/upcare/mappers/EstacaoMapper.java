@@ -10,19 +10,19 @@ import org.springframework.beans.factory.annotation.Autowired;
 import com.mirante.upcare.dto.request.EstacaoRequest;
 import com.mirante.upcare.dto.response.EstacaoResponse;
 import com.mirante.upcare.models.Estacao;
-import com.mirante.upcare.repository.EstacaoRepository;
+import com.mirante.upcare.service.EstacaoService;
 
 @Mapper(componentModel = "spring")
 public abstract class EstacaoMapper {
     
     @Autowired
-    private EstacaoRepository estacaoRepository;
+    private EstacaoService estacaoService;
 
     @Mapping(target = "id", ignore = true)
     abstract public Estacao toEntity(EstacaoRequest estacaoRequest);
 
     public Estacao toEntity(UUID idEstacao) {
-        return estacaoRepository.findById(idEstacao).orElseThrow();
+        return estacaoService.buscarPorId(idEstacao);
     }
 
     @Mapping(source = "id", target = "idEstacao")

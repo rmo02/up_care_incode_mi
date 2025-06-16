@@ -1,5 +1,6 @@
 package com.mirante.upcare.service;
 
+import com.mirante.upcare.exceptions.NotFoundException;
 import com.mirante.upcare.models.Tarefa;
 import com.mirante.upcare.repository.TarefaRepository;
 import jakarta.validation.Valid;
@@ -24,7 +25,9 @@ public class TarefaService {
     }
 
     public Tarefa buscarPorId(UUID idTarefa){
-        return tarefaRepository.findById(idTarefa).orElseThrow();
+        return tarefaRepository.findById(idTarefa).orElseThrow(
+            () -> new NotFoundException("Tarefa não encontrada com o ID: " + idTarefa)
+        );
     }
     
     public void deletarPorId(UUID idTarefa){

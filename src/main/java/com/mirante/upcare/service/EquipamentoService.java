@@ -5,6 +5,7 @@ import java.util.UUID;
 
 import org.springframework.stereotype.Service;
 
+import com.mirante.upcare.exceptions.NotFoundException;
 import com.mirante.upcare.models.Equipamento;
 import com.mirante.upcare.repository.EquipamentoRepository;
 
@@ -21,6 +22,8 @@ public class EquipamentoService {
     }
 
     public Equipamento buscarPorId(UUID idEquipamento) {
-        return equipamentoRepository.findById(idEquipamento).orElseThrow();
+        return equipamentoRepository.findById(idEquipamento).orElseThrow(
+            () -> new NotFoundException("Equipamento não encontrado com o ID: " + idEquipamento)
+        );
     }
 }

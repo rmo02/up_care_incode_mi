@@ -1,5 +1,6 @@
 package com.mirante.upcare.service;
 
+import com.mirante.upcare.exceptions.NotFoundException;
 import com.mirante.upcare.models.TarefaEquipamento;
 import com.mirante.upcare.repository.TarefaEquipamentoRepository;
 import jakarta.validation.Valid;
@@ -20,10 +21,12 @@ public class TarefaEquipamentoService {
     public List<TarefaEquipamento> buscarTodos() {
         return tarefaEquipamentoRepository.findAll();
     }
-    public TarefaEquipamento buscarPorId(UUID idtarefaEquipamento) {
-        return tarefaEquipamentoRepository.findById(idtarefaEquipamento).orElseThrow();
+    public TarefaEquipamento buscarPorId(UUID idTarefaEquipamento) {
+        return tarefaEquipamentoRepository.findById(idTarefaEquipamento).orElseThrow(
+            () -> new NotFoundException("TarefaEquipamento não encontrada com o ID: " + idTarefaEquipamento)
+        );
     }
-    public void deletarPorId(UUID idtarefaEquipamento) {
-        tarefaEquipamentoRepository.deleteById(idtarefaEquipamento);
+    public void deletarPorId(UUID idTarefaEquipamento) {
+        tarefaEquipamentoRepository.deleteById(idTarefaEquipamento);
     }
 }
