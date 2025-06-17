@@ -27,9 +27,9 @@ public class AntenaService {
     }
 
     public Antena buscarPorId(UUID idAntena) {
-       return antenaRepository.findById(idAntena).orElseThrow(
+        return antenaRepository.findById(idAntena).orElseThrow(
             () -> new NotFoundException("Antena não encontrada com o ID: " + idAntena)
-       );
+        );
     }
 
     public Antena atualizarPorId(UUID idAntena, @Valid Antena antenaAtualizado) {
