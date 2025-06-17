@@ -1,5 +1,6 @@
 package com.mirante.upcare.service;
 
+import com.mirante.upcare.exceptions.NotFoundException;
 import com.mirante.upcare.models.Empresa;
 import com.mirante.upcare.repository.EmpresaRepository;
 import jakarta.validation.Valid;
@@ -26,7 +27,9 @@ public class EmpresaService {
     }
 
     public Empresa buscarPorId(UUID idEmpresa) {
-        return empresaRepository.findById(idEmpresa).orElseThrow();
+        return empresaRepository.findById(idEmpresa).orElseThrow(
+            () -> new NotFoundException("Empresa não encontrada com o ID :" + idEmpresa)
+        );
     }
 
     public Empresa atualiarPorId(UUID idEmpresa, @Valid Empresa empresaAtualizada) {

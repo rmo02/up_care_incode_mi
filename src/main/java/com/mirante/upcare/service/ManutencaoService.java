@@ -6,6 +6,7 @@ import java.util.UUID;
 import org.springframework.beans.BeanUtils;
 import org.springframework.stereotype.Service;
 
+import com.mirante.upcare.exceptions.NotFoundException;
 import com.mirante.upcare.models.Manutencao;
 import com.mirante.upcare.repository.ManutencaoRepository;
 
@@ -27,7 +28,9 @@ public class ManutencaoService {
     }
 
     public Manutencao buscarPorId(UUID idManutencao) {
-        return manutencaoRepository.findById(idManutencao).orElseThrow();
+        return manutencaoRepository.findById(idManutencao).orElseThrow(
+            () -> new NotFoundException("Manutenção não encontrada com ID :" + idManutencao)
+        );
     }
     
     public Manutencao atualizarPorId(UUID idManutencao, @Valid Manutencao manutencaoAtualizada) {

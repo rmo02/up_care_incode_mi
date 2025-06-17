@@ -1,5 +1,6 @@
 package com.mirante.upcare.service;
 
+import com.mirante.upcare.exceptions.NotFoundException;
 import com.mirante.upcare.models.Usuario;
 import com.mirante.upcare.repository.UsuarioRepository;
 import jakarta.validation.Valid;
@@ -26,7 +27,9 @@ public class UsuarioService {
     }
 
     public Usuario buscarPorId(UUID idUsuario){
-        return usuarioRepository.findById(idUsuario).orElseThrow();
+        return usuarioRepository.findById(idUsuario).orElseThrow(
+            () -> new NotFoundException("Usuário não encontrada com o ID: " + idUsuario)
+        );
     }
 
     public void deletarPorId(UUID idUsuario){
