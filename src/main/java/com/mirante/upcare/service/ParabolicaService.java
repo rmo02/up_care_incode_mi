@@ -4,6 +4,8 @@ import java.util.List;
 import java.util.UUID;
 import org.springframework.beans.BeanUtils;
 import org.springframework.stereotype.Service;
+
+import com.mirante.upcare.exceptions.NotFoundException;
 import com.mirante.upcare.models.Parabolica;
 import com.mirante.upcare.repository.ParabolicaRepository;
 import jakarta.validation.Valid;
@@ -23,7 +25,9 @@ public class ParabolicaService {
     }
 
     public Parabolica buscarPorId(UUID idParabolica) {
-        return parabolicaRepository.findById(idParabolica).orElseThrow();
+        return parabolicaRepository.findById(idParabolica).orElseThrow(
+            () -> new NotFoundException("antena não encontrada com o ID: " + idParabolica)
+        );
     }
 
     public Parabolica atualizarPorId(UUID idParabolica, @Valid Parabolica parabolicaAtualizada) {

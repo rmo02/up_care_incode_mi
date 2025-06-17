@@ -4,6 +4,8 @@ import java.util.List;
 import java.util.UUID;
 import org.springframework.beans.BeanUtils;
 import org.springframework.stereotype.Service;
+
+import com.mirante.upcare.exceptions.NotFoundException;
 import com.mirante.upcare.models.Transmissor;
 import com.mirante.upcare.repository.TransmissorRepository;
 import jakarta.validation.Valid;
@@ -23,7 +25,9 @@ public class TransmissorService {
     }
 
     public Transmissor buscarPorId(UUID idTransmissor) {
-       return transmissorRepository.findById(idTransmissor).orElseThrow();
+       return transmissorRepository.findById(idTransmissor).orElseThrow(
+            () -> new NotFoundException("antena não encontrada com o ID: " + idTransmissor)
+       );
         
     }
 
