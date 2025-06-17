@@ -26,7 +26,7 @@ public class ParabolicaService {
 
     public Parabolica buscarPorId(UUID idParabolica) {
         return parabolicaRepository.findById(idParabolica).orElseThrow(
-            () -> new NotFoundException("antena não encontrada com o ID: " + idParabolica)
+            () -> new NotFoundException("Parabolica não encontrada com o ID: " + idParabolica)
         );
     }
 

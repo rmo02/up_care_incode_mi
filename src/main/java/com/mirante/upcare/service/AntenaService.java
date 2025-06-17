@@ -28,7 +28,7 @@ public class AntenaService {
 
     public Antena buscarPorId(UUID idAntena) {
        return antenaRepository.findById(idAntena).orElseThrow(
-            () -> new NotFoundException("antena não encontrada com o ID: " + idAntena)
+            () -> new NotFoundException("Antena não encontrada com o ID: " + idAntena)
        );
     }
 

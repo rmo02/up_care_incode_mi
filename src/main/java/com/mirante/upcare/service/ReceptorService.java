@@ -28,7 +28,7 @@ public class ReceptorService {
 
     public Receptor buscarPorId(UUID idReceptor) {
         return receptorRepository.findById(idReceptor).orElseThrow(
-            () -> new NotFoundException("receptor não encontrado com o ID: " + idReceptor)
+            () -> new NotFoundException("Receptor não encontrado com o ID: " + idReceptor)
         );
     }
 

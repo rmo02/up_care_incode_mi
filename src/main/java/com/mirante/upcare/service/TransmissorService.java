@@ -26,7 +26,7 @@ public class TransmissorService {
 
     public Transmissor buscarPorId(UUID idTransmissor) {
        return transmissorRepository.findById(idTransmissor).orElseThrow(
-            () -> new NotFoundException("antena não encontrada com o ID: " + idTransmissor)
+            () -> new NotFoundException("Transmissor não encontrado com o ID: " + idTransmissor)
        );
         
     }
