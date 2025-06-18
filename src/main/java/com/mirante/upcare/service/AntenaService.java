@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.UUID;
 
 import org.springframework.beans.BeanUtils;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Service;
 
 import com.mirante.upcare.exceptions.NotFoundException;
@@ -39,6 +40,12 @@ public class AntenaService {
     }
     
     public void deletarPorId(UUID idAntena) {
-        antenaRepository.deleteById(idAntena);
+        try {
+            antenaRepository.deleteById(idAntena);
+        } catch (DataIntegrityViolationException ex) {
+            throw new DataIntegrityViolationException("Não é possível excluir a Antena: ela está vinculado a outra entidade.");
+        } catch (Exception ex) {
+            throw ex;
+        }
     }
 }
