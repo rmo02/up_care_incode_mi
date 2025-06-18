@@ -3,6 +3,7 @@ package com.mirante.upcare.service;
 import java.util.List;
 import java.util.UUID;
 
+import com.mirante.upcare.exceptions.NotFoundException;
 import org.springframework.beans.BeanUtils;
 import org.springframework.stereotype.Service;
 
@@ -23,7 +24,7 @@ public class DisjuntorService {
     }
 
     public Disjuntor buscarPorId(UUID id) {
-        return disjuntorRepository.findById(id).orElseThrow();
+        return disjuntorRepository.findById(id).orElseThrow(() -> new NotFoundException("Disjuntor não encontrado com o ID: " + id));
     }
 
     public Disjuntor salvar(@Valid Disjuntor entity) {

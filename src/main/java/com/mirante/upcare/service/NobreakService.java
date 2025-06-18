@@ -3,6 +3,7 @@ package com.mirante.upcare.service;
 import java.util.List;
 import java.util.UUID;
 
+import com.mirante.upcare.exceptions.NotFoundException;
 import org.springframework.beans.BeanUtils;
 import org.springframework.stereotype.Service;
 
@@ -23,7 +24,7 @@ public class NobreakService {
     }
 
     public Nobreak buscarPorId(UUID id) {
-        return nobreakRepository.findById(id).orElseThrow();
+        return nobreakRepository.findById(id).orElseThrow(() -> new NotFoundException("Nobreak não encontrado com o ID: " + id));
     }
 
     public Nobreak salvar(@Valid Nobreak nobreak) {
