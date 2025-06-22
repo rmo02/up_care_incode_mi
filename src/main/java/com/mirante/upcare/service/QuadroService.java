@@ -1,5 +1,6 @@
 package com.mirante.upcare.service;
 
+import com.mirante.upcare.exceptions.NotFoundException;
 import com.mirante.upcare.models.Quadro;
 import com.mirante.upcare.repository.QuadroRepository;
 
@@ -23,7 +24,7 @@ public class QuadroService {
     }
 
     public Quadro buscarPorId(UUID id) {
-        return quadroRepository.findById(id).orElseThrow();
+        return quadroRepository.findById(id).orElseThrow(() -> new NotFoundException("Quadro não encontrado com o ID: " + id));
     }
 
     public Quadro salvar(@Valid Quadro quadro) {

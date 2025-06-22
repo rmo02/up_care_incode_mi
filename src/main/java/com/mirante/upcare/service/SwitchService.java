@@ -3,6 +3,7 @@ package com.mirante.upcare.service;
 import java.util.List;
 import java.util.UUID;
 
+import com.mirante.upcare.exceptions.NotFoundException;
 import org.springframework.beans.BeanUtils;
 import org.springframework.stereotype.Service;
 
@@ -23,7 +24,7 @@ public class SwitchService {
     }
 
     public Switch buscarPorId(UUID id) {
-        return switchRepository.findById(id).orElseThrow();
+        return switchRepository.findById(id).orElseThrow(() -> new NotFoundException("Switch não encontrado com o ID: " + id));
     }
 
     public Switch salvar(@Valid Switch entity) {

@@ -3,6 +3,7 @@ package com.mirante.upcare.service;
 import java.util.List;
 import java.util.UUID;
 
+import com.mirante.upcare.exceptions.NotFoundException;
 import org.springframework.beans.BeanUtils;
 import org.springframework.stereotype.Service;
 
@@ -23,7 +24,7 @@ public class DpsService {
     }
 
     public Dps buscarPorId(UUID id) {
-        return dpsRepository.findById(id).orElseThrow();
+        return dpsRepository.findById(id).orElseThrow(() -> new NotFoundException("DPS não encontrado com o ID: " + id));
     }
 
     public Dps salvar(@Valid Dps entity) {
