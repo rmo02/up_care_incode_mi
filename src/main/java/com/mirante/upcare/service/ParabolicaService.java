@@ -3,8 +3,8 @@ package com.mirante.upcare.service;
 import java.util.List;
 import java.util.UUID;
 import org.springframework.beans.BeanUtils;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Service;
-
 import com.mirante.upcare.exceptions.NotFoundException;
 import com.mirante.upcare.models.Parabolica;
 import com.mirante.upcare.repository.ParabolicaRepository;
@@ -35,7 +35,14 @@ public class ParabolicaService {
         BeanUtils.copyProperties(parabolicaAtualizada, parabolicaExistente, "id");
         return parabolicaRepository.save(parabolicaExistente);
     }
+
     public void deletarPorId(UUID idParabolica) {
-        parabolicaRepository.deleteById(idParabolica);
+       try {
+            parabolicaRepository.deleteById(idParabolica);
+        } catch (DataIntegrityViolationException ex) {
+            throw new DataIntegrityViolationException("Não é possível excluir a parabolica: ela está vinculado a outra entidade.");
+        } catch (Exception ex) {
+            throw ex;
+        }
     }
 }
