@@ -40,6 +40,7 @@ public class EstacaoService {
     }
 
     public void excluirPorId(UUID idEstacao) {
+        buscarPorId(idEstacao);
         estacaoRepository.deleteById(idEstacao);
     }
 }

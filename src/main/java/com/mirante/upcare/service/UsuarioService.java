@@ -33,6 +33,7 @@ public class UsuarioService {
     }
 
     public void deletarPorId(UUID idUsuario){
+        buscarPorId(idUsuario);
         usuarioRepository.deleteById(idUsuario);
     }
 

@@ -21,5 +21,8 @@ public class ExaustorService {
         exaustorAtualizado.setId(idExaustor);
         return salvar(exaustorAtualizado);
     }
-    public void excluirPorId(UUID idExaustor){exaustorRepository.deleteById(idExaustor);}
+    public void excluirPorId(UUID idExaustor){
+        buscarPorId(idExaustor);
+        exaustorRepository.deleteById(idExaustor);
+    }
 }

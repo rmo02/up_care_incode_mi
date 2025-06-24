@@ -39,6 +39,7 @@ public class EmpresaService {
     }
 
     public void deletarPorId(UUID idEmpresa) {
+        buscarPorId(idEmpresa);
         empresaRepository.deleteById(idEmpresa);
     }
 

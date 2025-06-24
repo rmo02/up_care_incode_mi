@@ -22,6 +22,9 @@ public class CaboService {
         caboAtualizado.setId(idCabo);
         return salvar(caboAtualizado);
     }
-    public void excluirPorId(UUID idCabo){caboRepository.deleteById(idCabo);}
+    public void excluirPorId(UUID idCabo){
+        buscarPorId(idCabo);
+        caboRepository.deleteById(idCabo);
+    }
 
 }

@@ -38,6 +38,7 @@ public class DpsService {
     }
 
     public void deletarPorId(UUID idDps) {
+        buscarPorId(idDps);
         dpsRepository.deleteById(idDps);
     }
 }

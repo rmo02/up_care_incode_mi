@@ -40,6 +40,7 @@ public class ManutencaoService {
     }
 
     public void deletarPorId(UUID idManutencao) {
+        buscarPorId(idManutencao);
         manutencaoRepository.deleteById(idManutencao);
     }
 }

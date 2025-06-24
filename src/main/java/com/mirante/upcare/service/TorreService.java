@@ -21,5 +21,7 @@ public class TorreService {
         torreAtualizada.setId(idTorre);
             return salvar(torreAtualizada);
     }
-    public void excluirPorId(UUID idTorre){torreRepository.deleteById(idTorre);}
+    public void excluirPorId(UUID idTorre){
+        buscarPorId(idTorre);
+        torreRepository.deleteById(idTorre);}
 }

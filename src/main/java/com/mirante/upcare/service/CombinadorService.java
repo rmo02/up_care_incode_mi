@@ -22,5 +22,8 @@ public class CombinadorService {
            combinadorAtualizado.setId(idCombinador);
            return salvar(combinadorAtualizado);
     }
-    public void excluirPorId(UUID idCombinador){combinadorRepository.deleteById(idCombinador);}
+    public void excluirPorId(UUID idCombinador){
+        buscarPorId(idCombinador);
+        combinadorRepository.deleteById(idCombinador);
+    }
 }
