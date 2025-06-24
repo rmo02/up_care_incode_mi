@@ -33,12 +33,13 @@ public class AntenaService {
     }
 
     public Antena atualizarPorId(UUID idAntena, @Valid Antena antenaAtualizado) {
-        Antena antenaExistente = antenaRepository.findById(idAntena).orElseThrow();
+        Antena antenaExistente = buscarPorId(idAntena);
         BeanUtils.copyProperties(antenaAtualizado, antenaExistente, "id");
         return antenaRepository.save(antenaExistente);
     }
     
     public void deletarPorId(UUID idAntena) {
+        buscarPorId(idAntena);
         antenaRepository.deleteById(idAntena);
     }
 }

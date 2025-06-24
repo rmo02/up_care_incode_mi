@@ -31,13 +31,14 @@ public class ParabolicaService {
     }
 
     public Parabolica atualizarPorId(UUID idParabolica, @Valid Parabolica parabolicaAtualizada) {
-        Parabolica parabolicaExistente = parabolicaRepository.findById(idParabolica).orElseThrow();
+        Parabolica parabolicaExistente = buscarPorId(idParabolica);
         BeanUtils.copyProperties(parabolicaAtualizada, parabolicaExistente, "id");
         return parabolicaRepository.save(parabolicaExistente);
     }
 
     public void deletarPorId(UUID idParabolica) {
-       try {
+        buscarPorId(idParabolica);
+        try {
             parabolicaRepository.deleteById(idParabolica);
         } catch (DataIntegrityViolationException ex) {
             throw new DataIntegrityViolationException("Não é possível excluir a parabolica: ela está vinculado a outra entidade.");

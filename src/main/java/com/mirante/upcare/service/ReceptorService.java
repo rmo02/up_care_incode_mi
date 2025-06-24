@@ -33,12 +33,13 @@ public class ReceptorService {
     }
 
     public Receptor atualizarPorId(UUID idReceptor, @Valid Receptor receptorAtualizado) {
-        Receptor receptorExistente = receptorRepository.findById(idReceptor).orElseThrow();
+        Receptor receptorExistente = buscarPorId(idReceptor);
         BeanUtils.copyProperties(receptorAtualizado, receptorExistente, "id");
         return receptorRepository.save(receptorExistente);
     }
 
     public void deletarPorId(UUID idReceptor) {
+        buscarPorId(idReceptor);
         receptorRepository.deleteById(idReceptor);
     }
 }

@@ -31,12 +31,13 @@ public class TransmissorService {
     }
 
     public Transmissor atualizarPorId(UUID idTransmissor, @Valid Transmissor transmissorAtualizado) {
-        Transmissor transmissorExistente = transmissorRepository.findById(idTransmissor).orElseThrow();
+        Transmissor transmissorExistente = buscarPorId(idTransmissor);
         BeanUtils.copyProperties(transmissorAtualizado, transmissorExistente, "id");
         return transmissorRepository.save(transmissorExistente);
     }
     
     public void deletarPorId(UUID idTransmissor) {
+        buscarPorId(idTransmissor);
         try {
             transmissorRepository.deleteById(idTransmissor);
         } catch (DataIntegrityViolationException ex) {
