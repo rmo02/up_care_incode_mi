@@ -16,7 +16,7 @@ public class Nobreak {
     private UUID id;
 
     @NotNull
-    @ManyToOne(cascade = CascadeType.PERSIST)
+    @ManyToOne(cascade = {CascadeType.PERSIST, CascadeType.REMOVE})
     @JoinColumn(name = "fk_equipamento")
     private Equipamento equipamento;
 
