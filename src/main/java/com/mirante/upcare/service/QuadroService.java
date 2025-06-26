@@ -8,6 +8,7 @@ import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
 
 import org.springframework.beans.BeanUtils;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -38,6 +39,13 @@ public class QuadroService {
     }
 
     public void deletarPorId(UUID idQuadro) {
-        quadroRepository.deleteById(idQuadro);
+        buscarPorId(idQuadro);
+        try {
+            quadroRepository.deleteById(idQuadro);
+        } catch (DataIntegrityViolationException ex) {
+            throw new DataIntegrityViolationException("Não é possível excluir a parabolica: ela está vinculado a outra entidade.");
+        } catch (Exception ex) {
+            throw ex;
+        }
     }
 }

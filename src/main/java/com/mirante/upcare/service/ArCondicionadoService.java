@@ -25,5 +25,7 @@ public class ArCondicionadoService {
             arCondicionadoAtualizado.setId(idArCondicionado);
             return salvar(arCondicionadoAtualizado);
         }
-    public void excluirPorId(UUID idArCondicionado){arCondicionadoRepository.deleteById(idArCondicionado);}
+    public void excluirPorId(UUID idArCondicionado){
+        buscarPorId(idArCondicionado);
+        arCondicionadoRepository.deleteById(idArCondicionado);}
     }

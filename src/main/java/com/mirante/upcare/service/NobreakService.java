@@ -38,6 +38,7 @@ public class NobreakService {
     }
 
     public void deletarPorId(UUID idNobreak){
+        buscarPorId(idNobreak);
         nobreakRepository.deleteById(idNobreak);
     }
 }

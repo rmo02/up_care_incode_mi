@@ -38,6 +38,7 @@ public class DisjuntorService {
     }
 
     public void deletarPorId(UUID idDisjuntor) {
+        buscarPorId(idDisjuntor);
         disjuntorRepository.deleteById(idDisjuntor);
     }
 }

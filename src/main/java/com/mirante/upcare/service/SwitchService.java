@@ -38,6 +38,7 @@ public class SwitchService {
     }
 
     public void deletarPorId(UUID idSwitch) {
+        buscarPorId(idSwitch);
         switchRepository.deleteById(idSwitch);
     }
 }

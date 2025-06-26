@@ -27,6 +27,7 @@ public class TarefaEquipamentoService {
         );
     }
     public void deletarPorId(UUID idTarefaEquipamento) {
+        buscarPorId(idTarefaEquipamento);
         tarefaEquipamentoRepository.deleteById(idTarefaEquipamento);
     }
 }

@@ -24,5 +24,7 @@ public class TelemetriaService {
         telemetriaAtualizada.setId(idTelemetria);
         return salvar(telemetriaAtualizada);
     }
-    public void excluirPorId(UUID idTelemetria){telemetriaRepository.deleteById(idTelemetria);}
+    public void excluirPorId(UUID idTelemetria){
+        buscarPorId(idTelemetria);
+        telemetriaRepository.deleteById(idTelemetria);}
 }
