@@ -72,12 +72,12 @@ public class ArCondicionadoController {
             description = "Atualiza os dados de um ar-condicionado existente com base no ID e nos dados fornecidos"
     )
     @PutMapping("{idArCondicionado}")
-    public ResponseEntity<UUID>atualizarPorId(@PathVariable UUID idArCondicionado, @Valid @RequestBody ArCondionadoRequest dto){
+    public ResponseEntity<Object>atualizarPorId(@PathVariable UUID idArCondicionado, @Valid @RequestBody ArCondionadoRequest dto){
         return (Pipeline
                 .from(dto)
                 .then(arCondicionadoMapper::toEntity)
                 .then(arCondicionadoAtualizado -> arCondicionadoService.AtualizarPorId(idArCondicionado, arCondicionadoAtualizado))
-                .then(arCondicionadoAtualizado -> ResponseEntity.ok(arCondicionadoAtualizado.getId()))
+                .then(c -> ResponseEntity.noContent().build())
                 .get()
         );
     }
@@ -89,6 +89,6 @@ public class ArCondicionadoController {
     @DeleteMapping("{idArCondicionado}")
     public ResponseEntity<Void> excluirPorId(@PathVariable UUID idArCondicionado){
         arCondicionadoService.excluirPorId(idArCondicionado);
-        return ResponseEntity.ok().build();
+        return ResponseEntity.noContent().build();
     }
 }

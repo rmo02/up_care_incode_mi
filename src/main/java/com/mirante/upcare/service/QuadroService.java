@@ -43,7 +43,7 @@ public class QuadroService {
         try {
             quadroRepository.deleteById(idQuadro);
         } catch (DataIntegrityViolationException ex) {
-            throw new DataIntegrityViolationException("Não é possível excluir a parabolica: ela está vinculado a outra entidade.");
+            throw new DataIntegrityViolationException("Não é possível excluir o quadro: ele está vinculado a outra entidade.");
         } catch (Exception ex) {
             throw ex;
         }
