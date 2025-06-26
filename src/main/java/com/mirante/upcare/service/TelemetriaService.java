@@ -1,5 +1,6 @@
 package com.mirante.upcare.service;
 
+import com.mirante.upcare.exceptions.NotFoundException;
 import com.mirante.upcare.models.Telemetria;
 import com.mirante.upcare.repository.TelemetriaRepository;
 import jakarta.validation.Valid;
@@ -16,7 +17,9 @@ public class TelemetriaService {
 
     public Telemetria salvar(@Valid Telemetria telemetria) {return telemetriaRepository.save(telemetria);}
     public List<Telemetria> buscarTodos(){return telemetriaRepository.findAll();}
-    public Telemetria buscarPorId(UUID idTelemetria){return telemetriaRepository.findById(idTelemetria).orElseThrow();}
+    public Telemetria buscarPorId(UUID idTelemetria){return telemetriaRepository.findById(idTelemetria).orElseThrow(
+            () -> new NotFoundException("Telemetria não encontrada com o ID: " + idTelemetria)
+    );}
     public Telemetria AtualizarPorId(UUID idTelemetria, @Valid Telemetria telemetriaAtualizada){
         telemetriaAtualizada.setId(idTelemetria);
         return salvar(telemetriaAtualizada);

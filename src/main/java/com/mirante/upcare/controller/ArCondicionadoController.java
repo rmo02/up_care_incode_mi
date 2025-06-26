@@ -26,22 +26,22 @@ public class ArCondicionadoController {
     private final ArCondicionadoMapper arCondicionadoMapper;
 
     @Operation(
-            summary = "Criar um novo ar condicionado",
-            description = "Cria e salva um novo ar condicionado com os dados fornecidos no corpo da requisição"
+            summary = "Criar um novo ar-condicionado",
+            description = "Cria e salva um novo ar-condicionado com os dados fornecidos no corpo da requisição"
     )
     @PostMapping
-    public ResponseEntity<UUID> salvar(@Valid @RequestBody ArCondionadoRequest dto) {
+    public ResponseEntity<Object> salvar(@Valid @RequestBody ArCondionadoRequest dto) {
         return (Pipeline
             .from(dto)
             .then(arCondicionadoMapper::toEntity)
             .then(arCondicionadoService::salvar)
-            .then(a -> ResponseEntity.status(HttpStatus.CREATED).body(a.getId()))
+            .then(a -> ResponseEntity.status(HttpStatus.CREATED).build())
             .get()
         );
     }
     @Operation(
-            summary = "Buscar todos os ar condicionados",
-            description = "Retorna todos os ar condicionados cadastrados no sistema"
+            summary = "Buscar todos os ar-condicionados",
+            description = "Retorna todos os ar-condicionados cadastrados no sistema"
     )
     @GetMapping
     public ResponseEntity<List<ArCondicionadoResponse>> buscarTodos(){
@@ -53,8 +53,8 @@ public class ArCondicionadoController {
         );
     }
     @Operation(
-            summary = "Buscar ar condicionado por ID",
-            description = "Retorna os dados de um ar condicionado específico com base no ID fornecido"
+            summary = "Buscar ar-condicionado por ID",
+            description = "Retorna os dados de um ar-condicionado específico com base no ID fornecido"
     )
     @GetMapping("{idArCondicionado}")
     public ResponseEntity<ArCondicionadoResponse> buscarPorId(@PathVariable UUID idArCondicionado){
@@ -68,8 +68,8 @@ public class ArCondicionadoController {
     }
 
     @Operation(
-            summary = "Atualizar ar condicionado por ID",
-            description = "Atualiza os dados de um ar condicionado existente com base no ID e nos dados fornecidos"
+            summary = "Atualizar ar-condicionado por ID",
+            description = "Atualiza os dados de um ar-condicionado existente com base no ID e nos dados fornecidos"
     )
     @PutMapping("{idArCondicionado}")
     public ResponseEntity<UUID>atualizarPorId(@PathVariable UUID idArCondicionado, @Valid @RequestBody ArCondionadoRequest dto){
@@ -83,8 +83,8 @@ public class ArCondicionadoController {
     }
 
     @Operation(
-            summary = "Excluir ar condicionado por ID",
-            description = "Remove um ar condicionado existente com base no ID fornecido. "
+            summary = "Excluir ar-condicionado por ID",
+            description = "Remove um ar-condicionado existente com base no ID fornecido. "
     )
     @DeleteMapping("{idArCondicionado}")
     public ResponseEntity<Void> excluirPorId(@PathVariable UUID idArCondicionado){

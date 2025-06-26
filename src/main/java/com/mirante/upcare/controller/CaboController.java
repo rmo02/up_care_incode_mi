@@ -37,13 +37,13 @@ public class CaboController {
             description = "Cria e salva um novo cabo com os dados fornecidos no corpo da requisição"
     )
     @PostMapping
-    public ResponseEntity<UUID> salvar(@Valid @RequestBody CaboRequest dto){
+    public ResponseEntity<Object> salvar(@Valid @RequestBody CaboRequest dto){
         return (Pipeline
             .from(dto)
             .then(caboMapper::toEntity)
             .then(caboService::salvar)
             .then(Cabo::getId)
-            .then(id->ResponseEntity.status(HttpStatus.CREATED).body(id))
+            .then(id->ResponseEntity.status(HttpStatus.CREATED).build())
             .get()
         );
     }

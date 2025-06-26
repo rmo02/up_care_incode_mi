@@ -1,5 +1,6 @@
 package com.mirante.upcare.service;
 
+import com.mirante.upcare.exceptions.NotFoundException;
 import com.mirante.upcare.models.Combinador;
 import com.mirante.upcare.repository.CombinadorRepository;
 import jakarta.validation.Valid;
@@ -17,7 +18,9 @@ public class CombinadorService {
 
 
     public List<Combinador> buscarTodos(){return combinadorRepository.findAll();}
-    public Combinador buscarPorId(UUID idCombinador){return combinadorRepository.findById(idCombinador).orElseThrow();}
+    public Combinador buscarPorId(UUID idCombinador){return combinadorRepository.findById(idCombinador).orElseThrow(
+            () -> new NotFoundException("Combinador não encontrado com o ID: " + idCombinador)
+    );}
     public Combinador AtualizarPorId(UUID idCombinador, @Valid Combinador combinadorAtualizado){
            combinadorAtualizado.setId(idCombinador);
            return salvar(combinadorAtualizado);
