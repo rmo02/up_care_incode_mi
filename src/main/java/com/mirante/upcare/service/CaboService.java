@@ -5,6 +5,7 @@ import com.mirante.upcare.models.Cabo;
 import com.mirante.upcare.repository.CaboRepository;
 import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
+import org.springframework.beans.BeanUtils;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -22,8 +23,9 @@ public class CaboService {
             () -> new NotFoundException("Cabo não encontrado com o ID: " + idCabo)
     );}
     public Cabo AtualizarPorId(UUID idCabo, @Valid Cabo caboAtualizado){
-        caboAtualizado.setId(idCabo);
-        return salvar(caboAtualizado);
+        Cabo caboExistente = buscarPorId(idCabo);
+        BeanUtils.copyProperties(caboAtualizado, caboExistente, "id");
+        return salvar(caboExistente);
     }
     public void excluirPorId(UUID idCabo){
         buscarPorId(idCabo);

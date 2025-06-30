@@ -5,6 +5,7 @@ import com.mirante.upcare.models.Telemetria;
 import com.mirante.upcare.repository.TelemetriaRepository;
 import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
+import org.springframework.beans.BeanUtils;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -21,8 +22,9 @@ public class TelemetriaService {
             () -> new NotFoundException("Telemetria não encontrada com o ID: " + idTelemetria)
     );}
     public Telemetria AtualizarPorId(UUID idTelemetria, @Valid Telemetria telemetriaAtualizada){
-        telemetriaAtualizada.setId(idTelemetria);
-        return salvar(telemetriaAtualizada);
+        Telemetria telemetriaExistente = buscarPorId(idTelemetria);
+        BeanUtils.copyProperties(telemetriaAtualizada, telemetriaExistente, "id");
+        return salvar(telemetriaExistente);
     }
     public void excluirPorId(UUID idTelemetria){
         buscarPorId(idTelemetria);

@@ -5,6 +5,7 @@ import com.mirante.upcare.models.Combinador;
 import com.mirante.upcare.repository.CombinadorRepository;
 import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
+import org.springframework.beans.BeanUtils;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -22,8 +23,9 @@ public class CombinadorService {
             () -> new NotFoundException("Combinador não encontrado com o ID: " + idCombinador)
     );}
     public Combinador AtualizarPorId(UUID idCombinador, @Valid Combinador combinadorAtualizado){
-           combinadorAtualizado.setId(idCombinador);
-           return salvar(combinadorAtualizado);
+            Combinador combinadorExistente = buscarPorId(idCombinador);
+            BeanUtils.copyProperties(combinadorAtualizado, combinadorExistente, "id");
+            return salvar(combinadorExistente);
     }
     public void excluirPorId(UUID idCombinador){
         buscarPorId(idCombinador);

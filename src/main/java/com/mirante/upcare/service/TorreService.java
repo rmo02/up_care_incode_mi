@@ -5,6 +5,7 @@ import com.mirante.upcare.models.Torre;
 import com.mirante.upcare.repository.TorreRepository;
 import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
+import org.springframework.beans.BeanUtils;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -21,8 +22,9 @@ public class TorreService {
             () -> new NotFoundException("Torre não encontrada com o ID: " + idTorre)
     );}
     public Torre AtualizarPorId(UUID idTorre, @Valid Torre torreAtualizada){
-        torreAtualizada.setId(idTorre);
-            return salvar(torreAtualizada);
+            Torre torreExistente = buscarPorId(idTorre);
+            BeanUtils.copyProperties(torreAtualizada, torreExistente, "id");
+            return salvar(torreExistente);
     }
     public void excluirPorId(UUID idTorre){
         buscarPorId(idTorre);

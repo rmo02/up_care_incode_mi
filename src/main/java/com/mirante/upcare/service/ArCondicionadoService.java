@@ -1,6 +1,7 @@
 package com.mirante.upcare.service;
 
 import com.mirante.upcare.exceptions.NotFoundException;
+import org.springframework.beans.BeanUtils;
 import org.springframework.stereotype.Service;
 import com.mirante.upcare.models.ArCondicionado;
 import com.mirante.upcare.repository.ArCondicionadoRepository;
@@ -22,8 +23,9 @@ public class ArCondicionadoService {
             () -> new NotFoundException("Ar-Condicionado não encontrado com o ID: " + idArCondicionado)
     );}
     public ArCondicionado AtualizarPorId(UUID idArCondicionado, @Valid ArCondicionado arCondicionadoAtualizado){
-            arCondicionadoAtualizado.setId(idArCondicionado);
-            return salvar(arCondicionadoAtualizado);
+            ArCondicionado arCondicionadoExistente = buscarPorId(idArCondicionado);
+            BeanUtils.copyProperties(arCondicionadoAtualizado, arCondicionadoExistente, "id");
+            return salvar(arCondicionadoExistente);
         }
     public void excluirPorId(UUID idArCondicionado){
         buscarPorId(idArCondicionado);

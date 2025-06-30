@@ -5,6 +5,7 @@ import com.mirante.upcare.models.Exaustor;
 import com.mirante.upcare.repository.ExaustorRepository;
 import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
+import org.springframework.beans.BeanUtils;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -21,8 +22,9 @@ public class ExaustorService {
             () -> new NotFoundException("Exaustor não encontrado com o ID: " + idExaustor)
     );}
     public Exaustor AtualizarPorId(UUID idExaustor, @Valid Exaustor exaustorAtualizado){
-        exaustorAtualizado.setId(idExaustor);
-        return salvar(exaustorAtualizado);
+        Exaustor exaustorExistente = buscarPorId(idExaustor);
+        BeanUtils.copyProperties(exaustorAtualizado, exaustorExistente, "id");
+        return salvar(exaustorExistente);
     }
     public void excluirPorId(UUID idExaustor){
         buscarPorId(idExaustor);
