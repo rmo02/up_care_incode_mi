@@ -70,7 +70,7 @@ public class UsuarioController {
     )
     @GetMapping("{idUsuario}")
     public ResponseEntity<UsuarioResponse> buscarPorId(
-            @Parameter(description = "ID do nobreak a ser buscado", required = true)
+            @Parameter(description = "ID do usuarios a ser buscado", required = true)
             @PathVariable UUID idUsuario) {
         return (Pipeline
             .from(idUsuario)
