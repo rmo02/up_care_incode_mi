@@ -2,14 +2,15 @@ package com.mirante.upcare.service;
 
 import com.mirante.upcare.exceptions.NotFoundException;
 import com.mirante.upcare.models.Usuario;
+import com.mirante.upcare.repository.RoleRepository;
 import com.mirante.upcare.repository.UsuarioRepository;
 import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
-
 import org.springframework.beans.BeanUtils;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
-
 import java.util.List;
+import java.util.Set;
 import java.util.UUID;
 
 @Service
@@ -17,8 +18,20 @@ import java.util.UUID;
 public class UsuarioService {
 
     private final UsuarioRepository usuarioRepository;
+    private final RoleRepository roleRepository;
+    private final BCryptPasswordEncoder passwordEncoder;
 
     public Usuario salvar(@Valid Usuario usuario){
+        var tipoUsuario = roleRepository.findByNome("TECNICO")
+                .orElseThrow(() -> new RuntimeException("Role TECNICO não encontrada"));
+
+        boolean usuarioExiste = usuarioRepository.findByNome(usuario.getNome()).isPresent();
+        if (usuarioExiste) {
+            throw new RuntimeException("Usuário com esse nome já existe");
+        }
+
+        usuario.setRoles(Set.of(tipoUsuario));
+        usuario.setSenha(passwordEncoder.encode(usuario.getSenha())); 
         return usuarioRepository.save(usuario);
     }
 

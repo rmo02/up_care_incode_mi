@@ -221,4 +221,7 @@ INSERT INTO usuario (id, nome, email, senha, contato, fk_empresa) VALUES
 INSERT INTO manutencao (id, fk_estacao, fk_tecnico, tipo) VALUES 
 ('d4444444-e555-f666-a777-b88888888888', 'e7d9c1a1-2f56-4f7b-8b9f-12c3f4c2a1b3', '0e1d3e2c-b32e-4c7e-9b5f-1b20a1a3d4d1', 'PREVENTIVA');
 
-
+INSERT INTO role (nome) VALUES 
+('ADMIN'),
+('SUPERVISOR'),
+('TECNICO');
